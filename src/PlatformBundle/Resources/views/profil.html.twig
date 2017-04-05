@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <p>{{ user.firstname }}</p>
+        <p>{{ user.lastname }}</p>
+    </div>
+    <div>
+        <a href="{{ path('user_observations') }}">Accéder aux propositions</a>
+    </div>
+    <div>
+        <h1>Proposition en attente</h1>
+    </div>
+    <div>
+
+    </div>
+{% endblock %}

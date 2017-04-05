@@ -5,18 +5,29 @@ namespace ObservationBundle\Oiseau;
 use Doctrine\ORM\EntityManager;
 use ObservationBundle\Form\ObservationType;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use ObservationBundle\Entity\Observation;
 
 class ManageOiseau
 {
     private $em;
 
-    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack)
+    private $router;
+
+    private $formFactory;
+
+    protected $requestStack;
+
+    protected $tokenStorage;
+
+
+    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack, TokenStorage $tokenStorage)
     {
         $this->em = $em;
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->requestStack = $requestStack;
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function oiseauView($slug)
@@ -32,6 +43,7 @@ class ManageOiseau
     public function oiseauAdd($slug)
     {
         $request = $this->requestStack->getCurrentRequest();
+        $user = $this->tokenStorage->getToken()->getUser();
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
 
@@ -39,6 +51,8 @@ class ManageOiseau
         $form   = $this->formFactory->create(ObservationType::class, $observation);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+            $observation->setUser($user);
             $observation->setOiseau($oiseau);
             $this->em->persist($observation);
             $this->em->flush();
