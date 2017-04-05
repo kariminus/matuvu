@@ -18,7 +18,7 @@
             <li><a href="{{ path('homepage') }}">Administration du site</a></li>
         {% endif %}
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <li><a href="{{ path('homepage') }}">Profil</a></li>
+            <li><a href="{{ path('user_profil') }}">Profil</a></li>
         {% endif %}
     </ul>
 </header>
@@ -29,4 +29,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {% endblock %}
 </body>
+<footer>
+</footer>
 </html>

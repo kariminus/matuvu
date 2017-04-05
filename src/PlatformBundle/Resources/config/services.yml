@@ -1,0 +1,6 @@
+services:
+    manage_platform:
+        class:        PlatformBundle\Platform\ManagePlatform
+        arguments:
+            ["@doctrine.orm.entity_manager", "@router", "@request_stack", "@form.factory", "@security.token_storage"]
+

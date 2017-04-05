@@ -1,0 +1,16 @@
+user_profil:
+    path:     /profil
+    defaults: { _controller: PlatformBundle:Platform:userProfil }
+
+user_edit:
+    path:     /profil/modifier
+    defaults: { _controller: PlatformBundle:Platform:userEdit }
+
+user_observations:
+    path:     /profil/observations
+    defaults: { _controller: PlatformBundle:Platform:userObservations }
+
+observation_view:
+    path:     /profil/observation/{id}
+    defaults: { _controller: PlatformBundle:Platform:ObservationView }
+    methods:  [GET, POST]

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div>
+        <p>{{ user.firstname }}</p>
+        <p>{{ user.lastname }}</p>
+    </div>
+    <div>
+        <p>{{ oiseau.scientificName }}</p>
+        <p>{{ oiseau.name }}</p>
+        <p>({{ oiseau.ordre }}, {{ observation.oiseau.family }})</p>
+        <p>Observé le {{ observation.date | date("d/m/Y")}}</p>
+        <p>lat: {{ observation.latitude }}</p>
+        <p>long: {{ observation.longitude }}</p>
+    </div>
+    <div>
+        <p><a href="">Précédent</a></p>
+        <p><a href="">Suivant</a></p>
+    </div>
+{% endblock %}
