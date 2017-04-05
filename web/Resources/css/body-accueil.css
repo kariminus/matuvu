@@ -1,0 +1,293 @@
+@media (min-width: 768px) and (max-width:991px ){
+
+@font-face {
+  font-family: rondalo; 
+  src: url(../fonts/Rondalo-Regular.ttf)  
+}
+
+@font-face {
+  font-family: SEGOEUI; 
+  src: url(../fonts/SEGOEUI.TTF)  
+}
+
+.titre {
+    font-family: rondalo;
+    font-size:20px;
+    
+    
+}
+
+p{
+  font-family: SEGOEUI, arial;
+    font-size:16px;  
+}
+
+.logo{
+   display:none;
+   }
+   
+ #marque_accueil{
+    width:40%;
+    height:40%;
+    padding-top: 30px;
+    padding-right: -150px;
+    text-align: center;
+    margin-left: 22%;
+    text-align: center;
+   
+ }
+
+.form-group{
+    position:relative;
+}
+
+#conteneur{
+   position:relative;
+   margin: 0px;
+   border: 50px solid #FF6600;
+   text-align: center;
+   padding-bottom:50px;
+   height: 46px;
+}
+
+#recherche{
+   position:absolute;
+   text-align:center;
+   width:100%;
+   padding-left: 15%;
+   padding-right: 15%;
+   height:100%;
+}
+   
+#conditions{
+   position:absolute;
+   bottom:0px;
+   left: 0px;
+   font-size: 16px;
+   
+   }     
+   a:hover{
+      color:#000; 
+   }
+   a{
+       color:#95989A;
+   }
+}
+   
+/* <768px : smartphones
+ >=768px: tablettes
+ >=992px: ecran moyen 
+ >1200Px :  grnad écran*/
+ 
+input {
+     border:  none;
+}
+
+
+@media (max-width: 767px) {
+  @font-face {
+  font-family: rondalo; 
+  src: url(../fonts/Rondalo-Regular.ttf)  
+}
+ 
+@font-face {
+  font-family: SEGOEUI; 
+  src: url(../fonts/SEGOEUI.TTF)  
+}
+
+  .titre{ 
+      display:none;
+  }
+  #marque_accueil{
+  padding-top: 30px;
+  padding-right: -150px;
+  text-align: center;
+  margin-left: 22%;
+  width:50%;
+  height:50%;
+  
+  }
+  
+  .form-group{
+    padding-top:30px; 
+    position:relative;
+}
+
+#conteneur{
+   position:relative;
+   margin: 0px;
+   border: 50px solid #FF6600;
+   text-align: center;
+   padding-bottom:50px;
+   height: 46px;
+   
+}
+
+#recherche{
+   position:absolute;
+   text-align:center;
+   width:100%;
+   height:46px;
+   padding-top: 0px;
+   padding-left: 0px;
+   padding-right: 0px;
+   padding-bottom: 0px;
+   margin-top: -40px;
+   margin-top: -28px; 
+ }
+ 
+ 
+
+.logo {
+    font-family: rondalo;
+    margin-top: 0px;
+    text-align: center;
+}    
+#conditions{
+    position:relative;
+    text-align: center;
+    
+}
+ 
+}
+
+@media (min-width: 992px) and (max-width:1199px){
+  @font-face {
+  font-family: rondalo; 
+  src: url(../fonts/Rondalo-Regular.ttf)  
+}
+ 
+@font-face {
+  font-family: SEGOEUI; 
+  src: url(../fonts/SEGOEUI.TTF)  
+} 
+
+
+
+.form-group{
+    position:relative;
+}
+
+#conteneur{
+   position:relative;
+   margin: 0px;
+   border: 50px solid #FF6600;
+   text-align: center;
+   padding-bottom:50px;
+   height: 46px;
+}
+
+#recherche{
+   position:absolute;
+   text-align:center;
+   width:100%;
+   padding-left: 15%;
+   padding-right: 15%;
+   height:100%;
+}
+
+.logo{
+    display:none;
+}
+.titre {
+    font-family: rondalo;
+    font-size:20px;
+    
+    
+}
+p{
+  font-family: SEGOEUI, arial;
+    font-size:16px;  
+}
+
+#marque_accueil{
+    width:40%;
+    height:40%;
+    padding-top: 30px;
+    padding-right: -150px;
+    text-align: center;
+    margin-left: 22%;
+    text-align: center;
+   
+ }
+ 
+ a:hover{
+      color:#000; 
+   }
+   a{
+       color:#95989A;
+   }
+   
+}
+    
+@media (min-width:1200px ){
+   @font-face {
+  font-family: rondalo; 
+  src: url(../fonts/Rondalo-Regular.ttf)  
+}
+ 
+@font-face {
+  font-family: SEGOEUI; 
+  src: url(../fonts/SEGOEUI.TTF)  
+} 
+
+
+
+.form-group{
+    position:relative;
+}
+
+#conteneur{
+   position:relative;
+   margin: 0px;
+   border: 50px solid #FF6600;
+   text-align: center;
+   padding-bottom:50px;
+   height: 46px;
+}
+
+#recherche{
+   position:absolute;
+   text-align:center;
+   width:100%;
+   padding-left: 15%;
+   padding-right: 15%;
+   height:100%;
+}
+
+.logo{
+    display:none;
+}
+.titre {
+    font-family: rondalo;
+    font-size:20px;        
+} 
+ 
+p{
+  font-family: SEGOEUI, arial;
+    font-size:16px;  
+}
+
+#marque_accueil{
+    width:40%;
+    height:40%;
+    padding-top: 30px;    
+    margin-left: 26%;
+    
+   
+ }
+ 
+ a:hover{
+      color:#000; 
+   }
+   a{
+       color:#95989A;
+   }
+
+} 
+ 
+
+   
+   
+   
+    
