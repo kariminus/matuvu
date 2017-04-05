@@ -1,0 +1,5 @@
+services:
+    manage_oiseau:
+        class:        ObservationBundle\Oiseau\ManageOiseau
+        arguments:
+            ["@doctrine.orm.entity_manager", "@form.factory", "@router", "@request_stack"]
