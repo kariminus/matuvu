@@ -1,0 +1,5 @@
+services:
+    manage_user:
+        class:        UserBundle\User\ManageUser
+        arguments:
+            ["@doctrine.orm.entity_manager", "@form.factory", "@router"]

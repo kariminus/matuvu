@@ -3,6 +3,7 @@
 namespace ObservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use UserBundle\Entity\User;
 
 /**
  * Observation
@@ -46,6 +47,12 @@ class Observation
      * @ORM\JoinColumn(name="oiseau_id", referencedColumnName="id")
      */
     protected $oiseau;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="observations")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
 
     public function __construct()
     {
@@ -117,7 +124,6 @@ class Observation
     }
 
 
-
     /**
      * @return Oiseau
      */
@@ -132,5 +138,21 @@ class Observation
     public function setOiseau(Oiseau $oiseau)
     {
         $this->oiseau = $oiseau;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
 }

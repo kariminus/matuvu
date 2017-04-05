@@ -11,3 +11,15 @@ observation_add:
     path:     /oiseau/{slug}/add
     defaults: { _controller: "ObservationBundle:Oiseau:add" }
     methods:  [GET, POST]
+
+security_login:
+    path:     /login
+    defaults: { _controller: UserBundle:Security:login }
+
+security_logout:
+    path:     /logout
+    defaults: { _controller: UserBundle:Security:logout }
+
+user_register:
+    path:     /register/
+    defaults: { _controller: UserBundle:User:register }
