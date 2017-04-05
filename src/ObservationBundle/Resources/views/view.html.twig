@@ -1,0 +1,96 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            width: 50%;
+            height: 50%;
+        }
+    </style>
+    <p>{{ oiseau.scientificName }}</p>
+    <p>{{ oiseau.name }}</p>
+    <p>{{ oiseau.ordre }}</p>
+    <p>{{ oiseau.family }}</p>
+
+    <div id="map"></div>
+    <script>
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 6,
+                gestureHandling: 'greedy'
+            });
+
+
+            {% for observation in observations %}
+            var myLatlng = new google.maps.LatLng({{ observation.latitude }},{{ observation.longitude }});
+            var uluru = {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}};
+            var contentString = '<div id="content">'+
+                '<div id="siteNotice">'+
+                '</div>'+
+                '<div id="bodyContent">'+
+                '<p>{{ observation.date | date}}</p>'+
+                '</div>'+
+                '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker{{ observation.id }} = new google.maps.Marker({
+                position: myLatlng,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillOpacity: 0.3,
+                    scale: 10,
+                    strokeWeight: 1
+                },
+                map: map
+            });
+            marker{{ observation.id }}.addListener('click', function() {
+                infowindow.open(map, marker{{ observation.id }});
+            });
+
+            // To add the marker to the map, call setMap();
+            marker{{ observation.id }}.setMap(map);
+            {% endfor %}
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    map.setCenter(pos);
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq5V-pUDvNBdnyhFN_RRcVUeTXqMAioc0&signed_in=true&callback=initMap"></script>
+
+    <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}">Ajouter</a>
+{% endblock %}
