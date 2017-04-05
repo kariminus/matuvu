@@ -1,17 +1,32 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+    
+    
+    <h1 class="titre text-center">Matuvu</h1>
+    
+    
+    
+    
+    <div id="conteneur" class="text-center">
+    <div class="form-group">
+    <div id="recherche" class="input-group input-group-lg col-lg-12">
+  <input type="text" class="form-control" placeholder="Rechercher un oiseau" style="font-size:16px;">
+</div> 
+   </div>
+    </div>
+    
+ <img src="{{asset('Resources/images/logo.png')}}" class="text-center" id="marque_accueil" alt="Marque"/>  
+ <h1 class="logo text-center">Matuvu</h1>
+ 
+ 
+ <p id="conditions"><a href="{{ path('conditions') }}">conditions d'utilisation</a> - Un site NAO</p>
+   
+{% endblock %}
 
-    <form action="" method="POST" id="search">
-
-
-        <div class="ui-widget form-group">
-            <label for="search" class="control-label">Recherche</label>
-            <input id="search" name ="search" class="input-lg form-control" type="text" size="50">
-        </div>
-
-
-        <button type="submit" class="btn btn-lg btn-primary">Rechercher</button>
-    </form>
-
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}
