@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Connexion</h1>
+
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+    {{ form_start(form) }}
+    {{ form_row(form._username) }}
+    {{ form_row(form._password) }}
+    <p>
+        <button type="submit">Connexion</button>
+        <a href="{{ path('user_register') }}">Inscription</a>
+    </p>
+    {{ form_end(form) }}
+{% endblock %}

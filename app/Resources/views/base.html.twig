@@ -7,6 +7,21 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     {% endblock %}
 </head>
+<header>
+    <ul style="list-style: none">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <li><a href="{{ path('security_logout') }}">Deconnexion</a></li>
+        {% else %}
+            <li><a href="{{ path('security_login') }}">Connexion</a><a href="{{ path('user_register') }}" style="margin-left: 10px">Inscription</a></li>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('homepage') }}">Administration du site</a></li>
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <li><a href="{{ path('homepage') }}">Profil</a></li>
+        {% endif %}
+    </ul>
+</header>
 <body>
 {% block body %}{% endblock %}
 {% block javascripts %}
