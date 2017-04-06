@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <p>{{ user.firstname }}</p>
+        <p>{{ user.lastname }}</p>
+    </div>
+    {% block link %}{% endblock %}
+
+    {% block content %}{% endblock %}
+
+    <div><a href="{{ path('security_logout') }}">Deconnexion</a></div>
+{% endblock %}

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>Welcome!</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     {% endblock %}
@@ -23,6 +23,7 @@
     </ul>
 </header>
 <body>
+{% block title %}{% endblock %}
 {% block body %}{% endblock %}
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

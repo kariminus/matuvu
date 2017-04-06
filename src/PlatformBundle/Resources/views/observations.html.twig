@@ -1,19 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'PlatformBundle::layout.html.twig' %}
+{% block title %}
+    <p>Historique des observations</p>
+{% endblock %}
+{% block link %}
+    <a href="{{ path('user_edit') }}">Modifier mon profil</a>
+{% endblock %}
 
-{% block body %}
-    <div>
-        <p>{{ user.firstname }}</p>
-        <p>{{ user.lastname }}</p>
-    </div>
-    <div>
-        <a href="{{ path('user_edit') }}">Modifier mon profil</a>
-    </div>
-    <h1>Historique des observations</h1>
-    <div>
-        <ul>
-            {% for observation in observations %}
-                <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
+{% block content %}
+    <ul>
+        {% for observation in observations %}
+            <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}

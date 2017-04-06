@@ -1,11 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'PlatformBundle::layout.html.twig' %}
+{% block title %}
+    <p>Détail de l'observatio</p>
+{% endblock %}
 
-{% block body %}
+{% block link %}
+    <a href="{{ path('user_observations') }}">Accéder aux propositions</a>
+{% endblock %}
 
-    <div>
-        <p>{{ user.firstname }}</p>
-        <p>{{ user.lastname }}</p>
-    </div>
+{% block content %}
     <div>
         <p>{{ oiseau.scientificName }}</p>
         <p>{{ oiseau.name }}</p>
@@ -18,4 +20,5 @@
         <p><a href="">Précédent</a></p>
         <p><a href="">Suivant</a></p>
     </div>
+
 {% endblock %}
