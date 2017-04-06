@@ -3,6 +3,7 @@
 namespace ObservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use UserBundle\Entity\User;
 
 /**
@@ -53,6 +54,12 @@ class Observation
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ObservationBundle\Entity\Image", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private $image;
 
     public function __construct()
     {
@@ -155,4 +162,22 @@ class Observation
     {
         $this->user = $user;
     }
+
+    /**
+     * @param Image $image
+     */
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
 }
