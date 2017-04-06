@@ -66,4 +66,13 @@ class ManagePlatform
         return [$user, $form];
     }
 
+    public function adminIndex()
+    {
+        $user =  $this->tokenStorage->getToken()->getUser();
+
+        $observations = $this->em->getRepository('ObservationBundle:Observation')->findAll();
+
+        return [$user, $observations];
+    }
+
 }

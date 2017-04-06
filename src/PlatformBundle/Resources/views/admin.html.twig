@@ -1,0 +1,19 @@
+{% extends 'PlatformBundle::layout.html.twig' %}
+{% block title %}
+    <p>Administration du site</p>
+{% endblock %}
+
+{% block link %}
+    <div>
+        <a href="{{ path('users_index') }}">Gestion des membres</a>
+    </div>
+{% endblock %}
+{% block content %}
+    <ul>
+        {% for observation in observations %}
+            <li><a href="{{ path('admin_observation_edit', {'id' : observation.id}) }}">{{ observation.oiseau.name }}
+                    par {{ observation.user.firstname }} {{ observation.user.firstname }} le {{ observation.date |date('d/m/Y') }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

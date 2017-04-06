@@ -36,13 +36,12 @@ class PlatformController extends Controller
         ));
     }
 
-    public function userEditAction()
+    public function adminIndexAction()
     {
-        $array = $this->get('manage_platform')->profilEdit();
+        $user = $this->get('manage_platform')->adminIndex();
 
-        return $this->render('PlatformBundle::editprofil.html.twig', array(
-            'user' => $array[0],
-            'form' => $array[1]->createView(),
+        return $this->render('PlatformBundle::admin.html.twig', array(
+           'user' => $user,
         ));
     }
 }

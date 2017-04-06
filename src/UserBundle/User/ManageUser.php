@@ -3,20 +3,24 @@
 namespace UserBundle\User;
 
 use Doctrine\ORM\EntityManager;
+use UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class ManageUser
 {
     private $em;
     private $formFactory;
     private $router;
+    protected $tokenStorage;
 
-    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack)
+    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack, TokenStorage $tokenStorage)
     {
         $this->em = $em;
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->requestStack = $requestStack;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -25,8 +29,31 @@ class ManageUser
      */
     public function userIndex ()
     {
-        return $this->em->getRepository('UserBundle:User')->findAll();
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        $users = $this->em->getRepository('UserBundle:User')->findAll();
+
+        return [$user, $users];
     }
+
+    /**
+     * Add a user entity.
+     *
+     */
+    public function userAdd ()
+    {
+        $request = $this->requestStack->getCurrentRequest();
+        $user = $this->tokenStorage->getToken()->getUser();
+        $member = new User();
+        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $member)
+            ->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->persist($member);
+            $this->em->flush();
+        }
+        return [$user, $form];
+    }
+
     /**
      * Deletes a user entity.
      *
@@ -35,28 +62,29 @@ class ManageUser
     {
         $user = $this->em->getRepository('UserBundle:User')->find($id);
         if ($user === null) {
-            return $this->router->generate('admin_user_index');
+            return $this->router->generate('admin');
         }
         $this->em->remove($user);
         $this->em->flush();
 
-        return $this->router->generate('admin_user_index');
+        return $this->router->generate('admin');
     }
 
     /**
      * Displays a form to edit an existing user entity.
      *
      */
-    public function userEdit ($user)
+    public function userEdit ($id)
     {
         $request = $this->requestStack->getCurrentRequest();
-
-        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $user);
+        $user = $this->tokenStorage->getToken()->getUser();
+        $member = $this->em->getRepository('UserBundle:User')->find($id);
+        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $member);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
         }
-        return [$user, $form];
+        return [$user, $member, $form];
     }
 
 }

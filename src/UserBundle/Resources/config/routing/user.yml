@@ -1,19 +1,9 @@
-admin_user_index:
+users_index:
     path:     /
     defaults: { _controller: "UserBundle:User:index" }
     methods:  GET
 
-admin_user_new:
-    path:     /new
-    defaults: { _controller: "UserBundle:User:new" }
+admin_user_add:
+    path:     /admin/membre/ajouter
+    defaults: { _controller: UserBundle:User:add }
     methods:  [GET, POST]
-
-admin_user_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "UserBundle:User:edit" }
-    methods:  [GET, POST]
-
-admin_user_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "UserBundle:User:delete" }
-    methods:  [GET, DELETE]
