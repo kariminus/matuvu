@@ -2,9 +2,11 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>Welcome!</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {% endblock %}
 </head>
 <header>
@@ -15,18 +17,16 @@
             <li><a href="{{ path('security_login') }}">Connexion</a><a href="{{ path('user_register') }}" style="margin-left: 10px">Inscription</a></li>
         {% endif %}
         {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('homepage') }}">Administration du site</a></li>
-        {% endif %}
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <li><a href="{{ path('admin') }}">Administration du site</a></li>
+        {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <li><a href="{{ path('user_profil') }}">Profil</a></li>
         {% endif %}
     </ul>
 </header>
 <body>
+{% block title %}{% endblock %}
 {% block body %}{% endblock %}
 {% block javascripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {% endblock %}
 </body>
 <footer>

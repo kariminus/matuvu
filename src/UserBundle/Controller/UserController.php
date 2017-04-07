@@ -36,25 +36,36 @@ class UserController extends Controller
     }
     public function indexAction()
     {
-        $manageUser = $this->get('manage_user');
-        $users = $manageUser->userIndex();
-        return $this->render('UserBundle::index.html.twig', array(
-            'users' => $users,
+
+        $users = $this->get('manage_user')->userIndex();
+
+        return $this->render('UserBundle::users.html.twig', array(
+            'user' => $users[0],
+            'users' => $users[1],
         ));
     }
-    public function editAction(User $user)
+
+    public function addAction()
     {
-        $manageUser = $this->get('manage_user');
-        $array = $manageUser->userEdit($user);
+        $array = $this->get('manage_user')->userAdd();
+        return $this->render('UserBundle::new.html.twig', array(
+            'user'=> $array[0],
+            'form' => $array[1]->createView(),
+        ));
+    }
+    public function editAction($id)
+    {
+        $array = $this->get('manage_user')->userEdit($id);
         return $this->render('UserBundle::edit.html.twig', array(
             'user' => $array[0],
-            'form' => $array[1]->createView(),
+            'member' => $array[1],
+            'form' => $array[2]->createView()
         ));
     }
     public function deleteAction($id)
     {
-        $manageUser = $this->get('manage_user');
-        $manageUser->userDelete($id);
-        return $this->redirectToRoute('admin_user_index');
+        $this->get('manage_user')->userDelete($id);
+
+        return $this->redirectToRoute('admin');
     }
 }

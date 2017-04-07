@@ -8,10 +8,23 @@ class PlatformController extends Controller
 {
     public function userProfilAction()
     {
-        $user = $this->get('manage_platform')->platformProfil();
+        $array = $this->get('manage_platform')->platformProfil();
+
 
         return $this->render('PlatformBundle::profil.html.twig', array(
-            'user' => $user,
+            'user' => $array[0],
+            'observations' => $array[1]
+        ));
+    }
+
+    public function profilEditAction()
+    {
+        $array = $this->get('manage_platform')->profilEdit();
+
+
+        return $this->render('PlatformBundle::editprofil.html.twig', array(
+            'user' => $array[0],
+            'form' => $array[1]->createView()
         ));
     }
 
@@ -25,24 +38,14 @@ class PlatformController extends Controller
         ));
     }
 
-    public function observationViewAction($id)
+
+
+    public function adminIndexAction()
     {
-        $array = $this->get('manage_platform')->observationView($id);
+        $user = $this->get('manage_platform')->adminIndex();
 
-        return $this->render('PlatformBundle::observation.html.twig', array(
-            'user' => $array[0],
-            'observation' => $array[1],
-            'oiseau' => $array[2]
-        ));
-    }
-
-    public function userEditAction()
-    {
-        $array = $this->get('manage_platform')->profilEdit();
-
-        return $this->render('PlatformBundle::editprofil.html.twig', array(
-            'user' => $array[0],
-            'form' => $array[1]->createView(),
+        return $this->render('PlatformBundle::admin.html.twig', array(
+           'user' => $user,
         ));
     }
 }

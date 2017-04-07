@@ -3,6 +3,7 @@
 namespace ObservationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use UserBundle\Entity\User;
 
 /**
@@ -54,9 +55,23 @@ class Observation
      */
     protected $user;
 
+    /**
+     * @ORM\OneToOne(targetEntity="ObservationBundle\Entity\Image", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private $image;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="validated", type="boolean")
+     */
+    private $validated;
+
     public function __construct()
     {
         $this->date = new \DateTime();
+        $this->validated = 0;
     }
 
     /**
@@ -108,7 +123,7 @@ class Observation
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLongitude()
     {
@@ -116,7 +131,7 @@ class Observation
     }
 
     /**
-     * @param mixed $longitude
+     * @param string $longitude
      */
     public function setLongitude($longitude)
     {
@@ -155,4 +170,38 @@ class Observation
     {
         $this->user = $user;
     }
+
+    /**
+     * @param Image $image
+     */
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isValidated()
+    {
+        return $this->validated;
+    }
+
+    /**
+     * @param boolean $validated
+     */
+    public function setValidated($validated)
+    {
+        $this->validated = $validated;
+    }
+
+
 }

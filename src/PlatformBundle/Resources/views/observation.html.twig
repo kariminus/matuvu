@@ -1,11 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'PlatformBundle::layout.html.twig' %}
+{% block title %}
+    <p>Détail de l'observation</p>
+{% endblock %}
 
-{% block body %}
+{% block link %}
+    <a href="{{ path('user_observations') }}">Accéder aux propositions</a>
+{% endblock %}
 
-    <div>
-        <p>{{ user.firstname }}</p>
-        <p>{{ user.lastname }}</p>
-    </div>
+{% block content %}
     <div>
         <p>{{ oiseau.scientificName }}</p>
         <p>{{ oiseau.name }}</p>
@@ -14,8 +16,12 @@
         <p>lat: {{ observation.latitude }}</p>
         <p>long: {{ observation.longitude }}</p>
     </div>
+    {% if is_granted('ROLE_PRO') %}
+        {% include 'PlatformBundle::validation.html.twig' with {'id': observation} %}
+    {% endif %}
     <div>
         <p><a href="">Précédent</a></p>
         <p><a href="">Suivant</a></p>
     </div>
+
 {% endblock %}

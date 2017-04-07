@@ -1,13 +1,20 @@
 {% extends '::base.html.twig' %}
 
-{% block body %}
+{% block title %}
 
-    <form action="" method="POST" id="search">
-        <div>
-            <label for="search">Recherche</label>
-            <input id="search" name ="search" type="text">
-        </div>
-        <button type="submit">Rechercher</button>
-    </form>
+    <div class="ui-widget">
+        <form action="" method="POST" id="search">
+            <div>
+                <label for="search">Recherche</label>
+                <input id="search" name="search" type="text">
+            </div>
+            <button type="submit">Rechercher</button>
+        </form>
+    </div>
 
 {% endblock %}
+
+{% block body %}
+{% endblock %}
+
+

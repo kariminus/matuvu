@@ -1,0 +1,16 @@
+{% extends 'PlatformBundle::layout.html.twig' %}
+{% block title %}
+    <p>Gestion des membres</p>
+{% endblock %}
+{% block link %}
+    <a href="">Gestion des membres</a>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for user in users %}
+            <li><a href="{{ path('admin_user_edit', {'id' : user.id}) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{{ path('admin_user_add') }}">Ajouter un membre</a>
+{% endblock %}

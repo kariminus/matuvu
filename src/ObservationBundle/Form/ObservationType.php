@@ -25,7 +25,10 @@ class ObservationType extends AbstractType
                 )
             ))
             ->add('latitude', HiddenType::class)
-            ->add('longitude', HiddenType::class);
+            ->add('longitude', HiddenType::class)
+            ->add('image',     ImageType::class, array(
+                'label' => false
+            ));
 
     }
 
