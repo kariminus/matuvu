@@ -9,6 +9,7 @@ class PlatformController extends Controller
     public function userProfilAction()
     {
         $user = $this->get('manage_platform')->platformProfil();
+        
 
         return $this->render('PlatformBundle::profil.html.twig', array(
             'user' => $user,

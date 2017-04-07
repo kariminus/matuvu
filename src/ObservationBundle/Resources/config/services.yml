@@ -2,7 +2,7 @@ services:
     manage_oiseau:
         class:        ObservationBundle\Oiseau\ManageOiseau
         arguments:
-            ["@doctrine.orm.entity_manager", "@form.factory", "@router", "@request_stack", "@security.token_storage"]
+            ["@doctrine.orm.entity_manager", "@form.factory", "@router", "@request_stack", "@security.token_storage", "@security.authorization_checker"]
 
     manage_observation:
             class:        ObservationBundle\Observation\ManageObservation

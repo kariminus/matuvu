@@ -4,6 +4,16 @@ users_index:
     methods:  GET
 
 admin_user_add:
-    path:     /admin/membre/ajouter
+    path:     /ajouter
     defaults: { _controller: UserBundle:User:add }
+    methods:  [GET, POST]
+
+admin_user_edit:
+    path:     /{id}/modifier/
+    defaults: { _controller: UserBundle:User:edit }
+    methods:  [GET, POST]
+
+admin_user_delete:
+    path:     /{id}/delete/
+    defaults: { _controller: UserBundle:User:delete }
     methods:  [GET, POST]

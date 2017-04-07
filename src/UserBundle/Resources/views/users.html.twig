@@ -3,13 +3,13 @@
     <p>Gestion des membres</p>
 {% endblock %}
 {% block link %}
-    <a href="{{ path('admin',{'id' : user.id} ) }}">Gestion des membres</a>
+    <a href="">Gestion des membres</a>
 {% endblock %}
 
 {% block content %}
     <ul>
         {% for user in users %}
-            <li><a href="{{ path('user_edit', {'id' : user.id}) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
+            <li><a href="{{ path('admin_user_edit', {'id' : user.id}) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
         {% endfor %}
     </ul>
     <a href="{{ path('admin_user_add') }}">Ajouter un membre</a>

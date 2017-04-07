@@ -61,9 +61,17 @@ class Observation
      */
     private $image;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="validated", type="boolean")
+     */
+    private $validated;
+
     public function __construct()
     {
         $this->date = new \DateTime();
+        $this->validated = 0;
     }
 
     /**
@@ -115,7 +123,7 @@ class Observation
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLongitude()
     {
@@ -123,7 +131,7 @@ class Observation
     }
 
     /**
-     * @param mixed $longitude
+     * @param string $longitude
      */
     public function setLongitude($longitude)
     {
@@ -177,6 +185,22 @@ class Observation
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isValidated()
+    {
+        return $this->validated;
+    }
+
+    /**
+     * @param boolean $validated
+     */
+    public function setValidated($validated)
+    {
+        $this->validated = $validated;
     }
 
 
