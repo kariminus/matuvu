@@ -5,7 +5,9 @@ namespace ObservationBundle\Observation;
 use Doctrine\ORM\EntityManager;
 use ObservationBundle\Form\ObservationType;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use ObservationBundle\Entity\Observation;
 
 class ManageObservation
@@ -20,16 +22,51 @@ class ManageObservation
 
     protected $tokenStorage;
 
+    protected $authorizationChecker;
 
-    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack, TokenStorage $tokenStorage)
+
+    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack, TokenStorage $tokenStorage, AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->em = $em;
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->requestStack = $requestStack;
         $this->tokenStorage = $tokenStorage;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
+    public function observationAdd($slug)
+    {
+        $request = $this->requestStack->getCurrentRequest();
+        $user = $this->tokenStorage->getToken()->getUser();
+        $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
+            array('slug' => $slug));
+        $exist = $this->em->getRepository('ObservationBundle:Observation')->findDistinct($user->getId(), $oiseau->getId());
+
+        $observation = new Observation();
+        $form   = $this->formFactory->create(ObservationType::class, $observation);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            if ($this->authorizationChecker->isGranted('ROLE_PRO')) {
+                $observation->setValidated(1);
+            }
+            $observation->setUser($user);
+            $observation->setOiseau($oiseau);
+            $this->em->persist($observation);
+            $this->em->flush();
+            if ($exist == 0)
+            {
+                $user->addObservationsNumber();
+            }
+
+            $response = new RedirectResponse($this->router->generate('homepage'));
+
+            $response->send();
+        }
+
+        return [$form, $oiseau];
+    }
 
     public function observationShow($id)
     {
@@ -53,11 +90,23 @@ class ManageObservation
 
     public function observationDelete($id)
     {
+        $response = new RedirectResponse($this->router->generate('user_profil'));
+
         $observation = $this->em->getRepository('ObservationBundle:Observation')->find($id);
         if ($observation === null) {
-            return $this->router->generate('user_profil');
+            $response->send();
         }
         $this->em->remove($observation);
+        $this->em->flush();
+        $response->send();
+    }
+
+    public function imageDelete($id)
+    {
+        $observation = $this->em->getRepository('ObservationBundle:Observation')->find($id);
+
+        $observation->setImageName(null);
+        $this->em->persist($observation);
         $this->em->flush();
     }
 

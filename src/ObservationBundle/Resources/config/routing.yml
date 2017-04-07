@@ -9,12 +9,17 @@ oiseau_view:
 
 observation_add:
     path:     /oiseau/{slug}/add
-    defaults: { _controller: "ObservationBundle:Oiseau:add" }
+    defaults: { _controller: "ObservationBundle:Observation:add" }
     methods:  [GET, POST]
 
 observation_delete:
     path:     /observation/{id}/supprimer
     defaults: { _controller: ObservationBundle:Observation:delete }
+    methods:  [GET, POST]
+
+image_delete:
+    path:     /image/{id}/supprimer
+    defaults: { _controller: ObservationBundle:Observation:imageDelete }
     methods:  [GET, POST]
 
 observation_validate:

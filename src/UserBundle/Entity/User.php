@@ -76,10 +76,18 @@ class User implements UserInterface
      */
     protected $observations;
 
+
+    /**
+     * @var int
+     * @ORM\Column(name="observations_number", type="integer")
+     */
+    private $observationsNumber;
+
     public function __construct()
     {
         $this->observations = new ArrayCollection();
         $this->setRoles(['ROLE_PAR']);
+        $this->setObservationsNumber(0);
     }
 
     public function getUsername()
@@ -233,5 +241,29 @@ class User implements UserInterface
     public function getObservations()
     {
         return $this->observations;
+    }
+
+    /**
+     * @return int
+     */
+    public function getObservationsNumber()
+    {
+        return $this->observationsNumber;
+    }
+
+    /**
+     * @param int $observationsNumber
+     */
+    public function setObservationsNumber($observationsNumber)
+    {
+        $this->observationsNumber = $observationsNumber;
+    }
+
+    /**
+     * @param int $observationsNumber
+     */
+    public function addObservationsNumber()
+    {
+        $this->observationsNumber ++;
     }
 }

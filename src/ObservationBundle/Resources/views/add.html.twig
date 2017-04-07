@@ -74,8 +74,10 @@
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
+    {{ form_widget(form.date) }}
     {{ form_widget(form.latitude) }}
     {{ form_widget(form.longitude) }}
+    {{ form_widget(form.imageFile) }}
     <button type="submit">Valider</button>
     {{ form_end(form) }}
 {% endblock %}

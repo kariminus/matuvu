@@ -77,3 +77,15 @@ stof_doctrine_extensions:
     orm:
         default:
             sluggable: true
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        observation_image:
+            uri_prefix:         /images/observations
+            upload_destination: '%kernel.root_dir%/../web/images/observations'
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
