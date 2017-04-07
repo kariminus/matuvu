@@ -35,4 +35,15 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+
+    public function findAllValidatedByOiseau($oiseauId)
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o')
+            ->where('o.oiseau = :oiseauId')
+            ->andWhere('o.validated = :validated')
+            ->setParameters(array('validated' => 1, 'oiseauId' => $oiseauId));
+        return $qb->getQuery()
+            ->getResult();
+    }
 }

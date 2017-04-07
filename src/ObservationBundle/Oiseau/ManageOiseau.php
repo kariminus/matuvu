@@ -35,7 +35,7 @@ class ManageOiseau
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
 
-        $observations = $this->em->getRepository('ObservationBundle:Observation')->findByOiseau($oiseau->getId());
+        $observations = $this->em->getRepository('ObservationBundle:Observation')->findAllValidatedByOiseau($oiseau->getId());
 
         return [$oiseau, $observations];
     }
