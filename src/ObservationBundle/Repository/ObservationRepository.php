@@ -46,4 +46,17 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+
+    public function findDistinct($userId, $oiseauId)
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('count(o)')
+            ->where('o.user = :userId')
+            ->andWhere('o.oiseau = :oiseauId')
+            ->andWhere('o.validated = :validated')
+            ->setParameters(array('userId' => $userId, 'oiseauId' => $oiseauId, 'validated' => 1))
+            ->distinct();
+        return $qb->getQuery()
+            ->getSingleScalarResult();
+    }
 }

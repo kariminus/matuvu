@@ -41,6 +41,7 @@ class ManageObservation
         $user = $this->tokenStorage->getToken()->getUser();
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
+        $exist = $this->em->getRepository('ObservationBundle:Observation')->findDistinct($user->getId(), $oiseau->getId());
 
         $observation = new Observation();
         $form   = $this->formFactory->create(ObservationType::class, $observation);
@@ -54,6 +55,10 @@ class ManageObservation
             $observation->setOiseau($oiseau);
             $this->em->persist($observation);
             $this->em->flush();
+            if ($exist == 0)
+            {
+                $user->addObservationsNumber();
+            }
 
             $response = new RedirectResponse($this->router->generate('homepage'));
 
