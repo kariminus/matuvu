@@ -13,13 +13,14 @@
 .titre {
     font-family: rondalo;
     font-size:20px;
-    
+    color:white;
     
 }
 
 p{
   font-family: SEGOEUI, arial;
-    font-size:16px;  
+    font-size:16px;
+    color:#95989A;
 }
 
 .logo{
