@@ -11,6 +11,10 @@
 
 
 {% block content %}
-
+    <ul>
+        {% for observation in observations %}
+            <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

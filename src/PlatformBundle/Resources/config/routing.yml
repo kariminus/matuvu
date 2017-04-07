@@ -9,12 +9,12 @@ user_observations:
 
 observation_view:
     path:     /profil/observation/{id}
-    defaults: { _controller: PlatformBundle:Platform:ObservationView }
+    defaults: { _controller: ObservationBundle:Observation:view }
     methods:  [GET, POST]
 
 user_edit:
     path:     /profil/modifier
-    defaults: { _controller: PlatformBundle:Platform:userEdit }
+    defaults: { _controller: PlatformBundle:Platform:profilEdit }
 
 user_profil:
     path:     /profil
@@ -23,9 +23,4 @@ user_profil:
 admin_observation_edit:
     path:     /admin/observation/{id}/modifier
     defaults: { _controller: ObservationBundle:Observation:edit }
-    methods:  [GET, POST]
-
-admin_observation_delete:
-    path:     /admin/observation/{id}/supprimer
-    defaults: { _controller: ObservationBundle:Observation:delete }
     methods:  [GET, POST]

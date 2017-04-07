@@ -15,9 +15,26 @@ class ObservationController extends Controller
         ));
     }
 
+    public function viewAction($id)
+    {
+        $array = $this->get('manage_observation')->observationView($id);
+
+        return $this->render('PlatformBundle::observation.html.twig', array(
+            'user' => $array[0],
+            'observation' => $array[1],
+            'oiseau' => $array[2]
+        ));
+    }
+
     public function deleteAction($id)
     {
         $this->get('manage_observation')->observationDelete($id);
-        return $this->redirectToRoute('admin');
+        return $this->redirectToRoute('user_profil');
+    }
+
+    public function validateAction($id)
+    {
+        $this->get('manage_observation')->observationValidate($id);
+        return $this->redirectToRoute('user_profil');
     }
 }

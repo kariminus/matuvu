@@ -41,11 +41,21 @@ class ManageObservation
 
     }
 
+    public function observationView($id)
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        $observation = $this->em->getRepository('ObservationBundle:Observation')->findOneById($id);
+        $oiseau = $observation->getOiseau();
+
+        return [$user, $observation, $oiseau];
+    }
+
     public function observationDelete($id)
     {
-        $observation = $this->em->getRepository('ObsevationBundle:Observation')->find($id);
+        $observation = $this->em->getRepository('ObservationBundle:Observation')->find($id);
         if ($observation === null) {
-            return $this->router->generate('homepage');
+            return $this->router->generate('user_profil');
         }
         $this->em->remove($observation);
         $this->em->flush();
@@ -53,7 +63,10 @@ class ManageObservation
 
     public function observationValidate($id)
     {
-
+        $observation = $this->em->getRepository('ObservationBundle:Observation')->find($id);
+        $observation->setValidated(1);
+        $this->em->persist($observation);
+        $this->em->flush();
     }
 
 }

@@ -12,6 +12,16 @@ observation_add:
     defaults: { _controller: "ObservationBundle:Oiseau:add" }
     methods:  [GET, POST]
 
+observation_delete:
+    path:     /observation/{id}/supprimer
+    defaults: { _controller: ObservationBundle:Observation:delete }
+    methods:  [GET, POST]
+
+observation_validate:
+    path:     /observation/{id}/valider
+    defaults: { _controller: ObservationBundle:Observation:validate }
+    methods:  [GET, POST]
+
 security_login:
     path:     /login
     defaults: { _controller: UserBundle:Security:login }

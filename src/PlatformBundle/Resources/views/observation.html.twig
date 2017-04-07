@@ -16,6 +16,9 @@
         <p>lat: {{ observation.latitude }}</p>
         <p>long: {{ observation.longitude }}</p>
     </div>
+    {% if is_granted('ROLE_PRO') %}
+        {% include 'PlatformBundle::validation.html.twig' with {'id': observation} %}
+    {% endif %}
     <div>
         <p><a href="">Précédent</a></p>
         <p><a href="">Suivant</a></p>

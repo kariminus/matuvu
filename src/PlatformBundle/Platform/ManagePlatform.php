@@ -7,6 +7,7 @@ use ObservationBundle\Entity\Observation;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class ManagePlatform
 {
@@ -20,37 +21,41 @@ class ManagePlatform
 
     protected $tokenStorage;
 
-    public function __construct(EntityManager $em, $router, RequestStack $requestStack, $formFactory, TokenStorage $tokenStorage)
+    protected $authorizationChecker;
+
+    public function __construct(EntityManager $em, $router, RequestStack $requestStack, $formFactory, TokenStorage $tokenStorage, AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->em = $em;
         $this->router = $router;
         $this->requestStack = $requestStack;
         $this->formFactory = $formFactory;
         $this->tokenStorage = $tokenStorage;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     public function platformProfil()
     {
-        return $this->tokenStorage->getToken()->getUser();
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        if ($this->authorizationChecker->isGranted('ROLE_PRO'))
+        {
+            $observations = $this->em->getRepository('ObservationBundle:Observation')->getAllToValidate();
+        }
+        else {
+            $observations = $this->em->getRepository('ObservationBundle:Observation')->getAllNotValidated($user->getId());
+        }
+
+
+        return [$user, $observations];
     }
 
     public function platformObservations()
     {
         $user = $this->tokenStorage->getToken()->getUser();
 
-        $observations = $this->em->getRepository('ObservationBundle:Observation')->findByUser($user->getId());
+        $observations = $this->em->getRepository('ObservationBundle:Observation')->getAllValidated($user->getId());
 
         return [$user, $observations];
-    }
-
-    public function observationView($id)
-    {
-        $user = $this->tokenStorage->getToken()->getUser();
-
-        $observation = $this->em->getRepository('ObservationBundle:Observation')->findOneById($id);
-        $oiseau = $observation->getOiseau();
-
-        return [$user, $observation, $oiseau];
     }
 
     public function profilEdit()
