@@ -12,6 +12,8 @@
     {{ form_start(form) }}
     {{ form_row(form._username) }}
     {{ form_row(form._password) }}
+    <input type="checkbox" id="remember_me" name="_remember_me"/>
+    <label for="remember_me">Se souvenir de moi</label>
     <p>
         <button type="submit">Connexion</button>
         <a href="{{ path('user_register') }}">Inscription</a>

@@ -29,11 +29,15 @@ security:
                     - app.security.login_form_authenticator
             logout:
                 path: /logout
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
 
     access_control:
         - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY, , requires_channel: '%httpProtocol%' }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY, , requires_channel: '%httpProtocol%' }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/profil/, role: [ROLE_PRO, ROLE_PAR] }
+        - { path: ^/admin/, role: ROLE_ADMIN, , requires_channel: '%httpProtocol%' }
+        - { path: ^/profil/, role: [ROLE_PRO, ROLE_PAR], , requires_channel: '%httpProtocol%' }
