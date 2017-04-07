@@ -32,6 +32,12 @@ class ObservationController extends Controller
         return $this->redirectToRoute('user_profil');
     }
 
+    public function imageDeleteAction($id)
+    {
+        $this->get('manage_observation')->imageDelete($id);
+        return $this->redirectToRoute('user_profil');
+    }
+
     public function validateAction($id)
     {
         $this->get('manage_observation')->observationValidate($id);

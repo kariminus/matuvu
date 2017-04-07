@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,10 +25,11 @@ class ObservationType extends AbstractType
                     'date' => 'Date'
                 )
             ))
-            ->add('latitude', HiddenType::class)
-            ->add('longitude', HiddenType::class)
-            ->add('image',     ImageType::class, array(
-                'label' => false
+            ->add('latitude',       HiddenType::class)
+            ->add('longitude',      HiddenType::class)
+            ->add('imageFile',      FileType::class, array(
+                'label' => false,
+                'required' => false
             ));
 
     }

@@ -61,6 +61,15 @@ class ManageObservation
         $this->em->flush();
     }
 
+    public function imageDelete($id)
+    {
+        $observation = $this->em->getRepository('ObservationBundle:Observation')->find($id);
+
+        $observation->setImageName(null);
+        $this->em->persist($observation);
+        $this->em->flush();
+    }
+
     public function observationValidate($id)
     {
         $observation = $this->em->getRepository('ObservationBundle:Observation')->find($id);

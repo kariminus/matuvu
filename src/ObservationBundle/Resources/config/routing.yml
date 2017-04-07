@@ -17,6 +17,11 @@ observation_delete:
     defaults: { _controller: ObservationBundle:Observation:delete }
     methods:  [GET, POST]
 
+image_delete:
+    path:     /image/{id}/supprimer
+    defaults: { _controller: ObservationBundle:Observation:imageDelete }
+    methods:  [GET, POST]
+
 observation_validate:
     path:     /observation/{id}/valider
     defaults: { _controller: ObservationBundle:Observation:validate }
