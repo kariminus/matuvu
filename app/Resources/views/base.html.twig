@@ -17,19 +17,20 @@
             <a href="{{ path('security_login') }}">Connexion</a><a href="{{ path('user_register') }}" style="margin-left: 10px">Inscription</a>
         {% endif %}
         {% if is_granted('ROLE_ADMIN') %}
-           <img src="{{ asset('/images/profils/admin.jpg') }}" alt="Image du profil"/> <a href="{{ path('admin') }}">Administration du site</a>
+            <a href="{{ path('admin') }}"><img src="{{ asset('/images/profils/admin.jpg') }}" alt="Image du profil"/></a>
             {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 {% if is_granted('ROLE_PRO') %}
-                    <img src="{{ asset('/images/profils/naturaliste.jpg') }}" alt="Image du profil"/><a href="{{ path('user_profil') }}">Profil</a>
+                    <a href="{{ path('user_profil') }}"><img src="{{ asset('/images/profils/naturaliste.jpg') }}" alt="Image du profil"/></a>
                     {% elseif is_granted('ROLE_PAR') %}
-                        {% if app.user.observationsNumber < 10 %}
-                            <img src="{{ asset('/images/profils/particulier1.jpg') }}" alt="Image du profil"/>
+                        <a href="{{ path('user_profil') }}">
+                            {% if app.user.observationsNumber < 10 %}
+                                <img src="{{ asset('/images/profils/particulier1.jpg') }}" alt="Image du profil"/>
                             {% elseif app.user.observationsNumber >= 10 and app.user.observationsNumber < 50 %}
                                 <img src="{{ asset('/images/profils/particulier2.jpg') }}" alt="Image du profil"/>
-                                {% else %}
-                                    <img src="{{ asset('/images/profils/particulier3.jpg') }}" alt="Image du profil"/>
+                            {% else %}
+                                <img src="{{ asset('/images/profils/particulier3.jpg') }}" alt="Image du profil"/>
                             {% endif %}
-                        <a href="{{ path('user_profil') }}">Profil</a>
+                        </a>
                 {% endif %}
         {% endif %}
     </ul>
