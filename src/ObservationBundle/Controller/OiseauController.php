@@ -36,15 +36,4 @@ class OiseauController extends Controller
             'observations' => $array[1]
         ));
     }
-
-    public function addAction($slug)
-    {
-
-        $array = $this->get('manage_oiseau')->oiseauAdd($slug);
-
-        return $this->render('ObservationBundle::add.html.twig', array(
-            'form' => $array[0]->createView(),
-            'oiseau' => $array[1]
-        ));
-    }
 }

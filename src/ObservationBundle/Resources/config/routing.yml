@@ -9,7 +9,7 @@ oiseau_view:
 
 observation_add:
     path:     /oiseau/{slug}/add
-    defaults: { _controller: "ObservationBundle:Oiseau:add" }
+    defaults: { _controller: "ObservationBundle:Observation:add" }
     methods:  [GET, POST]
 
 observation_delete:

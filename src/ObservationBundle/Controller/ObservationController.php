@@ -26,6 +26,17 @@ class ObservationController extends Controller
         ));
     }
 
+    public function addAction($slug)
+    {
+
+        $array = $this->get('manage_observation')->observationAdd($slug);
+
+        return $this->render('ObservationBundle::add.html.twig', array(
+            'form' => $array[0]->createView(),
+            'oiseau' => $array[1]
+        ));
+    }
+
     public function deleteAction($id)
     {
         $this->get('manage_observation')->observationDelete($id);
