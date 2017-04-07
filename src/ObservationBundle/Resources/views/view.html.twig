@@ -29,42 +29,40 @@
 
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 6,
+                zoom: 8,
                 gestureHandling: 'greedy'
             });
 
 
             {% for observation in observations %}
-            var myLatlng = new google.maps.LatLng({{ observation.latitude }},{{ observation.longitude }});
-            var uluru = {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}};
             var contentString = '<div id="content">'+
                 '<div id="siteNotice">'+
                 '</div>'+
                 '<div id="bodyContent">'+
-                '<p>{{ observation.date | date}}</p>'+
+                '<p>Observé le {{ observation.date | date('d/m/Y')}} <br/>par {{ observation.user.firstname }} {{ observation.user.lastname }}</p>'+
                 '</div>'+
                 '</div>';
 
             var infowindow = new google.maps.InfoWindow({
-                content: contentString
+                content: contentString,
+                position: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}}
             });
 
-            var marker{{ observation.id }} = new google.maps.Marker({
-                position: myLatlng,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillOpacity: 0.3,
-                    scale: 10,
-                    strokeWeight: 1
-                },
-                map: map
-            });
-            marker{{ observation.id }}.addListener('click', function() {
-                infowindow.open(map, marker{{ observation.id }});
+
+            var cityCircle{{ observation.id }} = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}},
+                radius: 10000
             });
 
-            // To add the marker to the map, call setMap();
-            marker{{ observation.id }}.setMap(map);
+            cityCircle{{ observation.id }}.addListener('click', function() {
+                infowindow.open(map, cityCircle{{ observation.id }});
+            });
             {% endfor %}
 
             // Try HTML5 geolocation.
