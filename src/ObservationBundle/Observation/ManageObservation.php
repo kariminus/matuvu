@@ -35,6 +35,11 @@ class ManageObservation
         $this->authorizationChecker = $authorizationChecker;
     }
 
+    /**
+     * Ajoute une observation
+     * @param $slug
+     * @return array
+     */
     public function observationAdd($slug)
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -68,26 +73,23 @@ class ManageObservation
         return [$form, $oiseau];
     }
 
-    public function observationShow($id)
-    {
-        $user = $this->tokenStorage->getToken()->getUser();
-
-        $observation = $this->em->getRepository('ObservationBundle:Observation')->findOne($id);
-
-        return [$user, $observation];
-
-    }
-
+    /**
+     * Affiche le détail d'une observation
+     * @param $id
+     * @return array
+     */
     public function observationView($id)
     {
-        $user = $this->tokenStorage->getToken()->getUser();
-
         $observation = $this->em->getRepository('ObservationBundle:Observation')->findOneById($id);
         $oiseau = $observation->getOiseau();
 
-        return [$user, $observation, $oiseau];
+        return [$observation, $oiseau];
     }
 
+    /**
+     * Supprime une observation
+     * @param $id
+     */
     public function observationDelete($id)
     {
         $response = new RedirectResponse($this->router->generate('user_profil'));
@@ -101,6 +103,10 @@ class ManageObservation
         $response->send();
     }
 
+    /**
+     * Supprime l'image d'une observation
+     * @param $id
+     */
     public function imageDelete($id)
     {
         $observation = $this->em->getRepository('ObservationBundle:Observation')->find($id);
@@ -110,6 +116,10 @@ class ManageObservation
         $this->em->flush();
     }
 
+    /**
+     * Valide une observation
+     * @param $id
+     */
     public function observationValidate($id)
     {
         $observation = $this->em->getRepository('ObservationBundle:Observation')->find($id);

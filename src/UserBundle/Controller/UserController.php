@@ -4,7 +4,6 @@ namespace UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use UserBundle\Entity\User;
 use UserBundle\Form\UserRegistrationForm;
 
 /**
@@ -13,6 +12,11 @@ use UserBundle\Form\UserRegistrationForm;
  */
 class UserController extends Controller
 {
+    /**
+     * Inscription d'un membre
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function registerAction(Request $request)
     {
         $form = $this->createForm(UserRegistrationForm::class);
@@ -34,34 +38,49 @@ class UserController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * Liste tous les membres inscrits
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction()
     {
-
-        $users = $this->get('manage_user')->userIndex();
-
         return $this->render('UserBundle::users.html.twig', array(
-            'user' => $users[0],
-            'users' => $users[1],
+            'users' => $users = $this->get('manage_user')->userIndex(),
         ));
     }
 
+    /**
+     * Ajoute un membre
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function addAction()
     {
-        $array = $this->get('manage_user')->userAdd();
+        $form = $this->get('manage_user')->userAdd();
         return $this->render('UserBundle::new.html.twig', array(
-            'user'=> $array[0],
-            'form' => $array[1]->createView(),
+            'form' => $form->createView(),
         ));
     }
+
+    /**
+     * Affiche un formulaire pour modifier un membre
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function editAction($id)
     {
         $array = $this->get('manage_user')->userEdit($id);
         return $this->render('UserBundle::edit.html.twig', array(
             'user' => $array[0],
-            'member' => $array[1],
-            'form' => $array[2]->createView()
+            'form' => $array[1]->createView()
         ));
     }
+
+    /**
+     * Supprime un membre
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function deleteAction($id)
     {
         $this->get('manage_user')->userDelete($id);

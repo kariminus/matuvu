@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ManageUser
 {
@@ -24,38 +25,36 @@ class ManageUser
     }
 
     /**
-     * Lists all user entities.
+     * Liste tous les membres inscrits
      *
      */
     public function userIndex ()
     {
-        $user = $this->tokenStorage->getToken()->getUser();
 
         $users = $this->em->getRepository('UserBundle:User')->findAll();
 
-        return [$user, $users];
+        return $users;
     }
 
     /**
-     * Add a user entity.
+     * Ajoute un membre
      *
      */
     public function userAdd ()
     {
         $request = $this->requestStack->getCurrentRequest();
-        $user = $this->tokenStorage->getToken()->getUser();
-        $member = new User();
-        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $member)
+        $user = new User();
+        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $user)
             ->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($member);
+            $this->em->persist($user);
             $this->em->flush();
         }
-        return [$user, $form];
+        return $form;
     }
 
     /**
-     * Deletes a user entity.
+     * Supprime un membre
      *
      */
     public function userDelete ($id)
@@ -67,24 +66,25 @@ class ManageUser
         $this->em->remove($user);
         $this->em->flush();
 
-        return $this->router->generate('admin');
+        $response = new RedirectResponse($this->router->generate('admin'));
+
+        $response->send();
     }
 
     /**
-     * Displays a form to edit an existing user entity.
+     * Affiche un formulaire pour modifier un membre
      *
      */
     public function userEdit ($id)
     {
         $request = $this->requestStack->getCurrentRequest();
-        $user = $this->tokenStorage->getToken()->getUser();
-        $member = $this->em->getRepository('UserBundle:User')->find($id);
-        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $member);
+        $user = $this->em->getRepository('UserBundle:User')->find($id);
+        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
         }
-        return [$user, $member, $form];
+        return [$user, $form];
     }
 
 }

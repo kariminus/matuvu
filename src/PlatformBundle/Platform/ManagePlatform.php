@@ -2,8 +2,6 @@
 
 namespace PlatformBundle\Platform;
 
-use UserBundle\Entity\User;
-use ObservationBundle\Entity\Observation;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -33,6 +31,10 @@ class ManagePlatform
         $this->authorizationChecker = $authorizationChecker;
     }
 
+    /**
+     * Affiche une liste d'observations suivant le rôle de l'utilisateur
+     * @return $observations
+     */
     public function platformProfil()
     {
         $user = $this->tokenStorage->getToken()->getUser();
@@ -46,9 +48,13 @@ class ManagePlatform
         }
 
 
-        return [$user, $observations];
+        return $observations;
     }
 
+    /**
+     * Affiche les observations d'un membre
+     * @return array
+     */
     public function platformObservations()
     {
         $user = $this->tokenStorage->getToken()->getUser();
@@ -58,6 +64,10 @@ class ManagePlatform
         return [$user, $observations];
     }
 
+    /**
+     * Formulaire d'édition du profil d'un membre
+     * @return array
+     */
     public function profilEdit()
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -69,15 +79,6 @@ class ManagePlatform
             $this->em->flush();
         }
         return [$user, $form];
-    }
-
-    public function adminIndex()
-    {
-        $user =  $this->tokenStorage->getToken()->getUser();
-
-        $observations = $this->em->getRepository('ObservationBundle:Observation')->findAll();
-
-        return [$user, $observations];
     }
 
 }

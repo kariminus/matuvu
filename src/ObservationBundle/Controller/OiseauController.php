@@ -7,25 +7,23 @@ use Symfony\Component\HttpFoundation\Request;
 
 class OiseauController extends Controller
 {
-    public function indexAction(Request $request)
+    /**
+     * Page d'accueil du site
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction()
     {
-        if ($request->isMethod('POST')) {
-            $search = $request->request->get('search');
-
-            $oiseau = $this->getDoctrine()->getRepository('ObservationBundle:Oiseau')->findOneBy(
-                array('name' => $search));
-
-            return $this->redirectToRoute('oiseau_view', array('slug' => $oiseau->getSlug()));
-        }
-
-        $oiseaux = $this->getDoctrine()->getRepository('ObservationBundle:Oiseau')->findAll();
-
         return $this->render('ObservationBundle::index.html.twig', array (
-            'oiseaux' => $oiseaux,
+            'oiseaux' => $this->get('manage_oiseau')->oiseauIndex(),
         ));
 
     }
 
+    /**
+     * Page de profil d'un oiseau avec ses observations
+     * @param $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewAction($slug)
     {
 
