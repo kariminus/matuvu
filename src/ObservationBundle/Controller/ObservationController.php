@@ -6,26 +6,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ObservationController extends Controller
 {
-    public function showAction($id)
-    {
-        $array = $this->get('manage_observation')->observationShow($id);
-        return $this->render('ObservationBundle::show.html.twig', array(
-            'user' => $array[0],
-            'observation' => $array[1],
-        ));
-    }
-
+    /**
+     * Affiche le détail d'une observation
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewAction($id)
     {
         $array = $this->get('manage_observation')->observationView($id);
 
         return $this->render('PlatformBundle::observation.html.twig', array(
-            'user' => $array[0],
-            'observation' => $array[1],
-            'oiseau' => $array[2]
+            'observation' => $array[0],
+            'oiseau' => $array[1]
         ));
     }
 
+    /**
+     * Ajout d'une observation
+     * @param $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function addAction($slug)
     {
 
@@ -37,18 +37,33 @@ class ObservationController extends Controller
         ));
     }
 
+    /**
+     * Supprime une observation
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function deleteAction($id)
     {
         $this->get('manage_observation')->observationDelete($id);
         return $this->redirectToRoute('user_profil');
     }
 
+    /**
+     * Supprime l'image d'une observation
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function imageDeleteAction($id)
     {
         $this->get('manage_observation')->imageDelete($id);
         return $this->redirectToRoute('user_profil');
     }
 
+    /**
+     * Valide une observation
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function validateAction($id)
     {
         $this->get('manage_observation')->observationValidate($id);

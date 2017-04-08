@@ -6,17 +6,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class PlatformController extends Controller
 {
+    /**
+     * Affiche le profil des membres
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function userProfilAction()
     {
-        $array = $this->get('manage_platform')->platformProfil();
+        $observations = $this->get('manage_platform')->platformProfil();
 
 
         return $this->render('PlatformBundle::profil.html.twig', array(
-            'user' => $array[0],
-            'observations' => $array[1]
+            'observations' => $observations
         ));
     }
 
+    /**
+     * Permet à l'utiisateur de modifier son profil
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function profilEditAction()
     {
         $array = $this->get('manage_platform')->profilEdit();
@@ -28,6 +35,10 @@ class PlatformController extends Controller
         ));
     }
 
+    /**
+     * Affiche les observations d'un membre
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function userObservationsAction()
     {
         $array = $this->get('manage_platform')->platformObservations();
@@ -35,17 +46,6 @@ class PlatformController extends Controller
         return $this->render('PlatformBundle::observations.html.twig', array(
             'user' => $array[0],
             'observations' => $array[1],
-        ));
-    }
-
-
-
-    public function adminIndexAction()
-    {
-        $user = $this->get('manage_platform')->adminIndex();
-
-        return $this->render('PlatformBundle::admin.html.twig', array(
-           'user' => $user,
         ));
     }
 }

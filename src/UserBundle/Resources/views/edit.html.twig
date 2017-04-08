@@ -3,7 +3,7 @@
     <p>Gestion des membres</p>
 {% endblock %}
 {% block link %}
-    <a href="{{ path('users_index') }}">Gestion des membres</a>
+    <a href="{{ path('admin') }}">Gestion des membres</a>
 {% endblock %}
 
 {% block content %}
@@ -22,6 +22,6 @@
     <button type="submit">Modifier</button>
     {{ form_end(form) }}
 
-    <a href="{{ path('admin_user_delete', { 'id': member.id }) }}">Supprimer le membre</a>
+    <a href="{{ path('admin_user_delete', { 'id': user.id }) }}">Supprimer le membre</a>
 
 {% endblock %}
