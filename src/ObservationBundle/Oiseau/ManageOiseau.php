@@ -66,6 +66,18 @@ class ManageOiseau
 
         $observations = $this->em->getRepository('ObservationBundle:Observation')->findAllValidatedByOiseau($oiseau->getId());
 
+        $request = $this->requestStack->getCurrentRequest();
+        if ($request->isMethod('POST')) {
+
+            $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
+                array('name' => $request->request->get('search')));
+
+            $response = new RedirectResponse($this->router->generate('oiseau_view', array('slug' =>$oiseau->getSlug())));
+
+            $response->send();
+
+        }
+
         return [$oiseau, $observations];
     }
 
