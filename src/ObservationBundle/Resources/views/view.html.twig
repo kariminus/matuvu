@@ -15,10 +15,23 @@
             height: 50%;
         }
     </style>
-    <p>{{ oiseau.scientificName }}</p>
-    <p>{{ oiseau.name }}</p>
-    <p>{{ oiseau.ordre }}</p>
-    <p>{{ oiseau.family }}</p>
+    <div class="">
+        <form action="" method="POST" id="search">
+            <div>
+                <label for="search">Recherche</label>
+                <input id="search" name="search" type="text">
+            </div>
+            <button type="submit">Rechercher</button>
+        </form>
+    </div>
+
+
+    <div>
+        <p>{{ oiseau.scientificName }}</p>
+        <p>{{ oiseau.name }}</p>
+        <p>{{ oiseau.ordre }}</p>
+        <p>{{ oiseau.family }}</p>
+    </div>
 
     <div id="map"></div>
     <script>
