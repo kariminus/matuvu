@@ -71,7 +71,7 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @ORM\OneToMany(targetEntity="ObservationBundle\Entity\Observation", mappedBy="oiseau", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="ObservationBundle\Entity\Observation", mappedBy="user", cascade={"persist", "remove"})
      */
     protected $observations;
 
