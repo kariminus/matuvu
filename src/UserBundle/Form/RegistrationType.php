@@ -35,7 +35,7 @@ class RegistrationType extends AbstractType
                 )
             ))
             ->add('plainPassword', PasswordType::class)
-            ->add('postalcode', TextType::class, array(
+            ->add('postalCode', TextType::class, array(
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Code Postal',
