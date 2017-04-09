@@ -25,7 +25,9 @@
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.2.*",
         "twig/twig": "^1.0||^2.0",
-        "vich/uploader-bundle": "^1.4"
+        "vich/uploader-bundle": "^1.4",
+        "knpuniversity/oauth2-client-bundle": "^1.9",
+        "league/oauth2-facebook": "^2.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^2.3",
@@ -47,12 +49,6 @@
         "post-update-cmd": [
             "@symfony-scripts"
         ]
-    },
-    "config": {
-        "platform": {
-            "php": "5.5.9"
-        },
-        "sort-packages": true
     },
     "extra": {
         "symfony-app-dir": "app",
