@@ -63,6 +63,12 @@ class ManageUser
         if ($user === null) {
             return $this->router->generate('admin');
         }
+        $observations = $user->getObservations();
+        foreach ($observations as $observation)
+        {
+            $this->em->remove($observation);
+            $this->em->flush();
+        }
         $this->em->remove($user);
         $this->em->flush();
 
