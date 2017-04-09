@@ -3,6 +3,7 @@
 namespace PlatformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class PlatformController extends Controller
 {
@@ -10,13 +11,22 @@ class PlatformController extends Controller
      * Affiche le profil des membres
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function userProfilAction()
+    public function userProfilAction(Request $request)
     {
         $observations = $this->get('manage_platform')->platformProfil();
 
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator  = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $observations,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 8)
+        );
 
         return $this->render('PlatformBundle::profil.html.twig', array(
-            'observations' => $observations
+            'observations' => $result
         ));
     }
 
@@ -39,13 +49,23 @@ class PlatformController extends Controller
      * Affiche les observations d'un membre
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function userObservationsAction()
+    public function userObservationsAction(Request $request)
     {
         $array = $this->get('manage_platform')->platformObservations();
 
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator  = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $array[1],
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 8)
+        );
+
         return $this->render('PlatformBundle::observations.html.twig', array(
             'user' => $array[0],
-            'observations' => $array[1],
+            'observations' => $result,
         ));
     }
 }

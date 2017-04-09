@@ -16,5 +16,8 @@
             <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
         {% endfor %}
     </ul>
+    <div class="navigation">
+        {{ knp_pagination_render(observations) }}
+    </div>
 
 {% endblock %}
