@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new PlatformBundle\PlatformBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

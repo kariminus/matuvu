@@ -27,7 +27,8 @@
         "twig/twig": "^1.0||^2.0",
         "vich/uploader-bundle": "^1.4",
         "knpuniversity/oauth2-client-bundle": "^1.9",
-        "league/oauth2-facebook": "^2.0"
+        "league/oauth2-facebook": "^2.0",
+        "knplabs/knp-paginator-bundle": "^2.5"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^2.3",

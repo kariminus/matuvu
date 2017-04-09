@@ -43,10 +43,21 @@ class UserController extends Controller
      * Liste tous les membres inscrits
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $users = $users = $this->get('manage_user')->userIndex();
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator  = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $users,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 8)
+        );
+
         return $this->render('UserBundle::users.html.twig', array(
-            'users' => $users = $this->get('manage_user')->userIndex(),
+            'users' => $result,
         ));
     }
 

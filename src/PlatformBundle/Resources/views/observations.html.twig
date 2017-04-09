@@ -7,10 +7,32 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8&appId=397422067309390";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
     <ul>
         {% for observation in observations %}
-            <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
+            <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a>
+                <!-- Your share button code -->
+                <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"
+                     data-layout="button" data-size="small" data-mobile-iframe="true">
+                    <a class="fb-xfbml-parse-ignore" target="_blank"
+                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Partager</a>
+                </div>
+            </li>
         {% endfor %}
     </ul>
+
+    <div class="navigation">
+        {{ knp_pagination_render(observations) }}
+    </div>
 
 {% endblock %}
