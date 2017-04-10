@@ -78,11 +78,11 @@ h1 {
 }
 
 @media (min-device-width: 768px) {
-    #connection {
+    #register {
         border: 1px solid black;
     }
 
-    #connection-img {
+    #register-img {
         padding: 50px;
         border-right: 1px solid black;
         display: flex;
@@ -90,11 +90,11 @@ h1 {
     }
 }
 
-#connection {
+#register {
     justify-content: center;
 }
 
-#connection-form > form > div {
+#register-form > form > div {
     display: flex;
     justify-content: center;
     margin: 20px 0;
