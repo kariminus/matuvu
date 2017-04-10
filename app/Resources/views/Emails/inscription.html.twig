@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h3>Bienvenue {{ user.firstname }},</h3>
+
+<p>Vos identifiants de connexion :</p>
+<ul>
+    <li>Email : {{ user.email }}</li>
+    <li>Mot de passe : {{ user.plainPassword }}</li>
+</ul>
+
+
+</body>
+</html>

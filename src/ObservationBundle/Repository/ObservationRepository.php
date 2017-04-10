@@ -4,6 +4,12 @@ namespace ObservationBundle\Repository;
 
 class ObservationRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Récupére toutes les obsevations pas encore validées
+     * @param $userId
+     * @return array
+     *
+     */
     public function getAllNotValidated($userId)
     {
         $qb = $this->createQueryBuilder('o')
@@ -15,6 +21,12 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    /**
+     * Récupére toutes les observations validées
+     * @param $userId
+     * @return array
+     *
+     */
     public function getAllValidated($userId)
     {
         $qb = $this->createQueryBuilder('o')
@@ -26,6 +38,11 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    /**
+     * Récupére toutes les observations qui doivent être validée
+     * @return array
+     *
+     */
     public function getAllToValidate()
     {
         $qb = $this->createQueryBuilder('o')
@@ -36,6 +53,11 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    /**
+     * Récupére toutes les observations validées d'un oiseau
+     * @param $oiseauId
+     * @return array
+     */
     public function findAllValidatedByOiseau($oiseauId)
     {
         $qb = $this->createQueryBuilder('o')
@@ -47,6 +69,12 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    /**
+     *  Compte le nombre d'observation unique d'un utilisateur sur un oiseau
+     * @param $userId
+     * @param $oiseauId
+     * @return mixed
+     */
     public function findDistinct($userId, $oiseauId)
     {
         $qb = $this->createQueryBuilder('o')

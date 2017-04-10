@@ -3,6 +3,7 @@
 namespace UserBundle\User;
 
 use Doctrine\ORM\EntityManager;
+use PlatformBundle\Email\Mailer;
 use UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -14,14 +15,16 @@ class ManageUser
     private $formFactory;
     private $router;
     protected $tokenStorage;
+    private $mailer;
 
-    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack, TokenStorage $tokenStorage)
+    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack, TokenStorage $tokenStorage, Mailer $mailer)
     {
         $this->em = $em;
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->requestStack = $requestStack;
         $this->tokenStorage = $tokenStorage;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -34,6 +37,28 @@ class ManageUser
         $users = $this->em->getRepository('UserBundle:User')->findAll();
 
         return $users;
+    }
+
+    /**
+     * Reset le password d'un membre
+     *
+     */
+    public function reset()
+    {
+        $request = $this->requestStack->getCurrentRequest();
+        if ($request->isMethod('POST')) {
+
+            $user = $this->em->getRepository('UserBundle:User')->findOneBy(
+                array('email' => $request->request->get('email')));
+
+            $password = bin2hex(random_bytes(6));
+            $user->setPlainPassword($password);
+            $this->em->flush();
+            $this->mailer->resetPasswordMail($user, $password);
+
+        }
+
+
     }
 
     /**
@@ -63,12 +88,7 @@ class ManageUser
         if ($user === null) {
             return $this->router->generate('admin');
         }
-        $observations = $user->getObservations();
-        foreach ($observations as $observation)
-        {
-            $this->em->remove($observation);
-            $this->em->flush();
-        }
+
         $this->em->remove($user);
         $this->em->flush();
 
