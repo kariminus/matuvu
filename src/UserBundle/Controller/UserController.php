@@ -26,6 +26,7 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+            $this->get('platform_mailer')->registerMail($user);
             return $this->get('security.authentication.guard_handler')
                 ->authenticateUserAndHandleSuccess(
                     $user,
@@ -37,6 +38,16 @@ class UserController extends Controller
         return $this->render('UserBundle::register.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * Reset le password d'un membre
+     *
+     */
+    public function resetPasswordAction(Request $request)
+    {
+        $this->get('manage_user')->reset();
+        return $this->render('UserBundle::reset.html.twig');
     }
 
     /**

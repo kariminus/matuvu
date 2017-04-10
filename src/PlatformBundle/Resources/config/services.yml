@@ -4,3 +4,9 @@ services:
         arguments:
             ["@doctrine.orm.entity_manager", "@router", "@request_stack", "@form.factory", "@security.token_storage", "@security.authorization_checker"]
 
+    platform_mailer:
+          class: PlatformBundle\Email\Mailer
+          arguments:
+              templating: "@twig"
+              mailer: "@mailer"
+
