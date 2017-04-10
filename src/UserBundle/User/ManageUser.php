@@ -51,7 +51,7 @@ class ManageUser
             $user = $this->em->getRepository('UserBundle:User')->findOneBy(
                 array('email' => $request->request->get('email')));
 
-            $password = random_bytes(12);
+            $password = bin2hex(random_bytes(6));
             $user->setPlainPassword($password);
             $this->em->flush();
             $this->mailer->resetPasswordMail($user, $password);
