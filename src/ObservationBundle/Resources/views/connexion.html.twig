@@ -59,10 +59,10 @@
                             <a href="{{ path('resetting') }}">J'ai oublié mon mot de passe!</a>
                         </div>
                         <div>
-                            <a href="{{ path('inscription') }}">S'inscrire</a>
+                            <a href="{{ path('register') }}">S'inscrire</a>
                         </div>
                         <div>
-                            <a href="{{ path('facebookregister') }}">Se connecter avec Facebook</a>
+                            <a href="{{ path('facebook_register') }}">Se connecter avec Facebook</a>
                         </div>
                         <div class="button-bg">
                             <button type="submit">
@@ -76,7 +76,7 @@
         </div>
 
         <footer class="hidden-xs">
-            <a href="#">Conditions d'utilisation</a> - Un site NAO
+            <a href="{{ path('conditions') }}">Conditions d'utilisation</a> - Un site NAO
         </footer>
 
 {% block javascripts %}
