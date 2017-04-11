@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Matuvu</title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              crossorigin="anonymous">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <link rel=stylesheet type="text/css" href="{{asset('Resources/css/register.css')}}"/>
+    </head>
+    <body>
+        <header class="flexbox">
+            <div class="flexbox-col-1 hidden-xs">
+                <a href="{{ path('homepage') }}"><img id="consultant" alt="logo" src="{{asset('Resources/images/logo.png')}}"/></a>
+            </div>
+            <div id="header-title" class="flexbox-col-10 hidden-xs">
+                <p>Matuvu</p>
+            </div>
+            <div id="header-consultant" class="flexbox-col-1">
+                <img id="consultant" alt="consultant" src="{{asset('Resources/images/consultant.png')}}"/>
+            </div>
+        </header>
+
+        <h1 class="hidden-xs">
+            Inscription
+        </h1>
+
+        <div class="content container">
+            <div id="register" class="flexbox">
+                <div id="register-img" class="flexbox-col-2 hidden-xs">
+                    <img id="consultant" alt="consultant" src="{{asset('Resources/images/consultant.png')}}"/>
+                </div>
+                <div id="register-form" class="flexbox-col-10">
+                    <form>
+                        <div>
+                            <input type="text" placeholder="Adresse e-mail" name="email">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Confirmation de l'adresse e-mail" name="consfirmationEmail">
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Mot de passe" name="password">
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Confirmation du mot de passe" name="confirmationPassword">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Nom" name="nom">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Prénom" name="prénom">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Code postal" name="codePostal">
+                        </div>
+                        <div class="button-bg">
+                            <button type="submit">
+                                S'inscrire!
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="hidden-xs">
+            <a href="{{ path('conditions') }}">Conditions d'utilisation</a> - Un site NAO
+        </footer>
+
+{% block javascripts %}
+    
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script 
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                crossorigin="anonymous">                   
+        </script>
+{% endblock %}                
+    </body>
+</html>
