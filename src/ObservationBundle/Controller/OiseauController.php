@@ -13,8 +13,9 @@ class OiseauController extends Controller
      */
     public function indexAction()
     {
+        $oiseaux = $this->get('manage_oiseau')->oiseauIndex();
         return $this->render('ObservationBundle::index.html.twig', array (
-            'oiseaux' => $this->get('manage_oiseau')->oiseauIndex(),
+            'oiseaux' => $oiseaux,
         ));
 
     }
