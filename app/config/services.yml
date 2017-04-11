@@ -18,6 +18,9 @@ services:
         class: UserBundle\Security\FacebookAuthenticator
         # use autowiring, OR you can specify the argument manually
         arguments:
-            - '@oauth2.registry'
-            - '@doctrine.orm.entity_manager'
-            - '@router'
+            - "@oauth2.registry"
+            - "@doctrine.orm.entity_manager"
+            - "@router"
+            - "@request_stack"
+            - "@security.authentication.guard_handler"
+            - "@app.security.login_form_authenticator"

@@ -44,7 +44,7 @@ class UserController extends Controller
      * Reset le password d'un membre
      *
      */
-    public function resetPasswordAction(Request $request)
+    public function resetPasswordAction()
     {
         $this->get('manage_user')->reset();
         return $this->render('UserBundle::reset.html.twig');
