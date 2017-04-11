@@ -1,0 +1,167 @@
+img {
+    max-width: 100%;
+}
+
+.flexbox {
+    display: flex;
+}
+
+.flexbox-col-1 {
+    width: 8.3333333333%;
+}
+
+.flexbox-col-2 {
+    width: 16.666666666%;
+}
+
+.flexbox-col-10 {
+    width: 83.3333333333%;
+}
+
+a {
+    color: inherit;
+    font-family: SEGOEUI,arial;
+}
+
+a:focus, a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+input[type="text"], input[type="password"] {
+    width: 50%;
+}
+
+@media (max-device-width: 767px) {
+    body {
+        min-height: 100vh;
+    }
+}
+
+#header-title {
+    font-weight: bolder;
+    font-size: 35px;
+    display: flex;
+    align-items: flex-end;
+    font-family: rondalo;
+}
+
+@media (min-device-width: 768px) {
+    #header-consultant > img {
+        margin-top: 20px;
+        width: 50px;
+        display: block;
+        
+    }
+}
+
+@media (max-device-width: 767px) {
+    #header-consultant {
+        width: 100vw;
+        margin-top: 15px;
+    }
+
+    #header-consultant > img {
+        margin: auto;
+        width: 50%;
+        display: block;
+        margin-top: 50px;
+    }
+}
+
+h1 {
+    padding: 30px 0;
+    background-color:#FF6600;
+    color: white;
+    text-align: center;
+    margin: 20px 0;
+    font-family: SEGOEUI,arial;
+    font-size:20px;
+}
+
+@media (min-device-width: 768px) {
+    #resetting {
+        border: 1px solid black;
+    }
+
+    #resetting-img {
+        padding: 50px;
+        border-right: 1px solid black;
+        display: flex;
+        align-items: center;
+    }
+}
+
+#resetting {
+    justify-content: center;
+}
+
+#resetting-form > form > div {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.button-bg {
+    margin-bottom: 40px !important;
+    margin-bottom: 0 !important;
+    
+}
+
+@media (max-device-width: 767px) {
+    .button-bg {
+        position: absolute;
+        bottom: 0;
+        left: 0px;
+        right: 0px;
+    }
+}
+
+.button-bg > button {
+    width: 100%;
+    background-color: #63C49C;
+    border: none;
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    
+}
+
+@font-face {
+  font-family: rondalo; 
+  src: url(../fonts/Rondalo-Regular.ttf)  
+}
+
+@font-face {
+  font-family: SEGOEUI,arial; 
+  src: url(../fonts/SEGOEUI.TTF)  
+}
+
+a:hover{
+      color:#000; 
+   }
+   a{
+       color:#95989A;
+       font-size: 16px;
+   }
+   
+   input{
+       font-size:14px;
+   }
+
+   #bandeau{
+     background-color:#FF6600; 
+     width:100%;
+     position:absolute;
+     top:0px;
+     padding:15px;
+     margin-bottom: 20px;
+   }
+   
+    #bandeau_lien{
+      color:white; 
+   }
+   
+   
+
