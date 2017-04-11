@@ -13,6 +13,7 @@ use KnpU\OAuth2ClientBundle\Client\Provider\FacebookClient;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use UserBundle\Entity\User;
 
 class FacebookAuthenticator extends SocialAuthenticator
 {
@@ -47,22 +48,21 @@ class FacebookAuthenticator extends SocialAuthenticator
 
         $email = $facebookUser->getEmail();
 
-        // 1) have they logged in with Facebook before? Easy!
-        $existingUser = $this->em->getRepository('UserBundle:User')
-            ->findOneBy(['facebookId' => $facebookUser->getId()]);
-        if ($existingUser) {
-            return $existingUser;
-        }
-
         // 2) do we have a matching user by email?
         $user = $this->em->getRepository('UserBundle:User')
             ->findOneBy(['email' => $email]);
 
-        // 3) Maybe you just want to "register" them by creating
-        // a User object
-        $user->setFacebookId($facebookUser->getId());
-        $this->em->persist($user);
-        $this->em->flush();
+        if ($user == null)
+        {
+            $user = new User();
+            $user->setFirstname($facebookUser->getFirstName());
+            $user->setLastname($facebookUser->getLastName());
+            $user->setEmail($facebookUser->getEmail());
+            $user->setPlainPassword((bin2hex(random_bytes(6))));
+            $this->em->persist($user);
+            $this->em->flush();
+
+        }
 
         return $user;
     }
