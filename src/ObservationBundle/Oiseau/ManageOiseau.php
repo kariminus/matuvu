@@ -58,18 +58,23 @@ class ManageOiseau
         $data = $serializer->serialize($array, 'json');
 
         $request = $this->requestStack->getCurrentRequest();
+        $error = false;
         if ($request->isMethod('POST')) {
 
             $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
                 array('name' => $request->request->get('search')));
 
-            $response = new RedirectResponse($this->router->generate('oiseau_view', array('slug' =>$oiseau->getSlug())));
+            try {
+                $response = new RedirectResponse($this->router->generate('oiseau_view', array('slug' => $oiseau->getSlug())));
 
-            $response->send();
-
+                $response->send();
+            }
+            catch (\Error $e){
+                $error = "Aucun oiseau trouvé";
+            }
         }
 
-        return $data;
+        return [$data, $error];
 
     }
 
