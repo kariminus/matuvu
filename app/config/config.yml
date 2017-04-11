@@ -105,7 +105,7 @@ knpu_oauth2_client:
             redirect_route: connect_facebook_check
             # route parameters to pass to your route, if needed
             redirect_params: {}
-            graph_api_version: v2.3
+            graph_api_version: v2.8
 
 knp_paginator:
     page_range: 5                      # default page range used in pagination control

@@ -64,7 +64,10 @@ class ManageOiseau
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
 
-        $observations = $this->em->getRepository('ObservationBundle:Observation')->findAllValidatedByOiseau($oiseau->getId());
+        $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+            'oiseau' => $oiseau->getId(),
+            'validated' => 1
+        ));
 
         $request = $this->requestStack->getCurrentRequest();
         if ($request->isMethod('POST')) {

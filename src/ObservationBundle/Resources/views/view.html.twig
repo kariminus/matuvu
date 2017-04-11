@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
         }
+
         #map {
             width: 50%;
             height: 50%;
@@ -48,12 +49,12 @@
 
 
             {% for observation in observations %}
-            var contentString = '<div id="content">'+
-                '<div id="siteNotice">'+
-                '</div>'+
-                '<div id="bodyContent">'+
-                '<p>Observé le {{ observation.date | date('d/m/Y')}} <br/>par {{ observation.user.firstname }} {{ observation.user.lastname }}</p>'+
-                '</div>'+
+            var contentString = '<div id="content">' +
+                '<div id="siteNotice">' +
+                '</div>' +
+                '<div id="bodyContent">' +
+                '<p>Observé le {{ observation.date | date('d/m/Y') }} <br/>par {{ observation.user.firstname }} {{ observation.user.lastname }}</p>' +
+                '</div>' +
                 '</div>';
 
             var infowindow = new google.maps.InfoWindow({
@@ -73,20 +74,20 @@
                 radius: 10000
             });
 
-            cityCircle{{ observation.id }}.addListener('click', function() {
+            cityCircle{{ observation.id }}.addListener('click', function () {
                 infowindow.open(map, cityCircle{{ observation.id }});
             });
             {% endfor %}
 
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
+                navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
                     map.setCenter(pos);
-                }, function() {
+                }, function () {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
             } else {
@@ -106,5 +107,9 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq5V-pUDvNBdnyhFN_RRcVUeTXqMAioc0&signed_in=true&callback=initMap"></script>
 
-    <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}">Ajouter</a>
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}">Ajouter</a>
+    {% else %}
+        <p>Pour ajouter une observation, veuillez vous connecter</p>
+    {% endif %}
 {% endblock %}
