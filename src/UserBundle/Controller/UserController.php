@@ -26,7 +26,7 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            $this->get('platform_mailer')->registerMail($user);
+//            $this->get('platform_mailer')->registerMail($user);
             return $this->get('security.authentication.guard_handler')
                 ->authenticateUserAndHandleSuccess(
                     $user,
@@ -94,7 +94,9 @@ class UserController extends Controller
         $array = $this->get('manage_user')->userEdit($id);
         return $this->render('UserBundle::edit.html.twig', array(
             'user' => $array[0],
-            'form' => $array[1]->createView()
+            'userBefore' => $array[1],
+            'userNext' => $array[2],
+            'form' => $array[3]->createView()
         ));
     }
 

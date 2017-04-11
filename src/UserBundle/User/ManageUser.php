@@ -105,12 +105,15 @@ class ManageUser
     {
         $request = $this->requestStack->getCurrentRequest();
         $user = $this->em->getRepository('UserBundle:User')->find($id);
+        $userBefore = $this->em->getRepository('UserBundle:User')->find($id-1);
+        $userNext= $this->em->getRepository('UserBundle:User')->find($id+1);
+
         $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
         }
-        return [$user, $form];
+        return [$user, $userBefore, $userNext, $form];
     }
 
 }

@@ -51,5 +51,12 @@
     {{ form_end(form) }}
 
     <a href="{{ path('admin_user_delete', { 'id': user.id }) }}">Supprimer le membre</a>
-
+    <div>
+        {% if userBefore != null %}
+            <a href="{{ path('admin_user_edit', { 'id': userBefore.id }) }}">Membre précédent</a>
+        {% endif %}
+        {% if userNext != null %}
+            <a href="{{ path('admin_user_edit', { 'id': userNext.id }) }}">Membre suivant</a>
+        {% endif %}
+    </div>
 {% endblock %}

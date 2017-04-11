@@ -64,6 +64,9 @@ class ManageOiseau
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
 
+        $observation = $this->em->getRepository('ObservationBundle:Observation')->findOneBy(
+            array('oiseau' => $oiseau->getId()));
+
         $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
             'oiseau' => $oiseau->getId(),
             'validated' => 1
@@ -81,7 +84,7 @@ class ManageOiseau
 
         }
 
-        return [$oiseau, $observations];
+        return [$oiseau, $observations, $observation];
     }
 
 }

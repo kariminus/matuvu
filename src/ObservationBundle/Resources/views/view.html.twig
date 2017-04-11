@@ -25,8 +25,11 @@
             <button type="submit">Rechercher</button>
         </form>
     </div>
-
-
+    {% if observation == NULL %}
+        <img src="{{ asset('/images/oiseau.jpg') }}" alt="Photo oiseau par défaut"/>
+    {% else %}
+        <img src="{{ asset('/images/observations/') }}{{ observation.imageName }}" alt="{{ observation.oiseau.name }}"/>
+    {% endif %}
     <div>
         <p>{{ oiseau.scientificName }}</p>
         <p>{{ oiseau.name }}</p>
