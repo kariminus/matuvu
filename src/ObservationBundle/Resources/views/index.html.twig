@@ -1,16 +1,27 @@
 {% extends '::base.html.twig' %}
 
 {% block title %}
+    <script>
+        $( document ).ready(function() {
+            var availableTags = {{ oiseaux | raw}};
+            $( "#oiseau" ).autocomplete({
+                source: availableTags,
+                minLength: 3,
+                noResults: ''
+            });
+        } );
+    </script>
 
-    <div class="">
+    <div class="ui-widget">
         <form action="" method="POST" id="search">
             <div>
                 <label for="search">Recherche</label>
-                <input id="search" name="search" type="text" required>
+                <input id="oiseau" name="search" type="text" required>
             </div>
             <button type="submit">Rechercher</button>
         </form>
     </div>
+    <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>
 {% endblock %}
 
 {% block body %}

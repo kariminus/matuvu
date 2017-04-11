@@ -6,6 +6,10 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ManageOiseau
 {
@@ -38,19 +42,39 @@ class ManageOiseau
      */
     public function oiseauIndex()
     {
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->findAll();
+        $array = [];
+
+        foreach ($oiseaux as $oiseau)
+        {
+            $array[] = $oiseau->getName();
+        }
+
+        $data = $serializer->serialize($array, 'json');
+
         $request = $this->requestStack->getCurrentRequest();
+        $error = false;
         if ($request->isMethod('POST')) {
 
             $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
                 array('name' => $request->request->get('search')));
 
-            $response = new RedirectResponse($this->router->generate('oiseau_view', array('slug' =>$oiseau->getSlug())));
+            try {
+                $response = new RedirectResponse($this->router->generate('oiseau_view', array('slug' => $oiseau->getSlug())));
 
-            $response->send();
-
+                $response->send();
+            }
+            catch (\Error $e){
+                $error = "Aucun oiseau trouvé";
+            }
         }
 
-        return $this->em->getRepository('ObservationBundle:Oiseau')->findAll();
+        return [$data, $error];
 
     }
 
@@ -64,7 +88,13 @@ class ManageOiseau
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
 
-        $observations = $this->em->getRepository('ObservationBundle:Observation')->findAllValidatedByOiseau($oiseau->getId());
+        $observation = $this->em->getRepository('ObservationBundle:Observation')->findOneBy(
+            array('oiseau' => $oiseau->getId()));
+
+        $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+            'oiseau' => $oiseau->getId(),
+            'validated' => 1
+        ));
 
         $request = $this->requestStack->getCurrentRequest();
         if ($request->isMethod('POST')) {
@@ -78,7 +108,7 @@ class ManageOiseau
 
         }
 
-        return [$oiseau, $observations];
+        return [$oiseau, $observations, $observation];
     }
 
 }

@@ -41,10 +41,15 @@ class ManagePlatform
 
         if ($this->authorizationChecker->isGranted('ROLE_PRO'))
         {
-            $observations = $this->em->getRepository('ObservationBundle:Observation')->getAllToValidate();
+            $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+                'validated' => 0
+            ));
         }
         else {
-            $observations = $this->em->getRepository('ObservationBundle:Observation')->getAllNotValidated($user->getId());
+            $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+                'user' => $user->getId(),
+                'validated' => 0
+            ));
         }
 
 
@@ -59,7 +64,10 @@ class ManagePlatform
     {
         $user = $this->tokenStorage->getToken()->getUser();
 
-        $observations = $this->em->getRepository('ObservationBundle:Observation')->getAllValidated($user->getId());
+        $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+            'validated' => 1,
+            'user' => $user->getId()
+        ));
 
         return [$user, $observations];
     }
