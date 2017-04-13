@@ -42,20 +42,8 @@ class ManageOiseau
      */
     public function oiseauIndex()
     {
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
 
-        $serializer = new Serializer($normalizers, $encoders);
-
-        $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->findAll();
-        $array = [];
-
-        foreach ($oiseaux as $oiseau)
-        {
-            $array[] = $oiseau->getName();
-        }
-
-        $data = $serializer->serialize($array, 'json');
+        $oiseaux = $this->serializer();
 
         $request = $this->requestStack->getCurrentRequest();
         $error = false;
@@ -74,7 +62,7 @@ class ManageOiseau
             }
         }
 
-        return [$data, $error];
+        return [$oiseaux, $error];
 
     }
 
@@ -88,27 +76,55 @@ class ManageOiseau
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
 
+        /*** Cherche si l'oiseau est une espece protégée */
+        $protected = $this->em->getRepository('ObservationBundle:EspeceProtegee')->findOneBy(
+            array('id' => $oiseau->getId()));
+
+        $oiseaux = $this->serializer();
+
         $observation = $this->em->getRepository('ObservationBundle:Observation')->findOneBy(
             array('oiseau' => $oiseau->getId()));
 
+        /** Récupére toutes les observations validées pour un oiseau */
         $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
             'oiseau' => $oiseau->getId(),
             'validated' => 1
         ));
 
         $request = $this->requestStack->getCurrentRequest();
+        $error = false;
         if ($request->isMethod('POST')) {
 
-            $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
+            $newOiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
                 array('name' => $request->request->get('search')));
 
-            $response = new RedirectResponse($this->router->generate('oiseau_view', array('slug' =>$oiseau->getSlug())));
+            try {
+                $response = new RedirectResponse($this->router->generate('oiseau_view', array('slug' => $newOiseau->getSlug())));
 
-            $response->send();
+                $response->send();
+            }
+            catch (\Error $e){
+                $error = "Aucun oiseau trouvé";
+            }
+
 
         }
 
-        return [$oiseau, $observations, $observation];
+        return [$oiseau, $protected, $oiseaux, $observations, $observation, $error];
+    }
+
+    /*** Récupére les noms uniques des oiseaux et renvoi au format json*/
+    public function serializer()
+    {
+        $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->findAllDistinct();
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $data = $serializer->serialize($oiseaux, 'json');
+
+        return $data;
     }
 
 }

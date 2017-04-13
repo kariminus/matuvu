@@ -1,9 +1,10 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
-{% block title %}
+{% block headbar %}
     <p>Historique des observations</p>
 {% endblock %}
 {% block link %}
-    <a href="{{ path('user_edit') }}">Modifier mon profil</a>
+    <div><a href="{{ path('user_pending') }}">Propositions en attente</a></div>
+    <div><a href="{{ path('user_edit') }}">Modifier mon profil</a></div>
 {% endblock %}
 
 {% block content %}

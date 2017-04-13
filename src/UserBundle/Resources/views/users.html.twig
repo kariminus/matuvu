@@ -1,9 +1,9 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
-{% block title %}
+{% block title headbar%}
     <p>Gestion des membres</p>
 {% endblock %}
 {% block link %}
-    <a href="{{ path('admin') }}">Gestion des membres</a>
+    <a href="{{ path('admin_user_add') }}">Ajouter un membre</a>
 {% endblock %}
 
 {% block content %}
@@ -15,5 +15,4 @@
     <div class="navigation">
         {{ knp_pagination_render(users) }}
     </div>
-    <a href="{{ path('admin_user_add') }}">Ajouter un membre</a>
 {% endblock %}
