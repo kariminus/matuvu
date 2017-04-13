@@ -76,6 +76,7 @@ class ManageOiseau
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
 
+        /*** Cherche si l'oiseau est une espece protégée */
         $protected = $this->em->getRepository('ObservationBundle:EspeceProtegee')->findOneBy(
             array('id' => $oiseau->getId()));
 
@@ -84,6 +85,7 @@ class ManageOiseau
         $observation = $this->em->getRepository('ObservationBundle:Observation')->findOneBy(
             array('oiseau' => $oiseau->getId()));
 
+        /** Récupére toutes les observations validées pour un oiseau */
         $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
             'oiseau' => $oiseau->getId(),
             'validated' => 1
@@ -111,6 +113,7 @@ class ManageOiseau
         return [$oiseau, $protected, $oiseaux, $observations, $observation, $error];
     }
 
+    /*** Récupére les noms uniques des oiseaux et renvoi au format json*/
     public function serializer()
     {
         $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->findAllDistinct();
