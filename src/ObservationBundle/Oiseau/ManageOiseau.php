@@ -42,20 +42,8 @@ class ManageOiseau
      */
     public function oiseauIndex()
     {
-        $encoders = array(new XmlEncoder(), new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
 
-        $serializer = new Serializer($normalizers, $encoders);
-
-        $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->findAll();
-        $array = [];
-
-        foreach ($oiseaux as $oiseau)
-        {
-            $array[] = $oiseau->getName();
-        }
-
-        $data = $serializer->serialize($array, 'json');
+        $oiseaux = $this->serializer();
 
         $request = $this->requestStack->getCurrentRequest();
         $error = false;
@@ -74,7 +62,7 @@ class ManageOiseau
             }
         }
 
-        return [$data, $error];
+        return [$oiseaux, $error];
 
     }
 
@@ -88,6 +76,8 @@ class ManageOiseau
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
 
+        $oiseaux = $this->serializer();
+
         $observation = $this->em->getRepository('ObservationBundle:Observation')->findOneBy(
             array('oiseau' => $oiseau->getId()));
 
@@ -97,18 +87,44 @@ class ManageOiseau
         ));
 
         $request = $this->requestStack->getCurrentRequest();
+        $error = false;
         if ($request->isMethod('POST')) {
 
-            $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
+            $newOiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
                 array('name' => $request->request->get('search')));
 
-            $response = new RedirectResponse($this->router->generate('oiseau_view', array('slug' =>$oiseau->getSlug())));
+            try {
+                $response = new RedirectResponse($this->router->generate('oiseau_view', array('slug' => $newOiseau->getSlug())));
 
-            $response->send();
+                $response->send();
+            }
+            catch (\Error $e){
+                $error = "Aucun oiseau trouvé";
+            }
+
 
         }
 
-        return [$oiseau, $observations, $observation];
+        return [$oiseau, $oiseaux, $observations, $observation, $error];
+    }
+
+    public function serializer()
+    {
+        $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->findAll();
+        $array = [];
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        foreach ($oiseaux as $oiseau)
+        {
+            $array[] = $oiseau->getName();
+        }
+
+        $data = $serializer->serialize($array, 'json');
+
+        return $data;
     }
 
 }

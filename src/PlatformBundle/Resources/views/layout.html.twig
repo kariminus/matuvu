@@ -5,9 +5,20 @@
         <p>{{ app.user.firstname }}</p>
         <p>{{ app.user.lastname }}</p>
     </div>
-    {% block link %}{% endblock %}
+    {% block link %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <div><a href="{{ path('admin') }}">Gestion des membres</a></div>
+        {% elseif is_granted('ROLE_PRO') %}
+            <div>
+                <a href="{{ path('user_pending') }}">Propositions en attente</a>
+            </div>
+        {% endif %}
+        <div>
+            <a href="{{ path('user_edit') }}">Modifier mon profil</a>
+        </div>
+    {% endblock %}
 
     {% block content %}{% endblock %}
 
-    <div><a href="{{ path('security_logout') }}">Deconnexion</a></div>
+    <div><a href="{{ path('security_logout') }}">Se déconnecter</a></div>
 {% endblock %}

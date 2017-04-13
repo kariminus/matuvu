@@ -11,9 +11,21 @@ class PlatformController extends Controller
      * Affiche le profil des membres
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function userProfilAction(Request $request)
+    public function userProfilAction()
     {
         $observations = $this->get('manage_platform')->platformProfil();
+        return $this->render('PlatformBundle::profil.html.twig', array(
+            'observations' => $observations
+        ));
+    }
+
+    /**
+     * Affiche les observations en attente des membres
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function userPendingAction(Request $request)
+    {
+        $observations = $this->get('manage_platform')->platformPending();
 
         /**
          * @var $paginator \Knp\Component\Pager\Paginator
@@ -25,7 +37,7 @@ class PlatformController extends Controller
             $request->query->getInt('limit', 8)
         );
 
-        return $this->render('PlatformBundle::profil.html.twig', array(
+        return $this->render('PlatformBundle::pending.html.twig', array(
             'observations' => $result
         ));
     }

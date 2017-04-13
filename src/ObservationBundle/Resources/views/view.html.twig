@@ -3,7 +3,7 @@
 {% block title %}
 {% endblock %}
 
-{% block body %}
+{% block headbar %}
     <style>
         html, body {
             height: 100%;
@@ -16,15 +16,29 @@
             height: 50%;
         }
     </style>
+    <script>
+        $( document ).ready(function() {
+            var availableTags = {{ oiseaux | raw}};
+            $( "#oiseau" ).autocomplete({
+                source: availableTags,
+                minLength: 3,
+                noResults: ''
+            });
+        } );
+    </script>
     <div class="">
         <form action="" method="POST" id="search">
             <div>
                 <label for="search">Recherche</label>
-                <input id="search" name="search" type="text">
+                <input id="oiseau" name="search" type="text">
             </div>
             <button type="submit">Rechercher</button>
         </form>
     </div>
+    <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>
+{% endblock %}
+
+{% block body %}
     {% if observation == NULL %}
         <img src="{{ asset('/images/oiseau.jpg') }}" alt="Photo oiseau par défaut"/>
     {% else %}

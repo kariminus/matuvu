@@ -1,10 +1,6 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
-{% block title %}
+{% block headbar %}
     <p>Détail de l'observation</p>
-{% endblock %}
-
-{% block link %}
-    <a href="{{ path('user_observations') }}">Accéder aux propositions</a>
 {% endblock %}
 
 {% block content %}
@@ -21,7 +17,7 @@
                 <img src="{{ (asset('images/photo.jpg')) }}" alt="Photo"/>
         {% endif %}
     </div>
-    {% if is_granted('ROLE_PRO') %}
+    {% if is_granted('ROLE_PRO') and observation.validated == 0%}
         {% include 'PlatformBundle::validation.html.twig' with {'id': observation} %}
     {% endif %}
     <div>

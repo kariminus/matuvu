@@ -39,6 +39,22 @@ class ManagePlatform
     {
         $user = $this->tokenStorage->getToken()->getUser();
 
+        $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+                'user' => $user->getId(),
+                'validated' => 1
+            ));
+
+        return $observations;
+    }
+
+    /**
+     * Affiche une liste d'observations suivant le rôle de l'utilisateur
+     * @return $observations
+     */
+    public function platformPending()
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+
         if ($this->authorizationChecker->isGranted('ROLE_PRO'))
         {
             $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(

@@ -1,5 +1,9 @@
 admin:
     path:     /admin
+    defaults: { _controller: PlatformBundle:Platform:userProfil }
+
+admin_users:
+    path:     /admin/users
     defaults: { _controller: UserBundle:User:index }
 
 
@@ -19,6 +23,10 @@ user_edit:
 user_profil:
     path:     /profil
     defaults: { _controller: PlatformBundle:Platform:userProfil }
+
+user_pending:
+    path:     /profil/pending
+    defaults: { _controller: PlatformBundle:Platform:userPending }
 
 admin_observation_edit:
     path:     /admin/observation/{id}/modifier
