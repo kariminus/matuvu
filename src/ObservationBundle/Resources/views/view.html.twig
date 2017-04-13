@@ -17,14 +17,14 @@
         }
     </style>
     <script>
-        $( document ).ready(function() {
-            var availableTags = {{ oiseaux | raw}};
-            $( "#oiseau" ).autocomplete({
+        $(document).ready(function () {
+            var availableTags = {{ oiseaux | raw }};
+            $("#oiseau").autocomplete({
                 source: availableTags,
                 minLength: 3,
                 noResults: ''
             });
-        } );
+        });
     </script>
     <div class="">
         <form action="" method="POST" id="search">
@@ -51,7 +51,11 @@
         <p>{{ oiseau.family }}</p>
     </div>
 
-    <div id="map"></div>
+    {% if protected == NULL %}
+        <div id="map"></div>
+    {% else %}
+        <p>Cet oiseau est une espèce protégée.</p>
+    {% endif %}
     <script>
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service

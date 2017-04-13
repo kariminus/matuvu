@@ -76,6 +76,9 @@ class ManageOiseau
         $oiseau = $this->em->getRepository('ObservationBundle:Oiseau')->findOneBy(
             array('slug' => $slug));
 
+        $protected = $this->em->getRepository('ObservationBundle:EspeceProtegee')->findOneBy(
+            array('id' => $oiseau->getId()));
+
         $oiseaux = $this->serializer();
 
         $observation = $this->em->getRepository('ObservationBundle:Observation')->findOneBy(
@@ -105,7 +108,7 @@ class ManageOiseau
 
         }
 
-        return [$oiseau, $oiseaux, $observations, $observation, $error];
+        return [$oiseau, $protected, $oiseaux, $observations, $observation, $error];
     }
 
     public function serializer()

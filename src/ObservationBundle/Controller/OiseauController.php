@@ -33,10 +33,11 @@ class OiseauController extends Controller
 
         return $this->render('ObservationBundle::view.html.twig', array(
             'oiseau' => $array[0],
-            'oiseaux' => $array[1],
-            'observations' => $array[2],
-            'observation' => $array[3],
-            'error' => $array[4]
+            'protected' => $array[1],
+            'oiseaux' => $array[2],
+            'observations' => $array[3],
+            'observation' => $array[4],
+            'error' => $array[5]
         ));
     }
 }
