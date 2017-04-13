@@ -30,28 +30,27 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(name="first_name", type="string")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Saisissez un prénom")
      */
     private $firstname;
 
     /**
      * @ORM\Column(name="last_name", type="string")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Saisissez un nom")
      */
     private $lastname;
 
     /**
      * @ORM\Column(name="email", type="string", unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Saisissez un email")
      * @Assert\Email()
      */
     private $email;
 
     /**
-     * @ORM\Column(name="postal_code", type="integer")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="postal_code", type="integer", nullable=true)
      */
-    private $postalcode;
+    private $postalCode;
 
     /**
      *
@@ -62,7 +61,7 @@ class User implements UserInterface
     /**
      *
      * @var string
-     * @Assert\NotBlank(groups={"Registration"})
+     * @Assert\NotBlank(groups={"Registration"}, message="Saisissez un mot de passe")
      */
     private $plainPassword;
 
@@ -72,7 +71,7 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @ORM\OneToMany(targetEntity="ObservationBundle\Entity\Observation", mappedBy="oiseau", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="ObservationBundle\Entity\Observation", mappedBy="user", cascade={"persist", "remove"})
      */
     protected $observations;
 
@@ -157,17 +156,17 @@ class User implements UserInterface
     /**
      * @return int
      */
-    public function getPostalcode()
+    public function getPostalCode()
     {
-        return $this->postalcode;
+        return $this->postalCode;
     }
 
     /**
-     * @param int $postalcode
+     * @param int $postalCode
      */
-    public function setPostalcode($postalcode)
+    public function setPostalCode($postalCode)
     {
-        $this->postalcode = $postalcode;
+        $this->postalCode = $postalCode;
     }
 
 

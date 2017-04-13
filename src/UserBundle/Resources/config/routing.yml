@@ -1,3 +1,28 @@
 admin_user:
     resource: "routing/user.yml"
     prefix:   /admin/user
+
+security_login:
+    path:     /login
+    defaults: { _controller: UserBundle:Security:login }
+
+security_logout:
+    path:     /logout
+    defaults: { _controller: UserBundle:Security:logout }
+
+password_reset:
+    path:     /resetting
+    defaults: { _controller: UserBundle:User:resetPassword }
+
+
+connect_facebook:
+    path:     /connect/facebook
+    defaults: { _controller: UserBundle:Facebook:connect }
+
+connect_facebook_check:
+    path:     /connect/facebook-check
+    defaults: { _controller: UserBundle:Facebook:connectCheck }
+
+user_register:
+    path:     /register/
+    defaults: { _controller: UserBundle:User:register }

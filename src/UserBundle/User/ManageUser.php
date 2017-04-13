@@ -3,9 +3,11 @@
 namespace UserBundle\User;
 
 use Doctrine\ORM\EntityManager;
+use PlatformBundle\Email\Mailer;
 use UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ManageUser
 {
@@ -13,49 +15,71 @@ class ManageUser
     private $formFactory;
     private $router;
     protected $tokenStorage;
+    private $mailer;
 
-    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack, TokenStorage $tokenStorage)
+    public function __construct(EntityManager $em, $formFactory, $router, RequestStack $requestStack, TokenStorage $tokenStorage, Mailer $mailer)
     {
         $this->em = $em;
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->requestStack = $requestStack;
         $this->tokenStorage = $tokenStorage;
+        $this->mailer = $mailer;
     }
 
     /**
-     * Lists all user entities.
+     * Liste tous les membres inscrits
      *
      */
     public function userIndex ()
     {
-        $user = $this->tokenStorage->getToken()->getUser();
 
         $users = $this->em->getRepository('UserBundle:User')->findAll();
 
-        return [$user, $users];
+        return $users;
     }
 
     /**
-     * Add a user entity.
+     * Reset le password d'un membre
+     *
+     */
+    public function reset()
+    {
+        $request = $this->requestStack->getCurrentRequest();
+        if ($request->isMethod('POST')) {
+
+            $user = $this->em->getRepository('UserBundle:User')->findOneBy(
+                array('email' => $request->request->get('email')));
+
+            $password = bin2hex(random_bytes(6));
+            $user->setPlainPassword($password);
+            $this->em->flush();
+            $this->mailer->resetPasswordMail($user, $password);
+
+        }
+
+
+    }
+
+    /**
+     * Ajoute un membre
      *
      */
     public function userAdd ()
     {
         $request = $this->requestStack->getCurrentRequest();
-        $user = $this->tokenStorage->getToken()->getUser();
-        $member = new User();
-        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $member)
+        $user = new User();
+        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $user)
             ->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($member);
+            $this->em->persist($user);
             $this->em->flush();
         }
-        return [$user, $form];
+        return $form;
     }
 
     /**
-     * Deletes a user entity.
+     * Supprime un membre
      *
      */
     public function userDelete ($id)
@@ -64,27 +88,32 @@ class ManageUser
         if ($user === null) {
             return $this->router->generate('admin');
         }
+
         $this->em->remove($user);
         $this->em->flush();
 
-        return $this->router->generate('admin');
+        $response = new RedirectResponse($this->router->generate('admin'));
+
+        $response->send();
     }
 
     /**
-     * Displays a form to edit an existing user entity.
+     * Affiche un formulaire pour modifier un membre
      *
      */
     public function userEdit ($id)
     {
         $request = $this->requestStack->getCurrentRequest();
-        $user = $this->tokenStorage->getToken()->getUser();
-        $member = $this->em->getRepository('UserBundle:User')->find($id);
-        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $member);
+        $user = $this->em->getRepository('UserBundle:User')->find($id);
+        $userBefore = $this->em->getRepository('UserBundle:User')->find($id-1);
+        $userNext= $this->em->getRepository('UserBundle:User')->find($id+1);
+
+        $form = $this->formFactory->create('UserBundle\Form\RegistrationType', $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
         }
-        return [$user, $member, $form];
+        return [$user, $userBefore, $userNext, $form];
     }
 
 }

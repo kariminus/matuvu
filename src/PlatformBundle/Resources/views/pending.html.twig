@@ -1,0 +1,26 @@
+{% extends 'PlatformBundle::layout.html.twig' %}
+{% block headbar %}
+    <h1>Propositions en attente</h1>
+{% endblock %}
+
+{% block link %}
+    <div>
+        <a href="{{ path('user_observations') }}">Accéder aux propositions</a>
+    </div>
+    <div>
+        <a href="{{ path('user_edit') }}">Modifier mon profil</a>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <ul>
+        {% for observation in observations %}
+            <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="navigation">
+        {{ knp_pagination_render(observations) }}
+    </div>
+
+{% endblock %}

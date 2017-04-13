@@ -27,14 +27,3 @@ observation_validate:
     defaults: { _controller: ObservationBundle:Observation:validate }
     methods:  [GET, POST]
 
-security_login:
-    path:     /login
-    defaults: { _controller: UserBundle:Security:login }
-
-security_logout:
-    path:     /logout
-    defaults: { _controller: UserBundle:Security:logout }
-
-user_register:
-    path:     /register/
-    defaults: { _controller: UserBundle:User:register }

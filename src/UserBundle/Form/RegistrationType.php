@@ -35,7 +35,7 @@ class RegistrationType extends AbstractType
                 )
             ))
             ->add('plainPassword', PasswordType::class)
-            ->add('postalcode', TextType::class, array(
+            ->add('postalCode', TextType::class, array(
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Code Postal',
@@ -43,7 +43,6 @@ class RegistrationType extends AbstractType
             ))
             ->add('roles', ChoiceType::class, [
                 'multiple' => true,
-                'expanded' => true,
                 'choices' => [
                     'Admin' => 'ROLE_ADMIN',
                     'Naturaliste' => 'ROLE_PRO',

@@ -2,8 +2,6 @@
 
 namespace PlatformBundle\Platform;
 
-use UserBundle\Entity\User;
-use ObservationBundle\Entity\Observation;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -33,31 +31,67 @@ class ManagePlatform
         $this->authorizationChecker = $authorizationChecker;
     }
 
+    /**
+     * Affiche une liste d'observations suivant le rôle de l'utilisateur
+     * @return $observations
+     */
     public function platformProfil()
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+                'user' => $user->getId(),
+                'validated' => 1
+            ));
+
+        return $observations;
+    }
+
+    /**
+     * Affiche une liste d'observations suivant le rôle de l'utilisateur
+     * @return $observations
+     */
+    public function platformPending()
     {
         $user = $this->tokenStorage->getToken()->getUser();
 
         if ($this->authorizationChecker->isGranted('ROLE_PRO'))
         {
-            $observations = $this->em->getRepository('ObservationBundle:Observation')->getAllToValidate();
+            $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+                'validated' => 0
+            ));
         }
         else {
-            $observations = $this->em->getRepository('ObservationBundle:Observation')->getAllNotValidated($user->getId());
+            $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+                'user' => $user->getId(),
+                'validated' => 0
+            ));
         }
 
 
-        return [$user, $observations];
+        return $observations;
     }
 
+    /**
+     * Affiche les observations d'un membre
+     * @return array
+     */
     public function platformObservations()
     {
         $user = $this->tokenStorage->getToken()->getUser();
 
-        $observations = $this->em->getRepository('ObservationBundle:Observation')->getAllValidated($user->getId());
+        $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
+            'validated' => 1,
+            'user' => $user->getId()
+        ));
 
         return [$user, $observations];
     }
 
+    /**
+     * Formulaire d'édition du profil d'un membre
+     * @return array
+     */
     public function profilEdit()
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -69,15 +103,6 @@ class ManagePlatform
             $this->em->flush();
         }
         return [$user, $form];
-    }
-
-    public function adminIndex()
-    {
-        $user =  $this->tokenStorage->getToken()->getUser();
-
-        $observations = $this->em->getRepository('ObservationBundle:Observation')->findAll();
-
-        return [$user, $observations];
     }
 
 }

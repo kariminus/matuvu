@@ -1,20 +1,31 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
-{% block title %}
-    <p>Observations en attente</p>
+{% block headbar %}
+    <h1>Profil</h1>
 {% endblock %}
-
-{% block link %}
-    <div>
-        <a href="{{ path('user_observations') }}">Accéder aux propositions</a>
-    </div>
-{% endblock %}
-
 
 {% block content %}
-    <ul>
-        {% for observation in observations %}
-            <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
-        {% endfor %}
-    </ul>
 
+    <div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <img src="{{ asset('/images/profils/admin.jpg') }}" alt="Image du profil admin"/>
+        {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if is_granted('ROLE_PRO') %}
+                <img src="{{ asset('/images/profils/naturaliste.jpg') }}" alt="Image du profil naturaliste"/>
+            {% elseif is_granted('ROLE_PAR') %}
+                {% if app.user.observationsNumber < 10 %}
+                    <img src="{{ asset('/images/profils/particulier1.jpg') }}" alt="Image du profil particulier"/>
+                {% elseif app.user.observationsNumber >= 10 and app.user.observationsNumber < 50 %}
+                    <img src="{{ asset('/images/profils/particulier2.jpg') }}" alt="Image du profil particulier"/>
+                {% else %}
+                    <img src="{{ asset('/images/profils/particulier3.jpg') }}" alt="Image du profil particulier"/>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
+    {% if is_granted('ROLE_ADMIN') == false %}
+        <div>
+            <p>Nombre d'observations :</p>
+            <a href="{{ path('user_observations') }}"><p>{{ observations | length }}</p></a>
+        </div>
+    {% endif %}
 {% endblock %}
