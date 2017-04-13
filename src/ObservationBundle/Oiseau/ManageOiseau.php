@@ -113,19 +113,13 @@ class ManageOiseau
 
     public function serializer()
     {
-        $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->findAll();
-        $array = [];
+        $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->findAllDistinct();
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
 
         $serializer = new Serializer($normalizers, $encoders);
 
-        foreach ($oiseaux as $oiseau)
-        {
-            $array[] = $oiseau->getName();
-        }
-
-        $data = $serializer->serialize($array, 'json');
+        $data = $serializer->serialize($oiseaux, 'json');
 
         return $data;
     }
