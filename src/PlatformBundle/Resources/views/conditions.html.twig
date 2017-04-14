@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matuvu</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel=stylesheet type="text/css" href="{{asset('Resources/css/conditions.css')}}"/>
+</head>
+<body>
+<header class="flexbox">
+    <div class="flexbox-col-1 hidden-xs">
+        <a href="{{ path('homepage') }}"><img id="consultant" alt="logo" src="{{asset('Resources/images/logo.png')}}"/></a>
+    </div>
+    <div id="header-title" class="flexbox-col-10 hidden-xs">
+        <p>Matuvu</p>
+    </div>
+    <div id="header-consultant" class="flexbox-col-1 hidden-xs">
+        <img id="consultant" alt="consultant" src="{{asset('Resources/images/consultant.png')}}"/>
+    </div>
+</header>
+
+<h1 class="hidden-xs">
+    Mentions légales
+</h1>
+<h1 id="telephone" class="hidden-lg  hidden-md hidden-sm">
+    < Mentions légales
+</h1>
+
+<div class="contenant">
+    <p>Présentation
+    <p>Ce site a été mis en place dans le but d'améliorer la recherche ornithologique (en compilant des observations associées à des photos d'oiseaux).
+        Pour toute autre utilisation, l'administrateur du site se réserve le droit de supprimer le compte de l'utilisateur.
+        La responsabilité de l'association NAO ne saurait être engagée.</p>
+    <p>Tout contrevenant s'expose à des poursuites judiciaires.</p>
+
+
+
+    <br/>
+    <p>Mentions légales et CGU :</p>
+    <p>N.A.O (Nos Amis les Oiseaux) est une association sans but lucratif de loi 1905 créée en 2002, dont le siège est situé au 25 rue des fleurs, Paris -France. Tel: 09 93 45 26 26</p>
+
+    <p>Responsable de rédaction & publication : Michel Dujardin</p>
+
+    <p>Hébergement et développement : Site web hébergé par OVH (2 rue Kellermann - 59100 Roubaix - France) , créé par l’agence CK@SH.</p>
+
+    <p>Données personnelles : Toutes les données personnelles sont recueillies uniquement dans le cadre du bon fonctionnement du site. Aucune données ne sera revendue à des tiers ou utilisées à des fins commerciales. Vous pouvez demander la consultation ou la suppression de vos données personnelles par mail à l’adresse admin@matuvu.org.</p>
+
+    <p>Matuvu est une marque déposée et protégée qui a fait l'objet d'une déclaration à l'Institut national de la propriété industrielle (INPI) sous le n° 45628754.
+        Ce site web constitue une œuvre protégée en France par le Code de la Propriété Intellectuelle, et à l'étranger par les conventions internationales en vigueur sur le droit d'auteur.</p>
+
+    <br/>
+
+    <p>En souscrivant aux services proposés par le site, l'utilisateur accepte les conditions légales définies ci dessous :</p>
+    <p>Droits de reproduction</p>
+
+    <p>Toutes les images fournies par les utilisateurs du site (dans le cadre d’observations d’oiseaux) sont libres de droit et réutilisables par l’association NAO.
+        Merci de bien vérifier les droits qui vous sont alloués, car la violation de l'un des droits d'auteur de l'œuvre est un délit de contrefaçon passible, aux termes de l'article L. 122-4 du Code de la propriété intellectuelle, de 2 ans d'emprisonnement et de 150 000 Euros d'amende.
+        La reproduction des illustrations (photos, images, schémas...) à but commerciale n'est pas autorisée sans accord écrit.
+        Si vous souhaitez obtenir une autorisation de reproduction dans un but commercial, vous devez obligatoirement nous contacter.</p>
+
+
+    <p>Utilisation de cookies</p>
+    <p>En poursuivant votre navigation sur le site, vous acceptez de télécharger des cookies sur votre ordinateur.</p>
+    <p>Ces fichiers permettent</p>
+    <p>- de personnaliser votre navigation</p>
+    <p>- de mesurer l'audience de Matuvu via Google Analytics</p>
+    <p>- de vous proposer des publicités ciblées</p>
+    <p>- de vous offrir des boutons personnalisés de partage des réseaux sociaux (Facebook, Instagram)</p>
+    <p>Les cookies sont utiles pour de nombreuses fonctionnalités sur le site, et améliorent l'expérience de navigation sur le site, sans compromettre vos données personnelles. Si vous ne souhaitez pas que Matuvu dépose des cookies sur votre ordinateur, vous devez modifier les paramètres / les options de votre navigateur Internet pour les désactiver.</p>
+
+</div>
+<footer class="hidden-xs">
+    <a href="{{ path('conditions') }}" >Conditions d'utilisation</a>  <a href="#">- Un site NAO</a>
+</footer>
+
+{% block javascripts %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            crossorigin="anonymous">
+    </script>
+{% endblock %}
+</body>
+</html>

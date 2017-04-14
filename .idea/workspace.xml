@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bcb60b55-457a-4a7f-b5fc-df00529e5c29" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig" afterPath="$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,33 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="observations.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig">
+      <file leaf-file-name="conditions.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/PlatformBundle/Resources/views/conditions.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="24" column="69" lean-forward="false" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
-              <folding>
-                <element signature="e#12#44#0#Twig" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PlatformBundle/Resources/config/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="2" column="63" lean-forward="false" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/config/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="11" />
+            <state relative-caret-position="1739">
+              <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -82,7 +59,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/var/cache/dev/pools/V0Zml8j-6I/B/N/o-efc7XOfea9vpcbzOf9" />
         <option value="$PROJECT_DIR$/var/cache/dev/pools/V0Zml8j-6I/B/X/LJXGsz+GBVs++mM+EsND" />
         <option value="$PROJECT_DIR$/var/cache/dev/pools/V0Zml8j-6I/F/Y/m-F9WAMN-B5FmeZBHmpB" />
         <option value="$PROJECT_DIR$/var/cache/dev/pools/V0Zml8j-6I/J/C/pVdkdd2ZuS9CWAJq5gIn" />
@@ -133,6 +109,7 @@
         <option value="$PROJECT_DIR$/src/UserBundle/Tests/Url/ApplicationAvailabilityFunctionalTest.php" />
         <option value="$PROJECT_DIR$/src/PlatformBundle/Tests/Controller/PlatformControllerTest.php" />
         <option value="$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig" />
+        <option value="$PROJECT_DIR$/src/PlatformBundle/Resources/views/conditions.html.twig" />
       </list>
     </option>
   </component>
@@ -517,12 +494,12 @@
       <workItem from="1492098200352" duration="2770000" />
       <workItem from="1492101223340" duration="44000" />
       <workItem from="1492101877992" duration="53000" />
-      <workItem from="1492155363761" duration="14115000" />
+      <workItem from="1492155363761" duration="15147000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="186534000" />
+    <option name="totallyTimeSpent" value="187566000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="3866" height="2106" extended-state="6" />
@@ -558,22 +535,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/var/cache/dev/twig/e3/e3824fec0514712c1c427b357b5aff98a5c83c551e3c354cfd294eff6a02d405.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="172" column="23" lean-forward="false" selection-start-line="172" selection-start-column="23" selection-end-line="172" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/var/cache/test/doctrine/orm/Proxies/__CG__UserBundleEntityUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="231" column="37" lean-forward="false" selection-start-line="231" selection-start-column="37" selection-end-line="231" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/var/cache/test/pools/+v7+2Qzx9P/4/5/llP8-efa+fQhh-d0wMgt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33">
@@ -1003,6 +964,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="24" column="69" lean-forward="false" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
+          <folding>
+            <element signature="e#12#44#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PlatformBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1019,13 +990,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig">
+    <entry file="file://$USER_HOME$/Desktop/matuvu/src/PlatformBundle/Resources/views/conditions.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="24" column="69" lean-forward="false" selection-start-line="24" selection-start-column="69" selection-end-line="24" selection-end-column="69" />
-          <folding>
-            <element signature="e#12#44#0#Twig" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PlatformBundle/Resources/views/conditions.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1739">
+          <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
