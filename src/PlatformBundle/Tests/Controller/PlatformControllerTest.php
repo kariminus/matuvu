@@ -1,13 +1,12 @@
 <?php
 
-namespace ObservationBundle\Tests\Controller;
+namespace PlatformBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ObservationControllerTest extends WebTestCase
+class PlatformControllerTest extends WebTestCase
 {
-    public function testView()
+    public function testUserProfil()
     {
         $client = static::createClient();
         $client->followRedirects();
@@ -18,7 +17,7 @@ class ObservationControllerTest extends WebTestCase
         $formLogin['login_form[_password]'] = '1234';
         $client->submit($formLogin);
 
-        $crawler = $client->request('GET', '/profil/observation/50');
+        $crawler = $client->request('GET', '/profil');
 
         $this->assertEquals(
             200,
@@ -26,7 +25,19 @@ class ObservationControllerTest extends WebTestCase
         );
     }
 
-    public function testAdd()
+    public function testConditions()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/conditions');
+
+        $this->assertEquals(
+            200,
+            $client->getResponse()->getStatusCode()
+        );
+    }
+
+    public function testUserPending()
     {
         $client = static::createClient();
         $client->followRedirects();
@@ -37,26 +48,44 @@ class ObservationControllerTest extends WebTestCase
         $formLogin['login_form[_password]'] = '1234';
         $client->submit($formLogin);
 
-        $crawler = $client->request('GET', '/oiseau/gavia-septentrionalis/add');
+        $crawler = $client->request('GET', '/profil/pending');
+
+        $this->assertEquals(
+            200,
+            $client->getResponse()->getStatusCode()
+        );
+    }
+
+    public function testProfilEdit()
+    {
+        $client = static::createClient();
+        $client->followRedirects();
+
+        $crawler = $client->request('GET', '/login');
+        $formLogin = $crawler->filter('button')->form();
+        $formLogin['login_form[_username]'] = 'karim.meciel@gmail.com';
+        $formLogin['login_form[_password]'] = '1234';
+        $client->submit($formLogin);
+
+        $crawler = $client->request('GET', '/profil/modifier');
 
         $form = $crawler->filter('button')->form();
-        $file = new UploadedFile('C:\Users\karim\Desktop\290px-Linotte_melodieuse.jpg', 'linotte_melodieuse');
 
-        $form['observation[date][day]']->select(14);
-        $form['observation[date][month]']->select(04);
-        $form['observation[date][year]']->select(2017);
-        $form['observation[latitude]'] = 48.8473075;
-        $form['observation[longitude]'] = 2.2875811000000112;
-        $form['observation[imageFile]'] = $file;
+        $form['user_edit[firstName]'] = 'karim';
+        $form['user_edit[lastName]'] = 'meciel';
+        $form['user_edit[email]'] = 'karim.meciel@gmail.com';
+        $form['user_edit[plainPassword]'] = '1234';
+        $form['user_edit[postalCode]'] = 75000;
+
         $client->submit($form);
+
         $this->assertEquals(
             200,
             $client->getResponse()->getStatusCode()
         );
-
     }
 
-    public function testDelete()
+    public function testUserObservation()
     {
         $client = static::createClient();
         $client->followRedirects();
@@ -67,58 +96,7 @@ class ObservationControllerTest extends WebTestCase
         $formLogin['login_form[_password]'] = '1234';
         $client->submit($formLogin);
 
-        $crawler = $client->request('GET', '/profil/observation/50');
-
-        $link = $crawler->selectLink('Refuser')->link();
-
-        $client->click($link);
-
-        $this->assertEquals(
-            200,
-            $client->getResponse()->getStatusCode()
-        );
-    }
-
-    public function testImageDelete()
-    {
-        $client = static::createClient();
-        $client->followRedirects();
-
-        $crawler = $client->request('GET', '/login');
-        $formLogin = $crawler->filter('button')->form();
-        $formLogin['login_form[_username]'] = 'karim.meciel@gmail.com';
-        $formLogin['login_form[_password]'] = '1234';
-        $client->submit($formLogin);
-
-        $crawler = $client->request('GET', '/profil/observation/33');
-
-        $link = $crawler->selectLink('Supprimer l\'image')->link();
-
-        $client->click($link);
-
-        $this->assertEquals(
-            200,
-            $client->getResponse()->getStatusCode()
-        );
-
-    }
-
-    public function testValidate()
-    {
-        $client = static::createClient();
-        $client->followRedirects();
-
-        $crawler = $client->request('GET', '/login');
-        $formLogin = $crawler->filter('button')->form();
-        $formLogin['login_form[_username]'] = 'karim.meciel@gmail.com';
-        $formLogin['login_form[_password]'] = '1234';
-        $client->submit($formLogin);
-
-        $crawler = $client->request('GET', '/profil/observation/33');
-
-        $link = $crawler->selectLink('Valider')->link();
-
-        $client->click($link);
+        $crawler = $client->request('GET', '/profil/observations');
 
         $this->assertEquals(
             200,

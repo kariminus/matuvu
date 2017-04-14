@@ -13,8 +13,8 @@ class Loaduser extends AbstractFixture
         $admin = new User();
 
         $admin->setEmail('admin@mail.com');
-        $admin->setFirstname('admin');
-        $admin->setLastname('admin');
+        $admin->setFirstName('admin');
+        $admin->setLastName('admin');
         $admin->setPostalcode(75015);
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setPlainPassword("admin");

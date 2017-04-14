@@ -19,6 +19,11 @@ class PlatformController extends Controller
         ));
     }
 
+    public function conditionsAction()
+    {
+        return $this->render('PlatformBundle::conditions.html.twig');
+    }
+
     /**
      * Affiche les observations en attente des membres
      * @return \Symfony\Component\HttpFoundation\Response

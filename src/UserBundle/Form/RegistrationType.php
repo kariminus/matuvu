@@ -16,13 +16,13 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', TextType::class, array(
+            ->add('firstName', TextType::class, array(
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Prénom',
                 )
             ))
-            ->add('lastname', TextType::class, array(
+            ->add('lastName', TextType::class, array(
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Nom',
@@ -46,7 +46,7 @@ class RegistrationType extends AbstractType
                 'choices' => [
                     'Admin' => 'ROLE_ADMIN',
                     'Naturaliste' => 'ROLE_PRO',
-                    'Particuluer' => 'ROLE_PAR',
+                    'Particulier' => 'ROLE_PAR',
                 ],
             ]);
     }

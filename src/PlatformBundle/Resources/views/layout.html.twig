@@ -2,12 +2,12 @@
 
 {% block body %}
     <div>
-        <p>{{ app.user.firstname }}</p>
-        <p>{{ app.user.lastname }}</p>
+        <p>{{ app.user.firstName }}</p>
+        <p>{{ app.user.lastName }}</p>
     </div>
     {% block link %}
         {% if is_granted('ROLE_ADMIN') %}
-            <div><a href="{{ path('admin') }}">Gestion des membres</a></div>
+            <div><a href="{{ path('admin_users') }}">Gestion des membres</a></div>
         {% elseif is_granted('ROLE_PRO') %}
             <div>
                 <a href="{{ path('user_pending') }}">Propositions en attente</a>
