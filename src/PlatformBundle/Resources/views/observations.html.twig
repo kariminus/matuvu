@@ -18,16 +18,22 @@
             js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8&appId=397422067309390";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-
     <ul>
         {% for observation in observations %}
             <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a>
                 <!-- Your share button code -->
-                <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"
-                     data-layout="button" data-size="small" data-mobile-iframe="true">
-                    <a class="fb-xfbml-parse-ignore" target="_blank"
-                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Partager</a>
-                </div>
+                <div id="{{ observation.id }}" class="btn btn-primary clearfix">Partager</div>
+                <script>
+                    document.getElementById('{{ observation.id }}').onclick = function() {
+                        FB.ui({
+                            method: 'share',
+                            display: 'popup',
+                            href: "http://dahu-concept.com/matuvu/oiseau/{{ observation.oiseau.slug }}",
+                            quote: "J'ai observé un {{ observation.oiseau.name }}. Toi aussi, partage tes observations d’oiseaux pour aider un programme de protection de la nature ! Rejoins-nous sur le site Matuvu.org",
+                            mobile_iframe: true
+                        }, function(response){});
+                    }
+                </script>
             </li>
         {% endfor %}
     </ul>
