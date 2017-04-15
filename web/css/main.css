@@ -111,6 +111,19 @@ img {
     height: 10vh;
 }
 
+.image-profil {
+    margin-bottom: 50px;
+    height: 15vh;
+}
+
+.image-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    height: 5vh;
+}
+
 .flexbox {
     display: flex;
 }
@@ -222,14 +235,7 @@ a:focus, a:hover {
 }
 
 
-#header-consultant > img {
-    margin-top: 20px;
-    width: 50px;
-    display: block;
-    position:absolute;
-    right:20px;
 
-}
 .contenant{
     border:1px solid black;
     padding:20px;

@@ -17,7 +17,7 @@
                         <div class="lien1">
                             <a href="{{ path('admin_users') }}">Gestion des membres </a>
                         </div>
-                    {% elseif is_granted('ROLE_PRO') %}
+                    {% elseif is_granted('ROLE_PAR') %}
                         <div class="lien1">
                             <a href="{{ path('user_pending') }}">Propositions en attente</a>
                         </div>

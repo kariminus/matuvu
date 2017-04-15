@@ -1,17 +1,17 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
 {% block content %}
     <div class="center col-md-12">{% if is_granted('ROLE_ADMIN') %}
-            <img alt="admin" src="{{ asset('images/profils/admin.png') }}"/>
+            <img class="image-profil" alt="admin" src="{{ asset('images/profils/admin.png') }}"/>
         {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             {% if is_granted('ROLE_PRO') %}
-                <img src="{{ asset('/images/profils/naturaliste.png') }}" alt="Image du profil naturaliste"/>
+                <img class="image-profil" src="{{ asset('images/profils/naturaliste.png') }}" alt="Image du profil naturaliste"/>
             {% elseif is_granted('ROLE_PAR') %}
                 {% if app.user.observationsNumber < 10 %}
-                    <img src="{{ asset('/images/profils/particulier1.png') }}" alt="Image du profil particulier"/>
+                    <img class="image-profil" src="{{ asset('images/profils/consultant.png') }}" alt="Image du profil particulier"/>
                 {% elseif app.user.observationsNumber >= 10 and app.user.observationsNumber < 50 %}
-                    <img src="{{ asset('/images/profils/particulier2.png') }}" alt="Image du profil particulier"/>
+                    <img class="image-profil" src="{{ asset('images/profils/petit_roi.png') }}" alt="Image du profil particulier"/>
                 {% else %}
-                    <img src="{{ asset('/images/profils/particulier3.png') }}" alt="Image du profil particulier"/>
+                    <img class="image-profil" src="{{ asset('images/profils/grand_roi.png') }}" alt="Image du profil particulier"/>
                 {% endif %}
             {% endif %}
         {% endif %}</div>

@@ -34,26 +34,26 @@
     <div id="header-consultant" class="flexbox-col-1 hidden-xs">
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('admin') }}">
-            <img id="consultant" alt="profil admin" src="{{ asset('images/profils/admin.png') }}"/>
+            <img class="image-header" alt="profil admin" src="{{ asset('images/profils/admin.png') }}"/>
         </a>
     {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         {% if is_granted('ROLE_PRO') %}
             <a href="{{ path('user_profil') }}">
-                    <img id="consultant" alt="profil naturaliste" src="{{ asset('images/profils/naturaliste.png') }}"/>
+                    <img class="image-header" alt="profil naturaliste" src="{{ asset('images/profils/naturaliste.png') }}"/>
             </a>
         {% elseif is_granted('ROLE_PAR') %}
             <a href="{{ path('user_profil') }}">
                 {% if app.user.observationsNumber < 10 %}
-                        <img id="consultant" alt="profil particulier" src="{{ asset('images/profils/consultant1.png') }}"/>
+                        <img class="image-header"  alt="profil particulier" src="{{ asset('images/profils/consultant.png') }}"/>
                 {% elseif app.user.observationsNumber >= 10 and app.user.observationsNumber < 50 %}
-                        <img id="consultant" alt="profil particulier" src="{{ asset('images/profils/consultant2.png') }}"/>
+                        <img class="image-header" alt="profil particulier" src="{{ asset('images/profils/petit_roi.png') }}"/>
                 {% else %}
-                        <img id="consultant" alt="profil particulier" src="{{ asset('images/Profils/consultant3.png') }}"/>
+                        <img class="image-header" alt="profil particulier" src="{{ asset('images/profils/grand_roi.png') }}"/>
                 {% endif %}
             </a>
         {% endif %}
         {% else %}
-        <a href="{{ path('user_profil') }}"><img id="consultant" alt="profil par défaut" src="{{ asset('images/Profils/defaut.png') }}"/></a>
+        <a href="{{ path('user_profil') }}"><img class="image-header" alt="profil par défaut" src="{{ asset('images/profils/consultant.png') }}"/></a>
     {% endif %}
     </div>
 </header>
