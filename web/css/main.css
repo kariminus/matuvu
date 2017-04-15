@@ -1,0 +1,559 @@
+@font-face {
+    font-family: rondalo;
+    src: url(../fonts/Rondalo-Regular.ttf)
+}
+
+@font-face {
+    font-family: SEGOEUI,arial;
+    src: url(../fonts/SEGOEUI.TTF)
+}
+
+
+
+img {
+    max-width: 100%;
+}
+
+#logo {
+    height: 40vh;
+}
+
+.body{
+    height: 50vh;
+}
+.matuvu {
+    font-size: 10vh;
+}
+
+@media screen and (max-width: 992px) {
+    .body {
+        height: 90vh;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .border {
+        border: none;
+    }
+    footer {
+        display: none;
+    }
+    h1 {
+        margin: 0;
+    }
+    #oiseau {
+        color: #000000;
+        width: 30vh;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .border {
+        border: solid black ;
+    }
+    footer {
+        position:absolute;
+        bottom:0;
+        margin: 20px;
+    }
+    #oiseau {
+        color: #000000;
+        width: 60vh;
+    }
+}
+
+.left {
+    margin: 0;
+    padding: 0;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    height: 70vh;
+}
+.border {
+    height: 50vh;
+    margin: 0;
+    padding: 0;
+}
+
+.border-left {
+    border-left: none;
+}
+
+.user, .liens {
+    height: 20vh;
+    margin: 0;
+    padding: 0;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.nom, .prenom, .lien1, .deconnexion, .profil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.lien1, .deconnexion {
+    background-color: #FF6600;
+    height: 10vh;
+}
+
+.profil {
+    background-color: #63C49C;
+    height: 10vh;
+}
+
+.flexbox {
+    display: flex;
+}
+
+.flexbox-col-1 {
+    width: 10%;
+}
+
+.flexbox-col-4 {
+    width: 30%;
+}
+
+.flexbox-col-8 {
+    width: 60%;
+}
+
+a {
+    color: inherit;
+    font-family: SEGOEUI,arial;
+    color:#95989A;
+    font-size: 16px;
+}
+
+a:focus, a:hover {
+    color: inherit;
+    text-decoration: none;
+    color:#000;
+}
+
+
+#header-title {
+    font-weight: bolder;
+    font-size: 35px;
+    display: flex;
+    align-items: flex-end;
+    font-family: rondalo;
+}
+
+
+.headbar {
+    padding: 30px 0;
+    background-color:#FF6600;
+    color: white;
+    text-align: center;
+    margin: 0px 0px;
+    font-family: SEGOEUI,arial;
+    font-size:20px;
+    margin-bottom: 20px;
+}
+
+
+
+#register {
+    justify-content: center;
+}
+
+#register-form > form > div {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.deconnection {
+    margin-bottom: 60px !important;
+    margin-bottom: 0 !important;
+
+}
+
+.button-bg > button {
+    width: 100%;
+    background-color: #63C49C;
+    border: none;
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+
+}
+
+.contenant{
+    border:none;
+}
+
+#edit{
+    background-color: #FF6600;
+}
+
+#user{
+    background-color:white;
+}
+#telephone{
+    background-color:#FF6600;
+    width:100%;
+    /*position:absolute;*/
+    /*top:0px;*/
+    /*padding:15px;*/
+    margin-bottom: 20px;
+}
+
+#register {
+    border: 1px solid black;
+}
+
+#register-img {
+    padding: 50px;
+    border-right: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+
+
+#header-consultant > img {
+    margin-top: 20px;
+    width: 50px;
+    display: block;
+    position:absolute;
+    right:20px;
+
+}
+.contenant{
+    border:1px solid black;
+    padding:20px;
+    margin-bottom: 20Px;
+    width:80%;
+    margin-left:10%;
+    margin-right:10%;
+
+}
+
+
+p{
+    color:#95989A;
+}
+
+@media (max-device-width: 767px) {
+    body {
+        min-height: 100vh;
+    }
+    #header-consultant {
+        width: 100vw;
+    }
+
+    #header-consultant > img {
+        margin: auto;
+        width: 50%;
+        display: block;
+        margin-top: 50px;
+
+    }
+
+    .contenant{
+        border:none;
+    }
+}
+
+@font-face {
+    font-family: rondalo;
+    src: url(../fonts/Rondalo-Regular.ttf)
+}
+
+@font-face {
+    font-family: SEGOEUI,arial;
+    src: url(../fonts/SEGOEUI.TTF)
+}
+
+
+img {
+    max-width: 100%;
+}
+
+.flexbox {
+    display: flex;
+}
+
+.flexbox-col{
+    flex-direction:column;
+    align-content:stretch;
+}
+
+.flexbox-col >*{
+    flex-grow:1;
+}
+
+.flexbox-col-1 {
+    width: 10%;
+}
+
+.flexbox-col-2 {
+    width: 16.666666666%;
+}
+
+.flexbox-col-10 {
+    width: 83.3333333333%;
+}
+.flexbox-col-12{
+    width:100%;
+}
+
+a {
+    color: inherit;
+    font-family: SEGOEUI,arial;
+}
+
+a:focus, a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+@media (max-device-width: 767px) {
+
+    body {
+        min-height: 100vh;
+    }
+
+    .container{
+        width:100%;
+        padding-right:16,6666666666666%;
+
+    }
+
+
+    #header-consultant {
+        width: 100vw;
+    }
+
+    #header-consultant > img {
+        margin: auto;
+        width: 70%;
+        display: block;
+        margin-top: 120px;
+        border:none;
+
+    }
+
+    .container{
+        border:none;
+
+    }
+    #admin{
+
+        justify-content: flex-end;
+    }
+    #data{
+        position:absolute;
+        bottom:0;
+        font-size: 20px;
+
+    }
+
+}
+
+#admin-img, #img_tel {
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (min-device-width: 768px) {
+    #admin {
+        border: 1px solid black;
+    }
+
+    #admin-data{
+        border-right:1px solid black;
+    }
+
+    #data{
+        display:none;
+
+    }
+    #header-consultant > img {
+        margin-top: 20px;
+        width: 50px;
+        display: block;
+        right:30px;
+    }
+}
+
+/*#admin {*/
+    /*justify-content: center;*/
+/*}*/
+
+
+
+#deconnection {
+    margin-bottom: 60px !important;
+    margin-bottom: 0 !important;
+    text-align: center;
+
+}
+
+.button-bg {
+    width: 100%;
+    background-color: #63C49C;
+    border: none;
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+
+#identité{
+    padding-bottom:0px;
+}
+
+#admin{
+    position:absolute;
+    bottom:0px;
+}
+
+}
+
+#conditions > a:hover{
+    color:#000;
+}
+#conditions> a{
+    color:#95989A;
+    font-size: 16px;
+}
+
+.container{
+
+    display: flex;
+    flex-direction: column;
+}
+
+#edit{
+    background-color: #FF6600;
+}
+
+#user{
+    background-color:white;
+}
+#gestion, #gestion2 {
+    background-color:#FF6600;
+    text-align: center;
+    color:white;
+}
+
+
+
+#déconnection,#déconnection2 {
+    text-align: center;
+    color:white;
+
+}
+
+#img_tel{
+    margin-top:150px;
+}
+
+#gestion2{
+    /*margin-top: 30px;*/
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
+
+#identité2{
+    margin-bottom:50px;
+}
+#déconnection2{
+    padding-top:40px;
+    padding-bottom:40px;
+}
+@media (min-device-width: 992px) {
+    .headbar {
+        margin: 20px 0;
+    }
+}
+.headbar {
+    padding: 30px 0;
+    background-color:#FF6600;
+    color: white;
+    text-align: center;
+    font-family: SEGOEUI,arial;
+    font-size:20px;
+}
+@media (max-device-width: 992px) {
+    .headbar {
+        margin: 0;
+    }
+}
+#header-title {
+    font-weight: bolder;
+    font-size: 35px;
+    display: flex;
+    align-items: flex-end;
+    font-family: rondalo;
+}
+
+/*Autocomplete*/
+
+.ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;
+    padding: 4px 0;
+    margin: 0 0 10px 25px;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+}
+
+.ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.ui-state-hover, .ui-state-active {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #FF6600;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    background-image: none;
+}
+
+.ui-helper-hidden-accessible { position: absolute; left:-999em; }

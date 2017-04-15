@@ -1,7 +1,49 @@
 {% extends '::base.html.twig' %}
+{% block header %}
+    <header class="flexbox">
+        <div class="flexbox-col-1 hidden-xs">
+            <a href="{{ path('homepage') }}"><img id="logo_header" alt="logo" src="{{ asset('images/logo.png') }}"/></a>
+        </div>
+        <div id="header-title" class="flexbox-col-10 center hidden-xs">
+            <h1 class="matuvu">Matuvu</h1>
+        </div>
+        <div id="header-consultant" class="flexbox-col-1 hidden-xs">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin') }}">
+                    <img id="consultant" alt="profil admin" src="{{ asset('images/profils/admin.png') }}"/>
+                </a>
+            {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                {% if is_granted('ROLE_PRO') %}
+                    <a href="{{ path('user_profil') }}">
+                        <img id="consultant" alt="profil naturaliste" src="{{ asset('images/profils/naturaliste.png') }}"/>
+                    </a>
+                {% elseif is_granted('ROLE_PAR') %}
+                    <a href="{{ path('user_profil') }}">
+                        {% if app.user.observationsNumber < 10 %}
+                            <img id="consultant" alt="profil particulier" src="{{ asset('images/profils/consultant1.png') }}"/>
+                        {% elseif app.user.observationsNumber >= 10 and app.user.observationsNumber < 50 %}
+                            <img id="consultant" alt="profil particulier" src="{{ asset('images/profils/consultant2.png') }}"/>
+                        {% else %}
+                            <img id="consultant" alt="profil particulier" src="{{ asset('images/Profils/consultant3.png') }}"/>
+                        {% endif %}
+                    </a>
+                {% endif %}
+            {% else %}
+                <a href="{{ path('user_profil') }}"><img id="consultant" alt="profil par défaut" src="{{ asset('images/Profils/defaut.png') }}"/></a>
+            {% endif %}
+        </div>
+    </header>
+{% endblock %}
 {% block headbar %}
     <script>
         $( document ).ready(function() {
+            $("#logo_header").hide();
+            $( "#oiseau" ).keypress(function() {
+                $("#logo_header").show();
+                $("#logo").hide();
+                $("#header-title").removeClass('center');
+            });
+
             var availableTags = {{ oiseaux | raw}};
             $( "#oiseau" ).autocomplete({
                 source: function (request, response) {
@@ -23,20 +65,21 @@
             });
         } );
     </script>
-
-    <div class="ui-widget">
+        <div class="ui-widget headbar">
         <form action="" method="POST" id="search">
-            <div>
-                <label for="search">Recherche</label>
-                <input id="oiseau" name="search" type="text" required>
-            </div>
-            <button type="submit">Rechercher</button>
+                <input id="oiseau" name="search" type="text" placeholder="Rechercher un oiseau" required>
+            <button type="submit" hidden>Rechercher</button>
         </form>
     </div>
     <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>
 {% endblock %}
 
 {% block body %}
+    <div class="container center">
+        <div class="center logo">
+            <img id="logo" alt="logo" src="{{ asset('images/logo.png') }}"/>
+        </div>
+    </div>
 {% endblock %}
 
 

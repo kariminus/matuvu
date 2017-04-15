@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <title>Welcome!</title>
+    <meta charset="UTF-8"/>
+    {% block title %}<title>Matuvu</title>{% endblock %}
     {% block stylesheets %}
+        <link rel="icon" href="{{ asset('images/logo.png') }}" sizes="32x32"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('css/autocomplete.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
     {% endblock %}
     <!-- You can use Open Graph tags to customize link previews.
     Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-    <meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Your Website Title" />
-    <meta property="og:description"   content="Your description" />
-    <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
+    <meta property="og:url" content="http://www.your-domain.com/your-page.html"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Your Website Title"/>
+    <meta property="og:description" content="Your description"/>
+    <meta property="og:image" content="http://www.your-domain.com/path/image.jpg"/>
 </head>
-<header>
-    <ul style="list-style: none">
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <a href="{{ path('security_logout') }}">Deconnexion</a>
-        {% else %}
-            <a href="{{ path('security_login') }}">Connexion</a><a href="{{ path('user_register') }}" style="margin-left: 10px">Inscription</a>
-        {% endif %}
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('admin') }}"><img src="{{ asset('/images/profils/admin.jpg') }}" alt="Image du profil"/></a>
-            {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                {% if is_granted('ROLE_PRO') %}
-                    <a href="{{ path('user_profil') }}"><img src="{{ asset('/images/profils/naturaliste.jpg') }}" alt="Image du profil"/></a>
-                    {% elseif is_granted('ROLE_PAR') %}
-                        <a href="{{ path('user_profil') }}">
-                            {% if app.user.observationsNumber < 10 %}
-                                <img src="{{ asset('/images/profils/particulier1.jpg') }}" alt="Image du profil"/>
-                            {% elseif app.user.observationsNumber >= 10 and app.user.observationsNumber < 50 %}
-                                <img src="{{ asset('/images/profils/particulier2.jpg') }}" alt="Image du profil"/>
-                            {% else %}
-                                <img src="{{ asset('/images/profils/particulier3.jpg') }}" alt="Image du profil"/>
-                            {% endif %}
-                        </a>
+{% block header %}
+<header class="flexbox">
+    <div class="flexbox-col-1 hidden-xs">
+        <a href="{{ path('homepage') }}"><img id="logo_header" alt="logo" src="{{ asset('images/logo.png') }}"/></a>
+    </div>
+    <div id="header-title" class="flexbox-col-10 hidden-xs">
+        <h1 class="matuvu">Matuvu</h1>
+    </div>
+    <div id="header-consultant" class="flexbox-col-1 hidden-xs">
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('admin') }}">
+            <img id="consultant" alt="profil admin" src="{{ asset('images/profils/admin.png') }}"/>
+        </a>
+    {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% if is_granted('ROLE_PRO') %}
+            <a href="{{ path('user_profil') }}">
+                    <img id="consultant" alt="profil naturaliste" src="{{ asset('images/profils/naturaliste.png') }}"/>
+            </a>
+        {% elseif is_granted('ROLE_PAR') %}
+            <a href="{{ path('user_profil') }}">
+                {% if app.user.observationsNumber < 10 %}
+                        <img id="consultant" alt="profil particulier" src="{{ asset('images/profils/consultant1.png') }}"/>
+                {% elseif app.user.observationsNumber >= 10 and app.user.observationsNumber < 50 %}
+                        <img id="consultant" alt="profil particulier" src="{{ asset('images/profils/consultant2.png') }}"/>
+                {% else %}
+                        <img id="consultant" alt="profil particulier" src="{{ asset('images/Profils/consultant3.png') }}"/>
                 {% endif %}
+            </a>
         {% endif %}
-    </ul>
+        {% else %}
+        <a href="{{ path('user_profil') }}"><img id="consultant" alt="profil par défaut" src="{{ asset('images/Profils/defaut.png') }}"/></a>
+    {% endif %}
+    </div>
 </header>
+{% endblock %}
 <body>
-{% block title %}{% endblock %}
 {% block headbar %}{% endblock %}
 {% block body %}{% endblock %}
 {% block javascripts %}
@@ -51,6 +66,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}
 </body>
-<footer>
-</footer>
+{% block footer %}
+    <footer class="hidden-xs">
+        <a id="conditions" href="{{ path('conditions') }}">Conditions d'utilisation</a> <a href="#">- Un site NAO</a>
+    </footer>
+{% endblock %}
 </html>

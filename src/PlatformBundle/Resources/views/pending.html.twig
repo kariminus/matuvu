@@ -1,16 +1,8 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
 {% block headbar %}
-    <h1>Propositions en attente</h1>
+    <h1 class="hidden-xs" >Propositions en attente</h1>
 {% endblock %}
 
-{% block link %}
-    <div>
-        <a href="{{ path('user_observations') }}">Accéder aux propositions</a>
-    </div>
-    <div>
-        <a href="{{ path('user_edit') }}">Modifier mon profil</a>
-    </div>
-{% endblock %}
 
 
 {% block content %}

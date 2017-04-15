@@ -1,24 +1,39 @@
 {% extends 'base.html.twig' %}
-
-{% block body %}
-    <div>
-        <p>{{ app.user.firstName }}</p>
-        <p>{{ app.user.lastName }}</p>
+{% block headbar %}
+    <div class="headbar hidden-xs">
+        Profil
     </div>
-    {% block link %}
-        {% if is_granted('ROLE_ADMIN') %}
-            <div><a href="{{ path('admin_users') }}">Gestion des membres</a></div>
-        {% elseif is_granted('ROLE_PRO') %}
-            <div>
-                <a href="{{ path('user_pending') }}">Propositions en attente</a>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row body">
+            <div class="col-md-4 left">
+                <div class="row border user body col-md-12">
+                    <div class="prenom"><p>{{ app.user.firstName }}</p></div>
+                    <div class="nom"><p>{{ app.user.lastName }}</p></div>
+                </div>
+                <div class="row liens col-md-12">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="lien1">
+                            <a href="{{ path('admin_users') }}">Gestion des membres </a>
+                        </div>
+                    {% elseif is_granted('ROLE_PRO') %}
+                        <div class="lien1">
+                            <a href="{{ path('user_pending') }}">Propositions en attente</a>
+                        </div>
+                    {% endif %}
+                    <div class="profil">
+                        <a href="{{ path('user_edit') }}">Modifier mon profil</a>
+                    </div>
+                    <div class="deconnexion">
+                        <a href="{{ path('security_logout') }}">Se déconnecter</a>
+                    </div>
+                </div>
             </div>
-        {% endif %}
-        <div>
-            <a href="{{ path('user_edit') }}">Modifier mon profil</a>
+            <div class="border border-left center col-md-8">
+                <div class="row">{% block content %}
+                {% endblock %}</div>
+            </div>
         </div>
-    {% endblock %}
-
-    {% block content %}{% endblock %}
-
-    <div><a href="{{ path('security_logout') }}">Se déconnecter</a></div>
+    </div>
 {% endblock %}

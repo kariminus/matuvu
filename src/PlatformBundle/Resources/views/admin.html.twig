@@ -22,7 +22,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <link rel=stylesheet type="text/css" href="{{asset('Resources/css/admin.css')}}"/>
+        <link rel=stylesheet type="text/css" href="{{asset('css/admin.css')}}"/>
     </head>
     <body>
         <header class="flexbox">
@@ -50,38 +50,38 @@
                         <p class="text-center">Prénom</p>
                         <p class="hidden-lg hidden-sm hidden-md text-center">Nombre d'observations</p>
                     </div>
-                    <div class="button-bg element" id="gestion">                        
-                                                                                      
-                                <a href="{{ path('admin_users') }}">Gestion des membres </a>                       
+                    <div class="button-bg element" id="gestion">
+
+                                <a href="{{ path('admin_users') }}">Gestion des membres </a>
                     </div>
-                    <div class="button-bg element" id="déconnection">                        
-                                                 
-                                <a href="{{ path('logout') }}">Se déconnecter</a>                     
-                    </div>                
+                    <div class="button-bg element" id="déconnexion">
+
+                                <a href="{{ path('security_logout') }}">Se déconnecter</a>
+                    </div>
                 </div>
-                    
-                    
-                    
+
+
+
                 <div id="admin-img" class="flexbox-col-2">
                     <img  class="hidden-xs" alt="admin" src="{{asset('Resources/images/profil_admin.png')}}"/>
                 </div>
             </div>
         </div>
-                
-                
+
+
                 <div id="data" class="flexbox flexbox-col-12 flexbox-col">
                     <div class="element" id="identité2">
                         <p class="text-center">Nom</p>
                         <p class="text-center">Prénom</p>
                         <p class="hidden-lg hidden-sm hidden-md text-center">Nombre d'observations</p>
                     </div>
-                    <div class="button-bg element" id="gestion2">                        
-                                                                                      
-                                <a href="{{ path('admin') }}">Gestion des membres </a>                       
+                    <div class="button-bg element" id="gestion2">
+
+                                <a href="{{ path('admin') }}">Gestion des membres </a>
                     </div>
-                    <div class="button-bg element" id="déconnection2">                        
-                                                 
-                                <a href="{{ path('admin') }}">Se déconnecter</a>                     
+                    <div class="button-bg element" id="déconnexion2">
+
+                                <a href="{{ path('admin') }}">Se déconnecter</a>
                     </div>
                 </div>
 
@@ -90,14 +90,14 @@
         </footer>
 
 {% block javascripts %}
-    
+
         <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
         <!-- Latest compiled and minified JavaScript -->
-        <script 
+        <script
                 src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-                crossorigin="anonymous">                   
+                crossorigin="anonymous">
         </script>
-{% endblock %}                
+{% endblock %}
     </body>
 </html>
 
