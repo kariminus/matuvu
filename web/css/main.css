@@ -140,3 +140,33 @@ h1 {
     padding-left: 0px;
     padding-bottom:0px;
 }
+
+/*page user_add*/
+
+#valider1{
+    background-color: #FF6600;   
+}
+
+#gestion{
+    background-color: #63C49C; 
+        
+}
+
+.margin-top{
+    margin-top:15px;    
+    
+}
+
+
+
+
+/*page observations_tovalidate*/
+#admin-data{
+    display:flex;
+}
+#oiseaux{
+    
+padding-left:15px;
+}
+
+
