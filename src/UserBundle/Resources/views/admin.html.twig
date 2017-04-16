@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Matuvu</title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              crossorigin="anonymous">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <link rel=stylesheet type="text/css" href="{{asset('Resources/css/admin.css')}}"/>
+    </head>
+    <body>
+        <header class="flexbox">
+            <div class="flexbox-col-1 hidden-xs">
+                <a href="{{ path('homepage') }}"><img id="consultant" alt="logo" src="{{asset('Resources/images/logo.png')}}"/></a>
+            </div>
+            <div id="header-title" class="flexbox-col-10 hidden-xs">
+                <p>Matuvu</p>
+            </div>
+            <div id="header-consultant" class="flexbox-col-1 hidden-xs">
+                <img id="consultant" alt="consultant" src="{{asset('Resources/images/consultant.png')}}"/>
+            </div>
+        </header>
+
+        <h1 id="h1profil" class="hidden-xs">
+            Profil
+        </h1>
+              <div id="img_tel" class="hidden-sm hidden-md hidden-lg"><img  alt="admin_telephone" src="{{asset('Resources/images/profil_admin.png')}}"/></div>
+
+        <div class="content container">
+            <div id="admin" class="flexbox">
+                <div id="admin-data" class="flexbox flexbox-col-10 flexbox-col hidden-xs">
+                    <div class="element" id="identité">
+                        <p class="text-center">Nom</p>
+                        <p class="text-center">Prénom</p>
+                        <p class="hidden-lg hidden-sm hidden-md text-center">Nombre d'observations</p>
+                    </div>
+                    <div class="button-bg element" id="gestion">                        
+                                                                                      
+                                <a href="{{ path('admin_users') }}">Gestion des membres </a>                       
+                    </div>
+                    <div class="button-bg element" id="déconnection">                        
+                                                 
+                                <a href="{{ path('logout') }}">Se déconnecter</a>                     
+                    </div>                
+                </div>
+                    
+                    
+                    
+                <div id="admin-img" class="flexbox-col-2">
+                    <img  class="hidden-xs" alt="admin" src="{{asset('Resources/images/profil_admin.png')}}"/>
+                </div>
+            </div>
+        </div>
+                
+                
+                <div id="data" class="flexbox flexbox-col-12 flexbox-col">
+                    <div class="element" id="identité2">
+                        <p class="text-center">Nom</p>
+                        <p class="text-center">Prénom</p>
+                        <p class="hidden-lg hidden-sm hidden-md text-center">Nombre d'observations</p>
+                    </div>
+                    <div class="button-bg element" id="gestion2">                        
+                                                                                      
+                                <a href="{{ path('admin') }}">Gestion des membres </a>                       
+                    </div>
+                    <div class="button-bg element" id="déconnection2">                        
+                                                 
+                                <a href="{{ path('admin') }}">Se déconnecter</a>                     
+                    </div>
+                </div>
+
+        <footer class="hidden-xs">
+            <a id="conditions" href="{{ path('conditions') }}">Conditions d'utilisation</a> - <a href="#">Un site NAO</a>
+        </footer>
+
+{% block javascripts %}
+    
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script 
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                crossorigin="anonymous">                   
+        </script>
+{% endblock %}                
+    </body>
+</html>
+
