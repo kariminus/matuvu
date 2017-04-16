@@ -33,7 +33,8 @@ class ObservationController extends Controller
 
         return $this->render('ObservationBundle::add.html.twig', array(
             'form' => $array[0]->createView(),
-            'oiseau' => $array[1]
+            'oiseau' => $array[1],
+            'observation' => $array[2],
         ));
     }
 

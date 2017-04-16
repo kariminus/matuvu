@@ -48,6 +48,11 @@ class ManageObservation
             array('slug' => $slug));
         $exist = $this->em->getRepository('ObservationBundle:Observation')->findDistinct($user->getId(), $oiseau->getId());
 
+        $image = $this->em->getRepository('ObservationBundle:Observation')->findOneBy(
+            array(
+                'oiseau' => $oiseau->getId(),
+            ));
+
         $observation = new Observation();
         $form   = $this->formFactory->create(ObservationType::class, $observation);
 
@@ -70,7 +75,7 @@ class ManageObservation
             $response->send();
         }
 
-        return [$form, $oiseau];
+        return [$form, $oiseau, $image];
     }
 
     /**

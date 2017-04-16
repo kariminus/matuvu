@@ -69,17 +69,17 @@
     <div class="container">
         <div class="row body">
             <div class="col-md-4 left oiseau-id">
-                <div class="row border user body col-md-12">
-                    <p class="nom">{{ oiseau.scientificName }}</p>
-                    <p class="nom">{{ oiseau.name }}</p>
-                    <p class="nom">{{ oiseau.ordre }}</p>
-                    <p class="nom">{{ oiseau.family }}</p>
+                <div class="row border user oiseau-name body col-md-12">
+                    <p class="nom-scientific"><b>{{ oiseau.scientificName }}</b></p>
+                    <p>{{ oiseau.name }}</p>
+                    <p>{{ oiseau.ordre }}</p>
+                    <p>{{ oiseau.family }}</p>
                 </div>
                 <div class="right">
                     {% if observation == NULL %}
-                        <img class="oiseau" src="{{ asset('images/oiseau.png') }}" alt="Photo oiseau par défaut"/>
+                        <img class="oiseau"  width="390" height="263" src="{{ asset('images/oiseau.png') }}" alt="Photo oiseau par défaut"/>
                     {% else %}
-                        <img class="oiseau" src="{{ asset('/images/observations/') }}{{ observation.imageName }}" alt="{{ observation.oiseau.name }}"/>
+                        <img class="oiseau"  src="{{ asset('/images/observations/') }}{{ observation.imageName }}" alt="{{ observation.oiseau.name }}"/>
                     {% endif %}
                 </div>
             </div>
