@@ -8,23 +8,29 @@
     src: url(../fonts/SEGOEUI.TTF)
 }
 
-
-
-img {
-    max-width: 100%;
-}
-
 #logo {
     height: 40vh;
 }
 
-.body{
-    height: 50vh;
+.logo {
+    height: 60vh;
 }
 .matuvu {
+    margin-top: 85px;
     font-size: 10vh;
 }
+.oiseau {
+    border: solid #95989A;
+    border-top: none;
+    height: 30vh;
+}
 
+.ajouter, .ajouter-mobile {
+    position: absolute;
+    right: 8%;
+    bottom: 15%;
+    height: 200px;
+}
 @media screen and (max-width: 992px) {
     .body {
         height: 90vh;
@@ -44,11 +50,40 @@ img {
         color: #000000;
         width: 30vh;
     }
+    .map-mobile {
+        width: 0;
+        height: 0;
+    }
+    .oiseau-id {
+        position: absolute;
+        top: 20%;
+    }
+    .oiseau {
+        height: 50vh;
+        border: none;
+    }
+    .ajouter-mobile {
+        position: absolute;
+        right: 5%;
+        bottom: 15%;
+        height: 100px;
+    }
+    .lien-carte, .retour-profil {
+        position: absolute;
+        top: 90%;
+        height: 10vh;
+        background-color: #63C49C;
+        width: 100%;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media screen and (min-width: 992px) {
-    .border {
-        border: solid black ;
+    .border, .map {
+        border: solid #95989A ;
     }
     footer {
         position:absolute;
@@ -70,16 +105,14 @@ img {
     justify-content: center;
     align-items: center;
 }
-.logo {
-    height: 70vh;
-}
-.border {
+
+.border, .map {
     height: 50vh;
     margin: 0;
     padding: 0;
 }
 
-.border-left {
+.border-left, .map {
     border-left: none;
 }
 
@@ -94,7 +127,7 @@ img {
     flex-direction: column;
     justify-content: center;
 }
-.nom, .prenom, .lien1, .deconnexion, .profil {
+.prenom, .lien1, .deconnexion, .profil {
     display: flex;
     justify-content: center;
     align-items: center;

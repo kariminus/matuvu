@@ -12,12 +12,29 @@
         }
 
         #map {
-            width: 50%;
-            height: 50%;
+            width: 100%;
+            height: 100%;
         }
     </style>
     <script>
         $( document ).ready(function() {
+            $(".lien-carte").click(function () {
+                $(".map-mobile").css("width", "100%");
+                $(".map-mobile").css("height", "63.5vh");
+                $(".right").addClass("hidden-xs");
+                $(".ajouter-mobile").addClass("hidden-xs");
+                $(this).addClass("hidden-xs");
+                $(".retour-profil").removeClass("hidden-xs");
+                google.maps.event.trigger(map, 'resize');
+            });
+            $(".retour-profil").click(function () {
+                $(".map-mobile").css("width", "0");
+                $(".map-mobile").css("height", "0");
+                $(".right").removeClass("hidden-xs");
+                $(".ajouter-mobile").removeClass("hidden-xs");
+                $(this).addClass("hidden-xs");
+                $(".lien-carte").removeClass("hidden-xs");
+            });
             var availableTags = {{ oiseaux | raw}};
             $( "#oiseau" ).autocomplete({
                 source: function (request, response) {
@@ -39,36 +56,48 @@
             });
         } );
     </script>
-    <div class="">
+    <div class="ui-widget headbar">
         <form action="" method="POST" id="search">
-            <div>
-                <label for="search">Recherche</label>
-                <input id="oiseau" name="search" type="text">
-            </div>
-            <button type="submit">Rechercher</button>
+            <input id="oiseau" name="search" type="text" placeholder="Rechercher un oiseau" required>
+            <button type="submit" hidden>Rechercher</button>
         </form>
     </div>
     <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>
 {% endblock %}
 
 {% block body %}
-    {% if observation == NULL %}
-        <img src="{{ asset('/images/oiseau.jpg') }}" alt="Photo oiseau par défaut"/>
-    {% else %}
-        <img src="{{ asset('/images/observations/') }}{{ observation.imageName }}" alt="{{ observation.oiseau.name }}"/>
-    {% endif %}
-    <div>
-        <p>{{ oiseau.scientificName }}</p>
-        <p>{{ oiseau.name }}</p>
-        <p>{{ oiseau.ordre }}</p>
-        <p>{{ oiseau.family }}</p>
+    <div class="container">
+        <div class="row body">
+            <div class="col-md-4 left oiseau-id">
+                <div class="row border user body col-md-12">
+                    <p class="nom">{{ oiseau.scientificName }}</p>
+                    <p class="nom">{{ oiseau.name }}</p>
+                    <p class="nom">{{ oiseau.ordre }}</p>
+                    <p class="nom">{{ oiseau.family }}</p>
+                </div>
+                <div class="right">
+                    {% if observation == NULL %}
+                        <img class="oiseau" src="{{ asset('images/oiseau.png') }}" alt="Photo oiseau par défaut"/>
+                    {% else %}
+                        <img class="oiseau" src="{{ asset('/images/observations/') }}{{ observation.imageName }}" alt="{{ observation.oiseau.name }}"/>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="center col-md-8 map map-mobile">
+                    {% block content %}
+                        {% if protected == NULL %}
+                            <div id="map"></div>
+                        {% else %}
+                            <p>Cet oiseau est une espèce protégée.</p>
+                        {% endif %}
+                    {% endblock %}
+            </div>
+                <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}" class="hidden-xs hidden-sm"><img class="ajouter" src="{{ asset('images/ajout.png') }}" alt="Ajouter une observation"/></a>
+                <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}" class="hidden-lg"><img class="ajouter-mobile" src="{{ asset('images/logo.png') }}" alt="Ajouter une observation"/></a>
+                <p class="hidden-lg lien-carte">Accéder à la carte</p>
+                <p class="hidden-lg hidden-xs retour-profil">Retour à la fiche</p>
+        </div>
     </div>
-
-    {% if protected == NULL %}
-        <div id="map"></div>
-    {% else %}
-        <p>Cet oiseau est une espèce protégée.</p>
-    {% endif %}
     <script>
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service
@@ -83,34 +112,34 @@
 
 
             {% for observation in observations %}
-            var contentString = '<div id="content">' +
-                '<div id="siteNotice">' +
-                '</div>' +
-                '<div id="bodyContent">' +
-                '<p>Observé le {{ observation.date | date('d/m/Y') }} <br/>par {{ observation.user.firstName }} {{ observation.user.lastName }}</p>' +
-                '</div>' +
-                '</div>';
+                var contentString = '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    '</div>' +
+                    '<div id="bodyContent">' +
+                    '<p>Observé le {{ observation.date | date('d/m/Y') }} <br/>par {{ observation.user.firstName }} {{ observation.user.lastName }}</p>' +
+                    '</div>' +
+                    '</div>';
 
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString,
-                position: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}}
-            });
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                    position: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}}
+                });
 
 
-            var cityCircle{{ observation.id }} = new google.maps.Circle({
-                strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: '#FF0000',
-                fillOpacity: 0.35,
-                map: map,
-                center: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}},
-                radius: 10000
-            });
+                var cityCircle{{ observation.id }} = new google.maps.Circle({
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35,
+                    map: map,
+                    center: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}},
+                    radius: 10000
+                });
 
-            cityCircle{{ observation.id }}.addListener('click', function () {
-                infowindow.open(map, cityCircle{{ observation.id }});
-            });
+                cityCircle{{ observation.id }}.addListener('click', function () {
+                    infowindow.open(map, cityCircle{{ observation.id }});
+                });
             {% endfor %}
 
             // Try HTML5 geolocation.
@@ -140,10 +169,4 @@
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq5V-pUDvNBdnyhFN_RRcVUeTXqMAioc0&signed_in=true&callback=initMap"></script>
-
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-        <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}" class="ajouter">Ajouter</a>
-    {% else %}
-        <p>Pour ajouter une observation, veuillez vous connecter</p>
-    {% endif %}
 {% endblock %}

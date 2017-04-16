@@ -43,3 +43,4 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN, requires_channel: '%httpProtocol%' }
         - { path: ^/profil, role: [ROLE_PRO, ROLE_PAR], requires_channel: '%httpProtocol%' }
+        - { path: ^/oiseau/add, role: [ROLE_PRO, ROLE_PAR] }
