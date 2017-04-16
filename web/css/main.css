@@ -8,6 +8,11 @@
     src: url(../fonts/SEGOEUI.TTF)
 }
 
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
 #logo {
     height: 40vh;
 }
@@ -23,7 +28,7 @@
     border: solid #95989A;
     border-top: none;
     width: 390px;
-    height: 30vh;
+    height: 32vh;
 }
 .ajouter, .ajouter-mobile {
     position: absolute;
@@ -45,6 +50,27 @@
     display: flex;
     align-items: center;
 }
+.supprimer, .validation, .rien {
+    width: 100%;
+    color: #fff;
+}
+
+.supprimer, {
+    background-color: #63C49C;
+    height: 6vh;
+}
+
+.validation {
+    background-color: #FF6600;
+    height: 10vh;
+    margin: 0;
+}
+.rien {
+    background-color: #63C49C;
+    height: 16vh;
+}
+
+
 
 @media screen and (max-width: 992px) {
     .body {
@@ -107,6 +133,11 @@
         align-items: center;
         margin : 0 0 0 40px;
     }
+    .oiseau-infos {
+        margin: 20px 0 0 0;
+        padding-left: 50px;
+        line-height: 200%;
+    }
 
 }
 
@@ -129,6 +160,11 @@
     .full-width {
         margin: 0 0 0 100px;
     }
+    .oiseau-infos {
+        margin: 40px 0 0 0;
+        padding-left: 50px;
+        line-height: 200%;
+    }
 }
 
 .left {
@@ -140,6 +176,7 @@
     justify-content: center;
     align-items: center;
 }
+
 
 .border, .map {
     margin: 0;
@@ -167,7 +204,7 @@
 }
 
 .user, .liens {
-    height: 20vh;
+    height: 18vh;
     margin: 0;
     padding: 0;
 }
@@ -187,14 +224,19 @@
     color: #fff;
 }
 
-.lien1, .deconnexion {
-    background-color: #FF6600;
-    height: 10vh;
+.lien1 {
+    background-color: #63C49C;
+    height: 8vh;
+}
+
+.deconnexion {
+    background-color: #63C49C;
+    height: 16vh;
 }
 
 .profil {
-    background-color: #63C49C;
-    height: 10vh;
+    background-color: #FF6600;
+    height: 8vh;
 }
 
 .image-profil {

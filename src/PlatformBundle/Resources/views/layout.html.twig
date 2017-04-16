@@ -9,8 +9,8 @@
         <div class="row body">
             <div class="col-md-4 left">
                 <div class="row border user body col-md-12">
-                    <div class="prenom"><p>{{ app.user.firstName }}</p></div>
                     <div class="prenom"><p>{{ app.user.lastName }}</p></div>
+                    <div class="prenom"><p>{{ app.user.firstName }}</p></div>
                 </div>
                 <div class="row liens col-md-12">
                     {% if is_granted('ROLE_ADMIN') %}
@@ -30,12 +30,8 @@
                     </div>
                 </div>
             </div>
-            <div class="border border-left center col-md-8">
-                <div class="row">
-                    {% block content %}
-                    {% endblock %}
-                </div>
-            </div>
+            {% block content %}
+            {% endblock %}
         </div>
     </div>
 {% endblock %}

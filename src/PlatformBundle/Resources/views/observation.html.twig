@@ -1,24 +1,56 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
 {% block headbar %}
-    <p>Détail de l'observation</p>
+    <div class="headbar">
+        <h1>Observation</h1>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div>
-        <p>{{ oiseau.scientificName }}</p>
-        <p>{{ oiseau.name }}</p>
-        <p>({{ oiseau.ordre }}, {{ observation.oiseau.family }})</p>
-        <p>Observé le {{ observation.date | date("d/m/Y")}}</p>
-        <p>lat: {{ observation.latitude }}</p>
-        <p>long: {{ observation.longitude }}</p>
-        {% if observation.imageName != NULL %}
-        <img src="{{ asset('/images/observations/') }}{{ observation.imageName }}" alt="{{ observation.oiseau.name }}"/>
+    <div class="border border-left col-md-8">
+        <div class="row">
+            <div class="col-md-4 oiseau-infos">
+                <p ><b>{{ oiseau.scientificName }}</b></p>
+                <p>{{ oiseau.name }}</p>
+                <p>({{ oiseau.ordre }}, {{ observation.oiseau.family }})</p>
+                <p>Observé le {{ observation.date | date("d/m/Y") }}</p>
+                <p>lat: {{ observation.latitude }}</p>
+                <p>long: {{ observation.longitude }}</p>
+            </div>
+            <div class="col-md-8">{% if observation.imageName != NULL %}
+                    <img src="{{ asset('/images/observations/') }}{{ observation.imageName }}" width="509" height="322"
+                         alt="{{ observation.oiseau.name }}"/>
+                {% else %}
+                    <img src="{{ (asset('images/oiseau.png')) }}" alt="Photo" width="509" height="322"/>
+                {% endif %}
+            </div>
+        </div>
+        {% if is_granted('ROLE_PRO') and observation.validated == 0 %}
+            <div class="supprimer center">
+                <a href="{{ path('image_delete', {'id' : observation.id}) }}">Supprimer l'image</a>
+            </div>
+            <div class="row validation center">
+                <div class="col-md-offset-1 col-md-2"><a href="{{ path('observation_delete', {'id' : observation.id}) }}">Refuser</a>
+                </div>
+                <div class="col-md-offset-7 col-md-2"><a
+                            href="{{ path('observation_validate', {'id' : observation.id}) }}">Valider</a></div>
+            </div>
             {% else %}
-                <img src="{{ (asset('images/photo.jpg')) }}" alt="Photo"/>
+                <div class="rien">
+                </div>
+
         {% endif %}
     </div>
-    {% if is_granted('ROLE_PRO') and observation.validated == 0%}
-        {% include 'PlatformBundle::validation.html.twig' with {'id': observation} %}
-    {% endif %}
+    <script>
+        $(document).ready(function() {
+            if (window.matchMedia("(max-width: 992px)").matches) {
+                $(".deconnexion").hide();
+                $(".supprimer").css("height", "10vh");
+                $(".validation").css("height", "10vh");
+                $(".oiseau-infos").css("height", "26vh");
 
+            } else {
+                $(".deconnexion").show();
+            }
+            });
+    </script>
 {% endblock %}

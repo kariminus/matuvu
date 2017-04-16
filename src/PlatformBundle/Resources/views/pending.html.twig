@@ -6,6 +6,7 @@
 
 
 {% block content %}
+    <div class="border border-left col-md-8">
     <ul>
         {% for observation in observations %}
             <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
@@ -14,5 +15,5 @@
     <div class="navigation">
         {{ knp_pagination_render(observations) }}
     </div>
-
+    </div>
 {% endblock %}
