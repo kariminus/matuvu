@@ -120,6 +120,14 @@ ul {
     height: 40vh;
     margin-bottom: -1px;
 }
+.form-edit-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    margin-bottom: -1px;
+}
 @media all and (max-device-width: 992px) {
     .body {
         height: 85vh;
@@ -214,6 +222,13 @@ ul {
         bottom: 50%;
         height: 30vh;
     }
+    .form-edit-user {
+        position: absolute;
+        right: 35%;
+        bottom: 50%;
+        height: 30vh;
+
+    }
     .roles {
         margin-top: 50px;
     }
@@ -278,9 +293,6 @@ ul {
     }
     .previous {
         margin-left: 40px;
-    }
-    .form-add-user {
-
     }
 }
 
