@@ -33,17 +33,20 @@
                 {% endfor %}
             </ul>
         </div>
+        <div class="supprimer-membre center">
+            <a href="{{ path('admin_user_add') }}">Ajouter un membre</a>
+        </div>
         <div class="navigation">
             {{ knp_pagination_render(users) }}
         </div>
     </div>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             if (window.matchMedia("(max-device-width: 992px)").matches) {
-                $(".left").hide();
+                $(".supprimer-membre").show();
 
             } else {
-                $(".left").show();
+                $(".supprimer-membre").hide();
             }
         });
     </script>
