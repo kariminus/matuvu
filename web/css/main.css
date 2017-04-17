@@ -55,7 +55,7 @@
     color: #fff;
 }
 
-.supprimer, {
+.supprimer {
     background-color: #63C49C;
     height: 6vh;
 }
@@ -65,14 +65,41 @@
     height: 10vh;
     margin: 0;
 }
+.observation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-right: 15px;
+}
+.navigation {
+    background-color: #FF6600;
+    height: 10vh;
+    color: #fff;
+}
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    margin: 0;
+}
+ul {
+    margin: 0;
+}
 .rien {
     background-color: #63C49C;
     height: 16vh;
 }
 
+.next {
+    margin-right: 40px;
+}
+.previous {
+    margin-left: 40px;
+}
 
-
-@media screen and (max-width: 992px) {
+@media all and (max-device-width: 992px) {
     .body {
         height: 90vh;
         display: flex;
@@ -81,6 +108,7 @@
     .border {
         border: none;
     }
+
     footer {
         display: none;
     }
@@ -100,7 +128,7 @@
         top: 20%;
     }
     .oiseau {
-        height: 50vh;
+        height: 60vh;
         width: 100%;
         border: none;
     }
@@ -138,10 +166,33 @@
         padding-left: 50px;
         line-height: 200%;
     }
+    .rien {
+        height: 22vh;
+    }
+    .observation {
+        margin-bottom: 50px;
+    }
+    .lien-observation {
+        font-size: 1.5em;
+    }
+    .list-observations {
+        height: 40vh;
+        margin-bottom: -2px;
+        position: absolute;
+        bottom: 90%;
+    }
+    .navigation {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    .facebook {
+        margin-left: 200px;
+    }
 
 }
 
-@media screen and (min-width: 992px) {
+@media all and (min-device-width: 992px) {
     .border, .map {
         border: solid #95989A ;
     }
@@ -164,6 +215,20 @@
         margin: 40px 0 0 0;
         padding-left: 50px;
         line-height: 200%;
+    }
+    .ajouter-mobile {
+        display: none;
+    }
+    .list-observations {
+        height: 40vh;
+        margin-bottom: -2px;
+        padding-top: 20px;
+    }
+    .next {
+        margin-right: 40px;
+    }
+    .previous {
+        margin-left: 40px;
     }
 }
 

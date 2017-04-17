@@ -42,12 +42,13 @@
     </div>
     <script>
         $(document).ready(function() {
-            if (window.matchMedia("(max-width: 992px)").matches) {
+            if (window.matchMedia("(max-device-width: 992px)").matches) {
                 $(".deconnexion").hide();
-                $(".supprimer").css("height", "10vh");
-                $(".validation").css("height", "10vh");
+                $(".supprimer").css("height", "11vh");
+                $(".supprimer").css("background-color", "#FF6600");
+                $(".validation").css("height", "11vh");
+                $(".validation").css("background-color", "#63C49C");
                 $(".oiseau-infos").css("height", "26vh");
-
             } else {
                 $(".deconnexion").show();
             }

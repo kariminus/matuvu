@@ -1,41 +1,60 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
 {% block headbar %}
-    <h1 class="hidden-xs">Historique des observations</h1>
+    <div class="headbar">
+        <h1>Historique des observations</h1>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <!-- Load Facebook SDK for JavaScript -->
-    <div id="fb-root"></div>
-    <script>(function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8&appId=397422067309390";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-    <ul>
-        {% for observation in observations %}
-            <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a>
-                <!-- Your share button code -->
-                <div id="{{ observation.id }}" class="btn btn-primary clearfix">Partager</div>
-                <script>
-                    document.getElementById('{{ observation.id }}').onclick = function() {
-                        FB.ui({
-                            method: 'share',
-                            display: 'popup',
-                            href: "http://dahu-concept.com/matuvu/oiseau/{{ observation.oiseau.slug }}",
-                            quote: "J'ai observé un {{ observation.oiseau.name }}. Toi aussi, partage tes observations d’oiseaux pour aider un programme de protection de la nature ! Rejoins-nous sur le site Matuvu.org",
-                            mobile_iframe: true
-                        }, function(response){});
-                    }
-                </script>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="border border-left col-md-8">
+        <!-- Load Facebook SDK for JavaScript -->
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8&appId=397422067309390";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="list-observations">
+            <ul>
+                {% for observation in observations %}
+                    <li class="observation">
+                        <a class="lien-observation" href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a>
+                        <!-- Your share button code -->
+                        <img src="{{ asset('images/facebook.png') }}" width="25px" height="25px" class="facebook" id="{{ observation.id }}" alt="partage facebook "/>
 
-    <div class="navigation">
-        {{ knp_pagination_render(observations) }}
+                        <script>
+                            document.getElementById('{{ observation.id }}').onclick = function () {
+                                FB.ui({
+                                    method: 'share',
+                                    display: 'popup',
+                                    href: "http://dahu-concept.com/matuvu/oiseau/{{ observation.oiseau.slug }}",
+                                    quote: "J'ai observé un {{ observation.oiseau.name }}. Toi aussi, partage tes observations d’oiseaux pour aider un programme de protection de la nature ! Rejoins-nous sur le site Matuvu.org",
+                                    mobile_iframe: true
+                                }, function (response) {
+                                });
+                            }
+                        </script>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="navigation">
+            {{ knp_pagination_render(observations) }}
+        </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            if (window.matchMedia("(max-device-width: 992px)").matches) {
+                $(".left").hide();
+                $(".navigation").css("background-color", "#63C49C");
 
+            } else {
+                $(".left").show();
+            }
+        });
+    </script>
 {% endblock %}

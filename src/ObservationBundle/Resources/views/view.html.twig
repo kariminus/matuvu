@@ -18,13 +18,14 @@
     </style>
     <script>
         $( document ).ready(function() {
+            $(".retour-profil").hide();
             $(".lien-carte").click(function () {
                 $(".map-mobile").css("width", "100%");
                 $(".map-mobile").css("height", "63.5vh");
                 $(".right").addClass("hidden-xs");
                 $(".ajouter-mobile").addClass("hidden-xs");
                 $(this).addClass("hidden-xs");
-                $(".retour-profil").removeClass("hidden-xs");
+                $(".retour-profil").show();
                 google.maps.event.trigger(map, 'resize');
             });
             $(".retour-profil").click(function () {
@@ -32,7 +33,7 @@
                 $(".map-mobile").css("height", "0");
                 $(".right").removeClass("hidden-xs");
                 $(".ajouter-mobile").removeClass("hidden-xs");
-                $(this).addClass("hidden-xs");
+                $(".retour-profil").hide();
                 $(".lien-carte").removeClass("hidden-xs");
             });
             var availableTags = {{ oiseaux | raw}};
@@ -95,7 +96,7 @@
                 <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}" class="hidden-xs hidden-sm"><img class="ajouter" src="{{ asset('images/ajout.png') }}" alt="Ajouter une observation"/></a>
                 <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}" class="hidden-lg"><img class="ajouter-mobile" src="{{ asset('images/logo.png') }}" alt="Ajouter une observation"/></a>
                 <p class="hidden-lg lien-carte">Accéder à la carte</p>
-                <p class="hidden-lg hidden-xs retour-profil">Retour à la fiche</p>
+                <p class="hidden-lg retour-profil">Retour à la fiche</p>
         </div>
     </div>
     <script>
