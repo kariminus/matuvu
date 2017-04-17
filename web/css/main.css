@@ -50,12 +50,12 @@
     display: flex;
     align-items: center;
 }
-.supprimer, .validation, .rien {
+.supprimer,.supprimer-membre, .validation, .rien {
     width: 100%;
     color: #fff;
 }
 
-.supprimer {
+.supprimer, .supprimer-membre {
     background-color: #63C49C;
     height: 6vh;
 }
@@ -101,7 +101,7 @@ ul {
 }
 .form-user {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
     height: 30vh;
     margin-bottom: 7px;
@@ -191,11 +191,26 @@ ul {
     .lien-observation {
         font-size: 1.5em;
     }
-    .list-observations, .proposition {
+    .list-observations, .proposition{
         height: 30vh;
         margin-bottom: 40px;
         position: absolute;
         bottom: 90%;
+    }
+    .form-user {
+        position: absolute;
+        margin-left: 30px;
+        bottom: 50%;
+        height: 30vh;
+    }
+    .email {
+        position: absolute;
+        top: -40%;
+        width: 100%;
+    }
+    .supprimer-membre {
+        position: absolute;
+        bottom: 20%;
     }
     .navigation, .moderation {
         position: absolute;

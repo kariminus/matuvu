@@ -8,9 +8,9 @@
 
 {% block content %}
     <div class="border border-left col-md-8">
-        <p>{{ user.email }}</p>
-        <div class="form-user">
-            <div class="identite">
+        <p class="email text-center">{{ user.email }}</p>
+        <div class="row form-user">
+            <div class="identite col-md-offset-3 col-md-4">
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
 
@@ -45,14 +45,14 @@
                 </div>
 
             </div>
-            <div class="form-group roles">
+            <div class="form-group roles col-md-offset-1 col-md-4">
                 {{ form_row(form.roles) }}
                 {{ form_errors(form.roles) }}
                 <button type="submit">Modifier</button>
                 {{ form_end(form) }}
             </div>
         </div>
-        <div class="supprimer center">
+        <div class="supprimer-membre center">
             <a href="{{ path('admin_user_delete', { 'id': user.id }) }}">Supprimer le membre</a>
         </div>
 
@@ -70,5 +70,16 @@
             {% endif %}
         </div>
         </div>
+
+        <script>
+            $(document).ready(function() {
+                if (window.matchMedia("(max-device-width: 992px)").matches) {
+                    $(".supprimer").css("bottom", );
+
+                } else {
+
+                }
+            });
+        </script>
     </div>
 {% endblock %}
