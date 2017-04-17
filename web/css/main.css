@@ -83,6 +83,7 @@
     align-items: center;
     height: 10vh;
     margin: 0;
+    border-radius: 0;
 }
 ul {
     margin: 0;
@@ -98,10 +99,19 @@ ul {
 .previous {
     margin-left: 40px;
 }
+.form-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 30vh;
+    margin-bottom: 7px;
+}
+.roles{
 
+}
 @media all and (max-device-width: 992px) {
     .body {
-        height: 90vh;
+        height: 85vh;
         display: flex;
         flex-direction: column-reverse;
     }
@@ -114,6 +124,9 @@ ul {
     }
     h1 {
         margin: 0;
+    }
+    .left {
+        display: none;
     }
     #oiseau {
         color: #000000;
@@ -164,30 +177,38 @@ ul {
     .oiseau-infos {
         margin: 20px 0 0 0;
         padding-left: 50px;
-        line-height: 200%;
+        /*line-height: 200%;*/
     }
     .rien {
-        height: 22vh;
+        height: 16vh;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
     .observation {
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
     .lien-observation {
         font-size: 1.5em;
     }
-    .list-observations {
-        height: 40vh;
-        margin-bottom: -2px;
+    .list-observations, .proposition {
+        height: 30vh;
+        margin-bottom: 40px;
         position: absolute;
         bottom: 90%;
     }
-    .navigation {
+    .navigation, .moderation {
         position: absolute;
         bottom: 0;
         width: 100%;
     }
     .facebook {
         margin-left: 200px;
+    }
+    .image {
+        width: 100%;
+        height: 35vh;
+        padding: 0;
     }
 
 }

@@ -30,5 +30,15 @@
                 {% endif %}
             </div>
         </div>
+        <script>
+            $(document).ready(function() {
+                if (window.matchMedia("(max-device-width: 992px)").matches) {
+                    $(".left").css("display", "initial");
+
+                } else {
+                    $(".left").show();
+                }
+            });
+        </script>
     </div>
 {% endblock %}

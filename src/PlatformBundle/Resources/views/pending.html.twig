@@ -1,19 +1,33 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
 {% block headbar %}
-    <h1 class="hidden-xs" >Propositions en attente</h1>
+    <div class="headbar">
+        <h1>Propositions en attente</h1>
+    </div>
 {% endblock %}
 
 
 
 {% block content %}
     <div class="border border-left col-md-8">
-    <ul>
+        <div class="list-observations">
+            <ul>
         {% for observation in observations %}
-            <li><a href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
+            <li class="observation"><a class="lien-observation" href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a></li>
         {% endfor %}
     </ul>
+        </div>
     <div class="navigation">
         {{ knp_pagination_render(observations) }}
     </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            if (window.matchMedia("(max-device-width: 992px)").matches) {
+                $(".left").hide();
+
+            } else {
+                $(".left").show();
+            }
+        });
+    </script>
 {% endblock %}

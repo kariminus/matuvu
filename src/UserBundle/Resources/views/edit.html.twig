@@ -1,62 +1,74 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
-{% block title %}
-    <p>Gestion des membres</p>
+{% block headbar %}
+    <div class="headbar">
+        <h1>Modifier le membre</h1>
+    </div>
 {% endblock %}
-{% block link %}
-    <a href="{{ path('admin') }}">Gestion des membres</a>
-{% endblock %}
+
 
 {% block content %}
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
+    <div class="border border-left col-md-8">
+        <p>{{ user.email }}</p>
+        <div class="form-user">
+            <div class="identite">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
 
-    <div class="form-group">
-        {{ form_row(form.firstName) }}
-        {{ form_errors(form.firstName) }}
-    </div>
+                <div class="form-group">
+                    {{ form_row(form.firstName) }}
+                    {{ form_errors(form.firstName) }}
+                </div>
 
-    <div class="form-group">
-        {{ form_row(form.lastName) }}
-        {{ form_errors(form.lastName) }}
-    </div>
+                <div class="form-group">
+                    {{ form_row(form.lastName) }}
+                    {{ form_errors(form.lastName) }}
+                </div>
 
-    <div class="form-group">
-        {{ form_row(form.email) }}
-        {{ form_errors(form.email) }}
-    </div>
-
-
-    <div class="form-group">
-        {{ form_row(form.plainPassword, {
-            'label' : false,
-            'required': false,
-            'attr': {'placeholder': 'Mot de passe'}
-        }) }}
-        {{ form_errors(form.plainPassword) }}
-    </div>
-
-    <div class="form-group">
-        {{ form_row(form.postalCode) }}
-        {{ form_errors(form.postalCode) }}
-    </div>
+                <div class="form-group">
+                    {{ form_row(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
 
 
-    <div class="form-group">
-        {{ form_row(form.roles) }}
-        {{ form_errors(form.roles) }}
-    </div>
+                <div class="form-group">
+                    {{ form_row(form.plainPassword, {
+                        'label' : false,
+                        'required': false,
+                        'attr': {'placeholder': 'Mot de passe'}
+                    }) }}
+                    {{ form_errors(form.plainPassword) }}
+                </div>
 
+                <div class="form-group">
+                    {{ form_row(form.postalCode) }}
+                    {{ form_errors(form.postalCode) }}
+                </div>
 
-    <button type="submit">Modifier</button>
-    {{ form_end(form) }}
+            </div>
+            <div class="form-group roles">
+                {{ form_row(form.roles) }}
+                {{ form_errors(form.roles) }}
+                <button type="submit">Modifier</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="supprimer center">
+            <a href="{{ path('admin_user_delete', { 'id': user.id }) }}">Supprimer le membre</a>
+        </div>
 
-    <a href="{{ path('admin_user_delete', { 'id': user.id }) }}">Supprimer le membre</a>
-    <div>
-        {% if userBefore != null %}
-            <a href="{{ path('admin_user_edit', { 'id': userBefore.id }) }}">Membre précédent</a>
-        {% endif %}
-        {% if userNext != null %}
-            <a href="{{ path('admin_user_edit', { 'id': userNext.id }) }}">Membre suivant</a>
-        {% endif %}
+        <div class="navigation">
+            <div class="pagination">
+            {% if userBefore != null %}
+                <span class="previous"><a href="{{ path('admin_user_edit', { 'id': userBefore.id }) }}">Membre précédent</a></span>
+                {% else %}
+                    <span class="previous">Membre précédent</span>
+            {% endif %}
+            {% if userNext != null %}
+                <span class="next"> <a href="{{ path('admin_user_edit', { 'id': userNext.id }) }}">Membre suivant</a></span>
+                {% else %}
+                    <span class="next">Membre suivant</span>
+            {% endif %}
+        </div>
+        </div>
     </div>
 {% endblock %}

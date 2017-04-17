@@ -13,6 +13,7 @@
                     <div class="prenom"><p>{{ app.user.firstName }}</p></div>
                 </div>
                 <div class="row liens col-md-12">
+                    {% block link %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <div class="lien1">
                             <a href="{{ path('admin_users') }}">Gestion des membres </a>
@@ -28,6 +29,7 @@
                     <div class="deconnexion">
                         <a href="{{ path('security_logout') }}">Se déconnecter</a>
                     </div>
+                        {% endblock %}
                 </div>
             </div>
             {% block content %}
