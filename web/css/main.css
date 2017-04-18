@@ -128,7 +128,7 @@ ul {
     height: 40vh;
     margin-bottom: -1px;
 }
-@media all and (max-device-width: 768px) {
+@media all and (max-device-width: 992px) {
     .body {
         height: 85vh;
         display: flex;
@@ -137,11 +137,17 @@ ul {
     .border {
         border: none;
     }
+    .matuvu {
+        display: none;
+    }
     .image-header {
         position: absolute;
         right: 0;
         margin: 20px;
         height: 5vh;
+    }
+    #logo_header {
+        display: none;
     }
     footer {
         display: none;
@@ -154,7 +160,7 @@ ul {
     }
     #oiseau {
         color: #000000;
-        width: 30vh;
+        width: 40vh;
     }
     .map-mobile {
         width: 0;
@@ -185,6 +191,25 @@ ul {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .saisie {
+        color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        position: absolute;
+        top: -50%;
+    }
+    .valider {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-right: 30px;
+        font-size: 1.5em;
+    }
+    #observation_imageFile{
+        height: 10vh;
     }
     .full-width {
         margin: 0 0 0 50px;
@@ -267,7 +292,7 @@ ul {
     }
 
 }
-@media all and (min-device-width: 768px) {
+@media all and (min-device-width: 992px) {
     .border, .map {
         border: solid #95989A ;
     }

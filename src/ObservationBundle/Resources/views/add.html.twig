@@ -44,15 +44,15 @@
 
                     <div class="form">
                         <div class="row full-width">
-                            <div class="col-md-8">
+                            <div class="col-md-8 saisie">
                                 {{ form_start(form) }}
                                 {{ form_widget(form) }}
-                                {{ form_widget(form.date) }}
+                                {{ form_widget(form.date, {'attr': {'size': '10'}}) }}
                                 {{ form_widget(form.latitude) }}
                                 {{ form_widget(form.longitude) }}
                                 {{ form_widget(form.imageFile) }}
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 valider">
                                 <button type="submit" class="submit">Valider</button>
                             </div>
                         </div>
