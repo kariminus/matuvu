@@ -23,7 +23,7 @@ class Mailer
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Confirmation de votre inscription')
-            ->setFrom('karim.meciel@gmail.com')
+            ->setFrom('ckashckash@gmail.com')
             ->setTo($user->getEmail())
             ->setBody($this->twig->render(
                 'Emails/inscription.html.twig', array (
@@ -46,7 +46,7 @@ class Mailer
 
         $message = \Swift_Message::newInstance()
             ->setSubject('Demande d\'un nouveau mot de passe')
-            ->setFrom('karim.meciel@gmail.com')
+            ->setFrom('ckashckash@gmail.com')
             ->setTo($user->getEmail())
             ->setBody($body,
                 'text/html'

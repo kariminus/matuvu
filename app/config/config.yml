@@ -73,6 +73,7 @@ swiftmailer:
     auth_mode:  login
     spool: { type: memory }
 
+
 # Stof\DoctrineExtensionsBundle configuration
 stof_doctrine_extensions:
     orm:

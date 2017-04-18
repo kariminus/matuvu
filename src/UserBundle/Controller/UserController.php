@@ -26,7 +26,7 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-//            $this->get('platform_mailer')->registerMail($user);
+            $this->get('platform_mailer')->registerMail($user);
             return $this->get('security.authentication.guard_handler')
                 ->authenticateUserAndHandleSuccess(
                     $user,
