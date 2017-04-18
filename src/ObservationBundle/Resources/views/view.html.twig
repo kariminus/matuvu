@@ -21,7 +21,7 @@
             $(".retour-profil").hide();
             $(".lien-carte").click(function () {
                 $(".map-mobile").css("width", "100%");
-                $(".map-mobile").css("height", "63.5vh");
+                $(".map-mobile").css("height", "60vh");
                 $(".right").addClass("hidden-xs");
                 $(".ajouter-mobile").addClass("hidden-xs");
                 $(this).addClass("hidden-xs");
@@ -53,7 +53,13 @@
 
                 },
                 minLength: 3,
-                noResults: ''
+                noResults: '',
+                autoFocus: true,
+                select: function(event, ui) {
+                    $(event.target).val(ui.item.value);
+                    $('#search').submit();
+                    return false;
+                }
             });
         } );
     </script>
@@ -69,7 +75,7 @@
 {% block body %}
     <div class="container">
         <div class="row body">
-            <div class="col-md-4 left oiseau-id">
+            <div class="col-md-4 view oiseau-id">
                 <div class="row border user oiseau-name body col-md-12">
                     <p class="nom-scientific"><b>{{ oiseau.scientificName }}</b></p>
                     <p>{{ oiseau.name }}</p>

@@ -128,7 +128,7 @@ ul {
     height: 40vh;
     margin-bottom: -1px;
 }
-@media all and (max-device-width: 992px) {
+@media all and (max-device-width: 768px) {
     .body {
         height: 85vh;
         display: flex;
@@ -137,7 +137,12 @@ ul {
     .border {
         border: none;
     }
-
+    .image-header {
+        position: absolute;
+        right: 0;
+        margin: 20px;
+        height: 5vh;
+    }
     footer {
         display: none;
     }
@@ -254,9 +259,15 @@ ul {
         height: 35vh;
         padding: 0;
     }
+    .back {
+        position: absolute;
+        top: 0;
+        left: 5%;
+        font-size: 62px;
+    }
 
 }
-@media all and (min-device-width: 992px) {
+@media all and (min-device-width: 768px) {
     .border, .map {
         border: solid #95989A ;
     }
@@ -264,6 +275,13 @@ ul {
         position:absolute;
         bottom:0;
         margin: 20px;
+    }
+    .image-header {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 20px;
+        height: 5vh;
     }
     #oiseau {
         color: #000000;
@@ -294,9 +312,12 @@ ul {
     .previous {
         margin-left: 40px;
     }
+    .back {
+        display: none;
+    }
 }
 
-.left {
+.left, .view {
     margin: 0;
     padding: 0;
 }
@@ -374,9 +395,6 @@ ul {
 }
 
 .image-header {
-    position: absolute;
-    top: 0;
-    right: 0;
     margin: 20px;
     height: 5vh;
 }
@@ -508,12 +526,18 @@ p{
     color:#95989A;
 }
 
+li {
+    color:#95989A;
+}
+
 @media (max-device-width: 767px) {
     body {
         min-height: 100vh;
     }
     #header-consultant {
         width: 100vw;
+        position: absolute;
+        bottom: 10%;
     }
 
     #header-consultant > img {
@@ -780,7 +804,7 @@ a:focus, a:hover {
     padding: 4px 0;
     margin: 0 0 10px 25px;
     list-style: none;
-    background-color: #ffffff;
+    background-color: #FF6600;
     border-color: #ccc;
     border-color: rgba(0, 0, 0, 0.2);
     border-style: solid;
@@ -804,19 +828,30 @@ a:focus, a:hover {
     clear: both;
     font-weight: normal;
     line-height: 18px;
-    color: #555555;
+    color: #fff;
     white-space: nowrap;
     text-decoration: none;
 }
+.ui-menu-item {
+    background-color:#FF6600;
+    height:10vh;
+    color: #fff;
+}
+.ui-menu-item:nth-child(odd) {
+    background-color:#63C49C;
+    height:10vh;
+    color: #fff;
+}
 
 .ui-state-hover, .ui-state-active {
-    color: #ffffff;
+    color: #000;
     text-decoration: none;
-    background-color: #FF6600;
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
+    background-color: #fff;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
     background-image: none;
+    height:10vh;
 }
 
 .ui-helper-hidden-accessible { position: absolute; left:-999em; }

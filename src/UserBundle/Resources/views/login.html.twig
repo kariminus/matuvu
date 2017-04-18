@@ -1,34 +1,44 @@
-{% extends 'base.html.twig' %}
+{% extends 'UserBundle::security.html.twig' %}
+{% block h1 %}
+    Connexion
+{% endblock %}
+{% block content %}
+        <div id="connection-form" class="flexbox-col-10">
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+            {{ form_start(form, {'attr': {'class': 'form_login'}}) }}
+            {{ form_errors(form) }}
 
-{% block body %}
+            <div class="form-group">
+                {{ form_row(form._username) }}
+                {{ form_errors(form._username) }}
+            </div>
 
-    <h1>Connexion</h1>
+            <div class="form-group">
+                {{ form_row(form._password) }}
+                {{ form_errors(form._password) }}
+            </div>
 
-    {% if error %}
-        <div class="alert alert-danger">
-            {{ error.messageKey|trans(error.messageData, 'security') }}
+            <div class="form-group"><input type="checkbox" id="remember_me" name="_remember_me"/>
+                <label for="remember_me">Se souvenir de moi</label></div>
+
+            <div>
+                <a href="{{ path('password_reset') }}">J'ai oublié mon mot de passe!</a>
+            </div>
+            <div>
+                <a href="{{ path('user_register') }}">S'inscrire</a>
+            </div>
+            <div>
+                <a href="{{ path('connect_facebook') }}">Se connecter avec Facebook</a>
+            </div>
+            <div class="button-bg">
+                <button type="submit">
+                    Se connecter
+                </button>
+            </div>
+
         </div>
-    {% endif %}
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
-
-    <div class="form-group">
-        {{ form_row(form._username) }}
-        {{ form_errors(form._username) }}
-    </div>
-
-    <div class="form-group">
-        {{ form_row(form._password) }}
-        {{ form_errors(form._password) }}
-    </div>
-
-    <input type="checkbox" id="remember_me" name="_remember_me"/>
-    <label for="remember_me">Se souvenir de moi</label>
-    <p>
-        <button type="submit">Connexion</button>
-        <a href="{{ path('user_register') }}">Inscription</a>
-    </p>
-    {{ form_end(form) }}
-    <a href="{{ path('password_reset') }}">J'ai oublié mon mot de passe !</a>
-    <a href="{{ path('connect_facebook') }}">Connexion avec Facebook</a>
 {% endblock %}

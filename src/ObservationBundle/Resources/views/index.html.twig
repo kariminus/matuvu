@@ -7,7 +7,7 @@
         <div id="header-title" class="flexbox-col-10 center hidden-xs">
             <h1 class="matuvu">Matuvu</h1>
         </div>
-        <div id="header-consultant" class="flexbox-col-1 hidden-xs">
+        <div id="header-consultant" class="flexbox-col-1">
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('admin') }}">
                     <img class="image-header" alt="profil admin" src="{{ asset('images/profils/admin.png') }}"/>
@@ -36,6 +36,7 @@
 {% endblock %}
 {% block headbar %}
     <script>
+        /**Effet "google" **/
         $( document ).ready(function() {
             $("#logo_header").hide();
             $( "#oiseau" ).keypress(function() {
@@ -44,6 +45,7 @@
                 $("#header-title").removeClass('center');
             });
 
+            /** Auto-complétion **/
             var availableTags = {{ oiseaux | raw}};
             $( "#oiseau" ).autocomplete({
                 source: function (request, response) {
@@ -61,7 +63,13 @@
 
                 },
                 minLength: 3,
-                noResults: ''
+                noResults: '',
+                autoFocus: true,
+                select: function(event, ui) {
+                    $(event.target).val(ui.item.value);
+                    $('#search').submit();
+                    return false;
+                }
             });
         } );
     </script>
