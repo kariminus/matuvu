@@ -110,7 +110,8 @@
 
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
+                zoom: 6,
+                center: {lat: 45.996962, lng: 2.658691},
                 gestureHandling: 'greedy'
             });
 
@@ -166,8 +167,8 @@
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
+                'Erreur: Le service de géolocalisation a échoué.' :
+                'Erreur: Votre navigateur ne prend pas en charge la géolocalisation.');
         }
 
     </script>
