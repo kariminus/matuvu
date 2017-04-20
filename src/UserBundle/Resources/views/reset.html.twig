@@ -8,6 +8,7 @@
                 <div>
                     <input id="email" name="email" type="email" placeholder="Adresse e-mail" required>
                 </div>
+                <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>
                 <div><p>Entrez votre adresse e-mail. Un nouveau mot de passe vous sera envoyé</p></div>
                 <div class="button-bg">
                     <button type="submit">
@@ -16,4 +17,5 @@
                 </div>
             </form>
     </div>
+
 {% endblock %}
