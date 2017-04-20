@@ -82,7 +82,15 @@ class ManageOiseau
 
         $oiseaux = $this->serializer();
 
-        $observation = $this->em->getRepository('ObservationBundle:Observation')->findImage($oiseau->getId());
+        $observation = null;
+
+        try {
+            $observation = $this->em->getRepository('ObservationBundle:Observation')->findImage($oiseau->getId());
+        }
+        catch (\Error $e){
+            $error = "Problème";
+        }
+
 
         /** Récupére toutes les observations validées pour un oiseau */
         $observations = $this->em->getRepository('ObservationBundle:Observation')->findBy(array(
