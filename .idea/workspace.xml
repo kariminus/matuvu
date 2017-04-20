@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcb60b55-457a-4a7f-b5fc-df00529e5c29" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Controller/UserController.php" afterPath="$PROJECT_DIR$/src/UserBundle/Controller/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/reset.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/reset.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/User/ManageUser.php" afterPath="$PROJECT_DIR$/src/UserBundle/User/ManageUser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig" afterPath="$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,63 +20,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="OiseauController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Controller/OiseauController.php">
+      <file leaf-file-name="view.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1150">
+              <caret line="91" column="74" lean-forward="false" selection-start-line="91" selection-start-column="74" selection-end-line="91" selection-end-column="74" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/UserController.php">
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="858">
-              <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
-              <folding>
-                <element signature="e#1403#1432#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reset.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/reset.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="10" column="94" lean-forward="false" selection-start-line="10" selection-start-column="94" selection-end-line="10" selection-end-column="94" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1386">
-              <caret line="81" column="4" lean-forward="false" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="82" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManageOiseau.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Oiseau/ManageOiseau.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1155">
-              <caret line="102" column="12" lean-forward="false" selection-start-line="102" selection-start-column="12" selection-end-line="109" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManageUser.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UserBundle/User/ManageUser.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1056">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="1092">
+              <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -186,12 +142,12 @@
         <option value="$USER_HOME$/Desktop/config.yml" />
         <option value="$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig" />
         <option value="$PROJECT_DIR$/src/ObservationBundle/Resources/views/add.html.twig" />
-        <option value="$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig" />
         <option value="$PROJECT_DIR$/src/PlatformBundle/Resources/views/profil.html.twig" />
         <option value="$PROJECT_DIR$/src/ObservationBundle/Observation/ManageObservation.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/UserController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/User/ManageUser.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/reset.html.twig" />
+        <option value="$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig" />
       </list>
     </option>
   </component>
@@ -931,15 +887,15 @@
       <workItem from="1492531726992" duration="250000" />
       <workItem from="1492600536854" duration="2402000" />
       <workItem from="1492603580430" duration="13187000" />
-      <workItem from="1492675304476" duration="8885000" />
+      <workItem from="1492675304476" duration="9335000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="332197000" />
+    <option name="totallyTimeSpent" value="332647000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-13" y="-13" width="3866" height="2106" extended-state="6" />
+    <frame x="-13" y="-13" width="3866" height="2106" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1015,6 +971,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1209,14 +1166,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2013">
-          <caret line="61" column="6" lean-forward="true" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/add.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1277">
@@ -1257,11 +1206,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1051">
-          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="1353">
+          <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+          <folding>
+            <element signature="e#1403#1432#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1273,28 +1224,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/UserController.php">
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/reset.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="43" column="36" lean-forward="false" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
-          <folding>
-            <element signature="e#1403#1432#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/User/ManageUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Oiseau/ManageOiseau.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="102" column="12" lean-forward="false" selection-start-line="102" selection-start-column="12" selection-end-line="109" selection-end-column="13" />
+        <state relative-caret-position="330">
+          <caret line="10" column="94" lean-forward="false" selection-start-line="10" selection-start-column="94" selection-end-line="10" selection-end-column="94" />
           <folding />
         </state>
       </provider>
@@ -1307,10 +1240,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/reset.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Oiseau/ManageOiseau.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="10" column="94" lean-forward="false" selection-start-line="10" selection-start-column="94" selection-end-line="10" selection-end-column="94" />
+        <state relative-caret-position="1155">
+          <caret line="102" column="12" lean-forward="false" selection-start-line="102" selection-start-column="12" selection-end-line="109" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/User/ManageUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1056">
+          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1092">
+          <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1150">
+          <caret line="91" column="74" lean-forward="false" selection-start-line="91" selection-start-column="74" selection-end-line="91" selection-end-column="74" />
           <folding />
         </state>
       </provider>

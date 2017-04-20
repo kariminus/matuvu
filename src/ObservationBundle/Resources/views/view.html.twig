@@ -89,7 +89,7 @@
             </div>
             <div class="center col-md-8 map map-mobile">
                     {% block content %}
-                        {% if protected == NULL %}
+                        {% if protected == NULL or is_granted('ROLE_PRO') %}
                             <div id="map"></div>
                         {% else %}
                             <p>Cet oiseau est une espèce protégée.</p>
