@@ -16,12 +16,9 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
-use Symfony\Component\HttpFoundation\JsonResponse;
-<<<<<<< HEAD
-=======
-use Symfony\Component\Translation\Translator;
-use Symfony\Component\Translation\Loader\ArrayLoader;
->>>>>>> karim
+
+
+
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {

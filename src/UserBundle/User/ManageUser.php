@@ -46,26 +46,16 @@ class ManageUser
     public function reset()
     {
         $request = $this->requestStack->getCurrentRequest();
-<<<<<<< HEAD
-=======
+
+
         $error = false;
 
->>>>>>> karim
+
         if ($request->isMethod('POST')) {
 
             $user = $this->em->getRepository('UserBundle:User')->findOneBy(
                 array('email' => $request->request->get('email')));
-
-<<<<<<< HEAD
-            $password = bin2hex(random_bytes(6));
-            $user->setPlainPassword($password);
-            $this->em->flush();
-            $this->mailer->resetPasswordMail($user, $password);
-
         }
-
-
-=======
             try {
                 $password = bin2hex(random_bytes(6));
                 $user->setPlainPassword($password);
@@ -76,9 +66,9 @@ class ManageUser
                 $error = "Cet e-mail ne correspond à aucun compte utilisateur. Veuillez vérifier votre saisie.";
             }
 
-        }
+
         return $error;
->>>>>>> karim
+
     }
 
     /**
@@ -114,7 +104,7 @@ class ManageUser
 
         $response = new RedirectResponse($this->router->generate('admin'));
 
-        $response->send();
+        return $response->send();
     }
 
     /**

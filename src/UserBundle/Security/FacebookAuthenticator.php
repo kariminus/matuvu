@@ -55,13 +55,9 @@ class FacebookAuthenticator extends SocialAuthenticator
         if ($user == null)
         {
             $user = new User();
-<<<<<<< HEAD
-            $user->setFirstname($facebookUser->getFirstName());
-            $user->setLastname($facebookUser->getLastName());
-=======
+
             $user->setFirstName($facebookUser->getfirstName());
             $user->setLastName($facebookUser->getlastName());
->>>>>>> karim
             $user->setEmail($facebookUser->getEmail());
             $user->setPlainPassword((bin2hex(random_bytes(6))));
             $this->em->persist($user);

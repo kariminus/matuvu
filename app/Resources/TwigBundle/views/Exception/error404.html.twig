@@ -1,11 +1,4 @@
 {% extends '::base.html.twig' %}
-
-{% block body %}
-        <h1 class="text-center"> Page introuvable </h1>
-            <div class="text-center">
-                <p>La page demandée n'a pas pu être retrouvée. Vérifiez l'URL ou <a href="{{ path('homepage') }}">Retourner à l'accueil</a></p>
-            </div>
-
 {% block headbar %}
     <div class="headbar">
         <a href="javascript:history.back()" class="back"><</a>
@@ -18,6 +11,5 @@
     <div class="text-center">
     <p>La page demandée n'a pas pu être retrouvée. Vérifiez l'URL</p>
     <a href="{{ path('homepage') }}"><p>Retourner à l'accueil</p></a>
-
 
 {% endblock %}

@@ -73,11 +73,7 @@ class ManageObservation
             $response->send();
         }
 
-<<<<<<< HEAD
-        return [$form, $oiseau];
-=======
         return [$form, $oiseau, $image];
->>>>>>> karim
     }
 
     /**

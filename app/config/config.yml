@@ -67,15 +67,9 @@ doctrine:
 # Swiftmailer Configuration
 swiftmailer:
     transport: gmail
-    username: '%mailer_user%'
-    password: '%mailer_password%'
-<<<<<<< HEAD
-    encryption: ssl
-    auth_mode:  login
-    spool: { type: memory }
-=======
-
->>>>>>> karim
+    host:      '%mailer_host%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
 
 # Stof\DoctrineExtensionsBundle configuration
 stof_doctrine_extensions:
@@ -102,8 +96,8 @@ knpu_oauth2_client:
         facebook_main:
             # this will be one of the supported types
             type: facebook
-            client_id: 397422067309390
-            client_secret: 9f21d65bbcb9b497dd88ade60eeb41b1
+            client_id: 1355421764516342
+            client_secret: 8b0affbced66885f78503f06bc0faf5d
             # the route that you're redirected to after
             # see the controller example below
             redirect_route: connect_facebook_check

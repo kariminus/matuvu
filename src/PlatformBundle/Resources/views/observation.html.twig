@@ -1,20 +1,16 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
 {% block headbar %}
-<<<<<<< HEAD
-    <p>Détail de l'observation</p>
-=======
     <div class="headbar">
         <a href="javascript:history.back()" class="back"><</a>
         Observation
     </div>
->>>>>>> karim
 {% endblock %}
 
 {% block content %}
     <div class="border border-left col-md-8">
         <div class="row proposition">
             <div class="col-md-4 oiseau-infos">
-                <p ><b>{{ oiseau.scientificName }}</b></p>
+                <h2>{{ oiseau.scientificName }}</h2>
                 <p>{{ oiseau.name }}</p>
                 <p>({{ oiseau.ordre }}, {{ observation.oiseau.family }})</p>
                 <p>Observé le {{ observation.date | date("d/m/Y") }}</p>
@@ -42,15 +38,6 @@
         {% endif %}
         </div>
     </div>
-<<<<<<< HEAD
-    {% if is_granted('ROLE_PRO') and observation.validated == 0%}
-        {% include 'PlatformBundle::validation.html.twig' with {'id': observation} %}
-    {% endif %}
-    <div>
-        <p><a href="">Précédent</a></p>
-        <p><a href="">Suivant</a></p>
-    </div>
-=======
     <script>
         $(document).ready(function() {
             if (window.matchMedia("(max-width: 992px)").matches) {
@@ -63,7 +50,6 @@
 
                 $(".validation").css("background-color", "#63C49C");
                 $(".oiseau-infos").css("height", "26vh");
->>>>>>> karim
 
             } else {
                 $(".deconnexion").show();

@@ -1,9 +1,4 @@
 {% extends '::base.html.twig' %}
-<<<<<<< HEAD
-{% block headbar %}
-    <script>
-        $( document ).ready(function() {
-=======
 {% block header %}
     <header class="flexbox">
         <div class="flexbox-col-1 hidden-xs">
@@ -51,7 +46,6 @@
             });
 
             /** Auto-complétion **/
->>>>>>> karim
             var availableTags = {{ oiseaux | raw}};
             $( "#oiseau" ).autocomplete({
                 source: function (request, response) {
@@ -66,16 +60,6 @@
                     })), function (item) {
                         return matcher.test(item.value);
                     }))
-<<<<<<< HEAD
-
-                },
-                minLength: 3,
-                noResults: ''
-            });
-        } );
-    </script>
-=======
->>>>>>> karim
 
                 },
                 minLength: 3,
@@ -91,16 +75,8 @@
     </script>
         <div class="ui-widget headbar">
         <form action="" method="POST" id="search">
-<<<<<<< HEAD
-            <div>
-                <label for="search">Recherche</label>
-                <input id="oiseau" name="search" type="text" required>
-            </div>
-            <button type="submit">Rechercher</button>
-=======
                 <input id="oiseau" name="search" type="text" placeholder="Rechercher un oiseau" required>
             <button type="submit" hidden>Rechercher</button>
->>>>>>> karim
         </form>
     </div>
     <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>

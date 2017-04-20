@@ -6,18 +6,6 @@
     {% block stylesheets %}
         <link rel="icon" href="{{ asset('images/logo.png') }}" sizes="32x32"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<<<<<<< HEAD
-        <link rel="stylesheet" href="{{ asset('css/autocomplete.css') }}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% endblock %}
-    <!-- You can use Open Graph tags to customize link previews.
-    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-    <meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Your Website Title" />
-    <meta property="og:description"   content="Your description" />
-    <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
-=======
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <meta name="description" content="Observation d’oiseau avec Matuvu : Je peux agir pour l’environnement" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -35,7 +23,6 @@
     <meta property="og:title" content="Your Website Title"/>
     <meta property="og:description" content="Your description"/>
     <meta property="og:image" content="http://www.your-domain.com/path/image.jpg"/>
->>>>>>> karim
 </head>
 {% block header %}
 <header class="flexbox">
@@ -73,10 +60,6 @@
 </header>
 {% endblock %}
 <body>
-<<<<<<< HEAD
-{% block title %}{% endblock %}
-=======
->>>>>>> karim
 {% block headbar %}{% endblock %}
 {% block body %}{% endblock %}
 {% block javascripts %}
@@ -86,7 +69,7 @@
 </body>
 {% block footer %}
     <footer class="hidden-xs">
-        <a id="conditions" href="{{ path('conditions') }}">Conditions d'utilisation</a> <a href="#">- Un site NAO</a>
+        <a id="conditions" href="{{ path('conditions') }}">Conditions d'utilisation</a> - <a href="#"> Un site NAO</a>
     </footer>
 {% endblock %}
 </html>

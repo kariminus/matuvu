@@ -41,30 +41,4 @@
             </div>
 
         </div>
-<<<<<<< HEAD
-    {% endif %}
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
-
-    <div class="form-group">
-        {{ form_row(form._username) }}
-        {{ form_errors(form._username) }}
-    </div>
-
-    <div class="form-group">
-        {{ form_row(form._password) }}
-        {{ form_errors(form._password) }}
-    </div>
-
-    <input type="checkbox" id="remember_me" name="_remember_me"/>
-    <label for="remember_me">Se souvenir de moi</label>
-    <p>
-        <button type="submit">Connexion</button>
-        <a href="{{ path('user_register') }}">Inscription</a>
-    </p>
-    {{ form_end(form) }}
-    <a href="{{ path('password_reset') }}">J'ai oublié mon mot de passe !</a>
-    <a href="{{ path('connect_facebook') }}">Connexion avec Facebook</a>
-=======
->>>>>>> karim
 {% endblock %}

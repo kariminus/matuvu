@@ -43,20 +43,13 @@ class User implements UserInterface
     /**
      * @ORM\Column(name="email", type="string", unique=true)
      * @Assert\NotBlank(message="Saisissez un email")
-<<<<<<< HEAD
-     * @Assert\Email()
-=======
      * @Assert\Email(message="Saisissez un email")
->>>>>>> karim
      */
     private $email;
 
     /**
      * @ORM\Column(name="postal_code", type="integer", nullable=true)
-<<<<<<< HEAD
-=======
      *
->>>>>>> karim
      */
     private $postalCode;
 

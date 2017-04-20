@@ -1,11 +1,5 @@
 {% extends '::base.html.twig' %}
 
-<<<<<<< HEAD
-{% block title %}
-{% endblock %}
-
-=======
->>>>>>> karim
 {% block headbar %}
     <style>
         html, body {
@@ -21,8 +15,6 @@
     </style>
     <script>
         $( document ).ready(function() {
-<<<<<<< HEAD
-=======
             $(".retour-profil").hide();
             $(".lien-carte").click(function () {
                 $(".map-mobile").css("width", "100%");
@@ -41,7 +33,6 @@
                 $(".retour-profil").hide();
                 $(".lien-carte").removeClass("hidden-xs");
             });
->>>>>>> karim
             var availableTags = {{ oiseaux | raw}};
             $( "#oiseau" ).autocomplete({
                 source: function (request, response) {
@@ -56,45 +47,6 @@
                     })), function (item) {
                         return matcher.test(item.value);
                     }))
-<<<<<<< HEAD
-
-                },
-                minLength: 3,
-                noResults: ''
-            });
-        } );
-    </script>
-    <div class="">
-        <form action="" method="POST" id="search">
-            <div>
-                <label for="search">Recherche</label>
-                <input id="oiseau" name="search" type="text">
-            </div>
-            <button type="submit">Rechercher</button>
-        </form>
-    </div>
-    <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>
-{% endblock %}
-
-{% block body %}
-    {% if observation == NULL %}
-        <img src="{{ asset('/images/oiseau.jpg') }}" alt="Photo oiseau par défaut"/>
-    {% else %}
-        <img src="{{ asset('/images/observations/') }}{{ observation.imageName }}" alt="{{ observation.oiseau.name }}"/>
-    {% endif %}
-    <div>
-        <p>{{ oiseau.scientificName }}</p>
-        <p>{{ oiseau.name }}</p>
-        <p>{{ oiseau.ordre }}</p>
-        <p>{{ oiseau.family }}</p>
-    </div>
-
-    {% if protected == NULL %}
-        <div id="map"></div>
-    {% else %}
-        <p>Cet oiseau est une espèce protégée.</p>
-    {% endif %}
-=======
 
                 },
                 minLength: 3,
@@ -150,7 +102,6 @@
                 <p class="hidden-lg retour-profil">Retour à la fiche</p>
         </div>
     </div>
->>>>>>> karim
     <script>
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service
@@ -166,15 +117,6 @@
 
 
             {% for observation in observations %}
-<<<<<<< HEAD
-            var contentString = '<div id="content">' +
-                '<div id="siteNotice">' +
-                '</div>' +
-                '<div id="bodyContent">' +
-                '<p>Observé le {{ observation.date | date('d/m/Y') }} <br/>par {{ observation.user.firstname }} {{ observation.user.lastname }}</p>' +
-                '</div>' +
-                '</div>';
-=======
                 var contentString = '<div id="content">' +
                     '<div id="siteNotice">' +
                     '</div>' +
@@ -182,7 +124,6 @@
                     '<p>Observé le {{ observation.date | date('d/m/Y') }} <br/>par {{ observation.user.firstName }} {{ observation.user.lastName }}</p>' +
                     '</div>' +
                     '</div>';
->>>>>>> karim
 
                 var infowindow{{ observation.id }} = new google.maps.InfoWindow({
                     content: contentString,
@@ -201,15 +142,9 @@
                     radius: 10000
                 });
 
-<<<<<<< HEAD
-            cityCircle{{ observation.id }}.addListener('click', function () {
-                infowindow.open(map, cityCircle{{ observation.id }});
-            });
-=======
                 cityCircle{{ observation.id }}.addListener('click', function () {
                     infowindow{{ observation.id }}.open(map, cityCircle{{ observation.id }});
                 });
->>>>>>> karim
             {% endfor %}
 
             // Try HTML5 geolocation.
@@ -239,13 +174,4 @@
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq5V-pUDvNBdnyhFN_RRcVUeTXqMAioc0&signed_in=true&callback=initMap"></script>
-<<<<<<< HEAD
-
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-        <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}" class="ajouter">Ajouter</a>
-    {% else %}
-        <p>Pour ajouter une observation, veuillez vous connecter</p>
-    {% endif %}
-=======
->>>>>>> karim
 {% endblock %}

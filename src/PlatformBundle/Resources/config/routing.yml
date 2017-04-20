@@ -2,13 +2,10 @@ admin:
     path:     /admin
     defaults: { _controller: PlatformBundle:Platform:userProfil }
 
-<<<<<<< HEAD
-=======
 conditions:
     path:     /conditions
     defaults: { _controller: PlatformBundle:Platform:conditions }
 
->>>>>>> karim
 admin_users:
     path:     /admin/users
     defaults: { _controller: UserBundle:User:index }

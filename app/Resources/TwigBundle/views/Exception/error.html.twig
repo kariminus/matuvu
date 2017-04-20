@@ -1,7 +1,4 @@
 {% extends '::base.html.twig' %}
-
-{% block body %}>
-
 {% block headbar %}
     <div class="headbar">
         <a href="javascript:history.back()" class="back"><</a>
@@ -9,14 +6,9 @@
     </div>
 {% endblock %}
 {% block body %}
-
     <h1 class="text-center"> Erreur </h1>
     <div class="text-center">
     <p>Une erreur est survenue. Veuillez nous contacter pour que nous puissons régler le problème au plus vite. Désolé
         pour la gêne occasionnée.</p>
-
-    <p><a href="{{ path('homepage') }}">Retourner à l'accueil</a></p>
-
     <a href="{{ path('homepage') }}"><p>Retourner à l'accueil</p></a>
-
 {% endblock %}
