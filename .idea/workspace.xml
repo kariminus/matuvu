@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcb60b55-457a-4a7f-b5fc-df00529e5c29" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config_test.yml" afterPath="$PROJECT_DIR$/app/config/config_test.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ObservationBundle/Resources/views/add.html.twig" afterPath="$PROJECT_DIR$/src/ObservationBundle/Resources/views/add.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig" afterPath="$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlatformBundle/Email/Mailer.php" afterPath="$PROJECT_DIR$/src/PlatformBundle/Email/Mailer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig" afterPath="$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/User/ManageUser.php" afterPath="$PROJECT_DIR$/src/UserBundle/User/ManageUser.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,17 +20,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="view.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="view.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="112" column="23" lean-forward="false" selection-start-line="112" selection-start-column="23" selection-end-line="112" selection-end-column="23" />
+            <state relative-caret-position="1051">
+              <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="add.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/add.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1277">
@@ -154,8 +146,8 @@
         <option value="$USER_HOME$/Desktop/parameters.yml" />
         <option value="$USER_HOME$/Desktop/config.yml" />
         <option value="$PROJECT_DIR$/src/PlatformBundle/Resources/views/observations.html.twig" />
-        <option value="$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig" />
         <option value="$PROJECT_DIR$/src/ObservationBundle/Resources/views/add.html.twig" />
+        <option value="$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig" />
       </list>
     </option>
   </component>
@@ -873,12 +865,12 @@
       <workItem from="1492531726992" duration="250000" />
       <workItem from="1492600536854" duration="2402000" />
       <workItem from="1492603580430" duration="13187000" />
-      <workItem from="1492675304476" duration="6075000" />
+      <workItem from="1492675304476" duration="6977000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="329387000" />
+    <option name="totallyTimeSpent" value="330289000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="3866" height="2106" extended-state="7" />
@@ -1227,18 +1219,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="112" column="23" lean-forward="false" selection-start-line="112" selection-start-column="23" selection-end-line="112" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/add.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1277">
           <caret line="122" column="20" lean-forward="false" selection-start-line="122" selection-start-column="20" selection-end-line="122" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ObservationBundle/Resources/views/view.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1051">
+          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
           <folding />
         </state>
       </provider>

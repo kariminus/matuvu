@@ -125,7 +125,7 @@
                     '</div>' +
                     '</div>';
 
-                var infowindow = new google.maps.InfoWindow({
+                var infowindow{{ observation.id }} = new google.maps.InfoWindow({
                     content: contentString,
                     position: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}}
                 });
@@ -143,7 +143,7 @@
                 });
 
                 cityCircle{{ observation.id }}.addListener('click', function () {
-                    infowindow.open(map, cityCircle{{ observation.id }});
+                    infowindow{{ observation.id }}.open(map, cityCircle{{ observation.id }});
                 });
             {% endfor %}
 
