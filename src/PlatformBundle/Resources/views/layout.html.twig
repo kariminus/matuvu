@@ -21,7 +21,13 @@
                         </div>
                     {% elseif is_granted('ROLE_PAR') %}
                         <div class="lien1">
-                            <a href="{{ path('user_pending') }}">Propositions en attente</a>
+                            <a href="{{ path('user_pending') }}">
+                                {% if is_granted('ROLE_PRO') %}
+                                    Accéder aux propositions
+                                    {% else %}
+                                        Propositions en attente
+                                {% endif %}
+                            </a>
                         </div>
                     {% endif %}
                     <div class="profil">

@@ -27,3 +27,7 @@ observation_validate:
     defaults: { _controller: ObservationBundle:Observation:validate }
     methods:  [GET, POST]
 
+confirmation:
+    path:     /confirmation
+    defaults: { _controller: ObservationBundle:Observation:confirmation }
+    methods:  [GET]

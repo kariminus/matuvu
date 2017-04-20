@@ -70,4 +70,13 @@ class ObservationController extends Controller
         $this->get('manage_observation')->observationValidate($id);
         return $this->redirectToRoute('user_profil');
     }
+
+    /**
+     * Affiche la page de confirmation
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function confirmationAction()
+    {
+        return $this->render('ObservationBundle::confirmation.html.twig');
+    }
 }
