@@ -7,11 +7,12 @@ img {
 }
 
 .flexbox-col-1 {
-    width: 8.3333333333%;
+        width: 200px;
+    padding: 1vh 1vh 0vh 1vh;
 }
 
 .flexbox-col-2 {
-    width: 16.666666666%;
+    width: 33%;
 }
 
 .flexbox-col-10 {
@@ -39,8 +40,7 @@ a:focus, a:hover {
 }
 
 #header-title {
-    font-weight: bolder;
-    font-size: 35px;
+    font-size: 10vh;
     display: flex;
     align-items: flex-end;
     font-family: rondalo;
@@ -48,9 +48,12 @@ a:focus, a:hover {
 
 @media (min-device-width: 768px) {
     #header-consultant > img {
-        margin-top: 20px;
-        width: 50px;
+        margin: 20px;
+        width: 57px;
         display: block;
+	 position: absolute;
+    top: 0;
+    right: 0;
     }
 }
 
@@ -79,12 +82,12 @@ h1 {
 
 @media (min-device-width: 768px) {
     #connection {
-        border: 1px solid black;
+        border: 1px solid #95989A;
     }
 
     #connection-img {
-        padding: 50px;
-        border-right: 1px solid black;
+        padding: 5em;
+        border-right: 1px solid #95989A;
         display: flex;
         align-items: center;
     }
@@ -92,13 +95,13 @@ h1 {
 
 #connection {
     justify-content: center;
-    height: 53vh;
+    
 }
 .form_login {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 53vh;
+    
 }
 #connection-form {
     display: flex;
@@ -108,7 +111,7 @@ h1 {
 #connection-form > form > div {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin: 12px 0;
 }
 
 .button-bg {
@@ -125,13 +128,17 @@ h1 {
     }
 }
 
+footer.hidden-xs {
+    position: absolute;
+    bottom: 0;
+    margin: 20px;
+}
 .button-bg > button {
     width: 100%;
     background-color: #63C49C;
     border: none;
     padding: 10px 0;
     font-size: 20px;
-    font-weight: bolder;
     color: white;
 }
 

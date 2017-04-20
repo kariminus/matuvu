@@ -22,7 +22,8 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <link rel=stylesheet type="text/css" href="{{asset('Resources/css/admin.css')}}"/>
+        <link rel=stylesheet type="text/css" href="{{asset('Resources/css/user_edit.css')}}"/>
+        <link rel=stylesheet type="text/css" href="{{asset('Resources/css/main.css')}}"/>
     </head>
     <body>
         <header class="flexbox">
@@ -37,24 +38,24 @@
             </div>
         </header>
 
-        <h1 id="h1profil" class="hidden-xs">
-            Profil
+        <h1>
+          Ajouter un membre  
         </h1>
-              <div id="img_tel" class="hidden-sm hidden-md hidden-lg"><img  alt="admin_telephone" src="{{asset('Resources/images/profil_admin.png')}}"/></div>
+              
 
         <div class="content container">
-            <div id="admin" class="flexbox">
-                <div id="admin-data" class="flexbox flexbox-col-10 flexbox-col hidden-xs">
-                    <div class="element" id="identité">
+            <div id="user_edit" class="flexbox">
+                <div id="user_edit_data" class="flexbox flexbox-col-2 flexbox-col hidden-xs">
+                    <div class="element flexgrow">
                         <p class="text-center">Nom</p>
                         <p class="text-center">Prénom</p>
-                        <p class="hidden-lg hidden-sm hidden-md text-center">Nombre d'observations</p>
+                        
                     </div>
-                    <div class="button-bg element" id="gestion">                        
+                    <div class="button-bg element flexgrow" id="gestion">                        
                                                                                       
                                 <a href="{{ path('admin_users') }}">Gestion des membres </a>                       
                     </div>
-                    <div class="button-bg element" id="déconnection">                        
+                    <div class="button-bg element flexgrow" id="deconnection">                        
                                                  
                                 <a href="{{ path('logout') }}">Se déconnecter</a>                     
                     </div>                
@@ -62,28 +63,49 @@
                     
                     
                     
-                <div id="admin-img" class="flexbox-col-2">
-                    <img  class="hidden-xs" alt="admin" src="{{asset('Resources/images/profil_admin.png')}}"/>
-                </div>
+                <div id="admin-img" class="flexbox-col-10">
+                  <div id="user_edit_form" class=" user_add_col flexbox flexbox-col">
+
+                    
+                        
+                        
+                        
+                        
+                        
+                        <form method="POST">
+                            <div id="formember" class="flexbox">
+                                
+                                <p class="flexgrow margin-top"><label for="statut">Statut </label><select name="statut" id="statut">
+                                <option value="naturaliste">naturaliste</option>
+                                <option value="amateur">membre</option>
+                            </select></p>
+                        
+
+                        
+                                <div class="flexgrow margin-top">
+                            <p><label for="nom"> Nom</label><input type="text" name="nom" id="nom"></p>
+                            
+                            <p><label for="prénom">Prénom</label><input type="text" name="prénom" id="prénom"></p>
+                            
+                            <p><label for="email">Email</label><input type="email" name="email" id="email"></p>
+                            
+                            <p><label for="codePostal">Code postal</label><input type="text" name="codePostal" id="codePostal"></p>
+                            
+                            <p><label for="mdp">Password</label><input type="password" name="codePostal" id="mdp"></p>
+                                </div>
+                            </div>
+                            
+                        <input id="valider1" class="text-center button-valid button-bg" type="submit" value="Valider">
+                        
+                        </form>
+
+                </div>  
             </div>
+        </div>
         </div>
                 
                 
-                <div id="data" class="flexbox flexbox-col-12 flexbox-col">
-                    <div class="element" id="identité2">
-                        <p class="text-center">Nom</p>
-                        <p class="text-center">Prénom</p>
-                        <p class="hidden-lg hidden-sm hidden-md text-center">Nombre d'observations</p>
-                    </div>
-                    <div class="button-bg element" id="gestion2">                        
-                                                                                      
-                                <a href="{{ path('admin') }}">Gestion des membres </a>                       
-                    </div>
-                    <div class="button-bg element" id="déconnection2">                        
-                                                 
-                                <a href="{{ path('admin') }}">Se déconnecter</a>                     
-                    </div>
-                </div>
+                
 
         <footer class="hidden-xs">
             <a id="conditions" href="{{ path('conditions') }}">Conditions d'utilisation</a> - <a href="#">Un site NAO</a>
@@ -100,4 +122,5 @@
 {% endblock %}                
     </body>
 </html>
+
 

@@ -22,6 +22,8 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+        
+        <link rel=stylesheet type="text/css" href="{{asset('Resources/css/main.css')}}"/>
         <link rel=stylesheet type="text/css" href="{{asset('Resources/css/admin.css')}}"/>
     </head>
     <body>
@@ -37,67 +39,86 @@
             </div>
         </header>
 
-        <h1 id="h1profil" class="hidden-xs">
-            Profil
+        <h1 class="hidden-xs">
+            Gestion des membres 
         </h1>
-              <div id="img_tel" class="hidden-sm hidden-md hidden-lg"><img  alt="admin_telephone" src="{{asset('Resources/images/profil_admin.png')}}"/></div>
-
+        
+            <div class="hidden-lg hidden-md hidden-sm">
+                <a><h1 id="bandeau_tel_admin_users" >< Liste des membres</h1></a>  
+            </div>
         <div class="content container">
             <div id="admin" class="flexbox">
-                <div id="admin-data" class="flexbox flexbox-col-10 flexbox-col hidden-xs">
+                <div id="admin-data" class=" flexbox-col-2 flexbox-col hidden-xs">
                     <div class="element" id="identité">
                         <p class="text-center">Nom</p>
                         <p class="text-center">Prénom</p>
-                        <p class="hidden-lg hidden-sm hidden-md text-center">Nombre d'observations</p>
+
                     </div>
                     <div class="button-bg element" id="gestion">                        
-                                                                                      
-                                <a href="{{ path('admin_users') }}">Gestion des membres </a>                       
+
+                        <a href="{{ path('user_add') }}">Ajouter un membre </a>                       
                     </div>
                     <div class="button-bg element" id="déconnection">                        
-                                                 
-                                <a href="{{ path('logout') }}">Se déconnecter</a>                     
+
+                        <a href="{{ path('logout') }}">Se déconnecter</a>                     
                     </div>                
                 </div>
+
+
+
+                <div id="users" class="flexbox-col-10 flexbox-col flexgrow">
+                    <div>
+                        <p> Philippe Poutou, naturaliste</p>
+                        <p>Lorem Ipsum, membre</p>
+                        <p>....</p>
+                    </div>
+                        <div class="ajouter_membre element hidden-lg hidden-md hidden-sm text-center ">                        
+
+                        <a href="{{ path('user_add') }}">Ajouter un membre</a>                       
+                       </div>
+                        <div id="precSuivante"class="button-bg flexbox flexbetween ">
+                            <a>
+                                Page précédente  
+                            </a>
+                            <a>
+                                Page suivante  
+                            </a>
+                        </div>
                     
-                    
-                    
-                <div id="admin-img" class="flexbox-col-2">
-                    <img  class="hidden-xs" alt="admin" src="{{asset('Resources/images/profil_admin.png')}}"/>
                 </div>
-            </div>
-        </div>
-                
-                
-                <div id="data" class="flexbox flexbox-col-12 flexbox-col">
+
+
+                {#<div id="data" class="flexbox flexbox-col-12 flexbox-col">
                     <div class="element" id="identité2">
                         <p class="text-center">Nom</p>
                         <p class="text-center">Prénom</p>
-                        <p class="hidden-lg hidden-sm hidden-md text-center">Nombre d'observations</p>
+                        
                     </div>
                     <div class="button-bg element" id="gestion2">                        
                                                                                       
-                                <a href="{{ path('admin') }}">Gestion des membres </a>                       
+                                <a href="{{ path('user_add') }}">Gestion des membres </a>                       
                     </div>
                     <div class="button-bg element" id="déconnection2">                        
                                                  
-                                <a href="{{ path('admin') }}">Se déconnecter</a>                     
+                                <a href="{{ path('logout') }}">Se déconnecter</a>                     
                     </div>
-                </div>
+                </div>#}
+            </div>
+        </div>
+                <footer class="hidden-xs flex-col-12">
+                    <p> <a id="conditions" href="{{ path('conditions') }}">Conditions d'utilisation</a> - <a href="#">Un site NAO</a></p>
+                </footer>
+            
+                {% block javascripts %}
 
-        <footer class="hidden-xs">
-            <a id="conditions" href="{{ path('conditions') }}">Conditions d'utilisation</a> - <a href="#">Un site NAO</a>
-        </footer>
+                    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+                    <!-- Latest compiled and minified JavaScript -->
+                    <script 
+                        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                        crossorigin="anonymous">
+                    </script>
+                {% endblock %}                
+                </body>
+                </html>
 
-{% block javascripts %}
-    
-        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script 
-                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-                crossorigin="anonymous">                   
-        </script>
-{% endblock %}                
-    </body>
-</html>
 
