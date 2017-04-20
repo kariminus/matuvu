@@ -68,6 +68,7 @@ class ManageObservation
             if ($exist == 0)
             {
                 $user->addObservationsNumber();
+                $this->em->flush();
             }
 
             $response = new RedirectResponse($this->router->generate('homepage'));
