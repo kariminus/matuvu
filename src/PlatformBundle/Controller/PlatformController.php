@@ -18,6 +18,7 @@ class PlatformController extends Controller
             'observations' => $observations
         ));
     }
+<<<<<<< HEAD
 
     /**
      * Affiche les observations en attente des membres
@@ -37,6 +38,32 @@ class PlatformController extends Controller
             $request->query->getInt('limit', 8)
         );
 
+=======
+
+    public function conditionsAction()
+    {
+        return $this->render('PlatformBundle::conditions.html.twig');
+    }
+
+    /**
+     * Affiche les observations en attente des membres
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function userPendingAction(Request $request)
+    {
+        $observations = $this->get('manage_platform')->platformPending();
+
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator  = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $observations,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 8)
+        );
+
+>>>>>>> karim
         return $this->render('PlatformBundle::pending.html.twig', array(
             'observations' => $result
         ));

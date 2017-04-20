@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html.twig' %}
 {% block body %}
 
@@ -59,3 +60,71 @@
     {{ form_end(form) }}
 
 {% endblock %}
+=======
+{% extends 'UserBundle::security.html.twig' %}
+{% block h1 %}
+    Inscription
+{% endblock %}
+{% block content %}
+    <div id="connection-form" class="flexbox-col-10">
+        {{ form_start(form, {'attr': {'class': 'form_login'}}) }}
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.firstName) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.lastName) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.email.first, {
+                'label' : false,
+                'attr': {'placeholder': 'Email', 'autocomplete' : "off"}
+            }) }}
+            {{ form_row(form.email.first) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.email.second, {
+                'label' : false,
+                'attr': {'placeholder': 'répétez le mail', 'autocomplete' : "off"}
+
+            }) }}
+            {{ form_row(form.email.second) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.plainPassword.first, {
+                'label' : false,
+                'attr': {'placeholder': 'Mot de passe', 'autocomplete' : "off"}
+            }) }}
+            {{ form_row(form.plainPassword.first) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.plainPassword.second, {
+                'label' : false,
+                'attr': {'placeholder': 'répétez le mot de passe', 'autocomplete' : "off"}
+
+            }) }}
+            {{ form_row(form.plainPassword.second) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.postalCode) }}
+            {{ form_row(form.postalCode) }}
+        </div>
+        <div class="button-bg">
+            <button type="submit" formnovalidate>
+                S'inscrire !
+            </button>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
+>>>>>>> karim

@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
-
+{% block headbar %}
+    <div class="headbar hidden-xs">
+        <a href="javascript:history.back()" class="back"><</a>
+        Profil
+    </div>
+{% endblock %}
 {% block body %}
+<<<<<<< HEAD
     <div>
         <p>{{ app.user.firstname }}</p>
         <p>{{ app.user.lastname }}</p>
@@ -21,4 +27,43 @@
     {% block content %}{% endblock %}
 
     <div><a href="{{ path('security_logout') }}">Se déconnecter</a></div>
+=======
+    <div class="container">
+        <div class="row body">
+            <div class="col-md-4 left view">
+                <div class="row border user body col-md-12">
+                    <div class="prenom"><p>{{ app.user.lastName }}</p></div>
+                    <div class="prenom"><p>{{ app.user.firstName }}</p></div>
+                </div>
+                <div class="row liens col-md-12">
+                    {% block link %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="lien1">
+                            <a href="{{ path('admin_users') }}">Gestion des membres </a>
+                        </div>
+                    {% elseif is_granted('ROLE_PAR') %}
+                        <div class="lien1">
+                            <a href="{{ path('user_pending') }}">
+                                {% if is_granted('ROLE_PRO') %}
+                                    Accéder aux propositions
+                                    {% else %}
+                                        Propositions en attente
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endif %}
+                    <div class="profil">
+                        <a href="{{ path('user_edit') }}">Modifier mon profil</a>
+                    </div>
+                    <div class="deconnexion">
+                        <a href="{{ path('security_logout') }}">Se déconnecter</a>
+                    </div>
+                        {% endblock %}
+                </div>
+            </div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+>>>>>>> karim
 {% endblock %}

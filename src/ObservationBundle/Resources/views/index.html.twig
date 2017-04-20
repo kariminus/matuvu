@@ -1,7 +1,57 @@
 {% extends '::base.html.twig' %}
+<<<<<<< HEAD
 {% block headbar %}
     <script>
         $( document ).ready(function() {
+=======
+{% block header %}
+    <header class="flexbox">
+        <div class="flexbox-col-1 hidden-xs">
+            <a href="{{ path('homepage') }}"><img id="logo_header" alt="logo" src="{{ asset('images/logo.png') }}"/></a>
+        </div>
+        <div id="header-title" class="flexbox-col-10 center hidden-xs">
+            <h1 class="matuvu">Matuvu</h1>
+        </div>
+        <div id="header-consultant" class="flexbox-col-1">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin') }}">
+                    <img class="image-header" alt="profil admin" src="{{ asset('images/profils/admin.png') }}"/>
+                </a>
+            {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                {% if is_granted('ROLE_PRO') %}
+                    <a href="{{ path('user_profil') }}">
+                        <img class="image-header" alt="profil naturaliste" src="{{ asset('images/profils/naturaliste.png') }}"/>
+                    </a>
+                {% elseif is_granted('ROLE_PAR') %}
+                    <a href="{{ path('user_profil') }}">
+                        {% if app.user.observationsNumber < 10 %}
+                            <img class="image-header" alt="profil particulier" src="{{ asset('images/profils/consultant.png') }}"/>
+                        {% elseif app.user.observationsNumber >= 10 and app.user.observationsNumber < 50 %}
+                            <img class="image-header" alt="profil particulier" src="{{ asset('images/profils/petit_roi.png') }}"/>
+                        {% else %}
+                            <img class="image-header" alt="profil particulier" src="{{ asset('images/profils/grand_roi.png') }}"/>
+                        {% endif %}
+                    </a>
+                {% endif %}
+            {% else %}
+                <a href="{{ path('user_profil') }}"><img class="image-header" alt="profil par défaut" src="{{ asset('images/profils/consultant.png') }}"/></a>
+            {% endif %}
+        </div>
+    </header>
+{% endblock %}
+{% block headbar %}
+    <script>
+        /**Effet "google" **/
+        $( document ).ready(function() {
+            $("#logo_header").hide();
+            $( "#oiseau" ).keypress(function() {
+                $("#logo_header").show();
+                $("#logo").hide();
+                $("#header-title").removeClass('center');
+            });
+
+            /** Auto-complétion **/
+>>>>>>> karim
             var availableTags = {{ oiseaux | raw}};
             $( "#oiseau" ).autocomplete({
                 source: function (request, response) {
@@ -16,6 +66,7 @@
                     })), function (item) {
                         return matcher.test(item.value);
                     }))
+<<<<<<< HEAD
 
                 },
                 minLength: 3,
@@ -23,20 +74,44 @@
             });
         } );
     </script>
+=======
+>>>>>>> karim
 
-    <div class="ui-widget">
+                },
+                minLength: 3,
+                noResults: '',
+                autoFocus: true,
+                select: function(event, ui) {
+                    $(event.target).val(ui.item.value);
+                    $('#search').submit();
+                    return false;
+                }
+            });
+        } );
+    </script>
+        <div class="ui-widget headbar">
         <form action="" method="POST" id="search">
+<<<<<<< HEAD
             <div>
                 <label for="search">Recherche</label>
                 <input id="oiseau" name="search" type="text" required>
             </div>
             <button type="submit">Rechercher</button>
+=======
+                <input id="oiseau" name="search" type="text" placeholder="Rechercher un oiseau" required>
+            <button type="submit" hidden>Rechercher</button>
+>>>>>>> karim
         </form>
     </div>
     <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>
 {% endblock %}
 
 {% block body %}
+    <div class="container center">
+        <div class="center logo">
+            <img id="logo" alt="logo" src="{{ asset('images/logo.png') }}"/>
+        </div>
+    </div>
 {% endblock %}
 
 

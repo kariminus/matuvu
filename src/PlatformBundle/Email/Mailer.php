@@ -23,7 +23,11 @@ class Mailer
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Confirmation de votre inscription')
+<<<<<<< HEAD
             ->setFrom('karim.meciel@gmail.com')
+=======
+            ->setFrom('karim.mecielgmail.com')
+>>>>>>> karim
             ->setTo($user->getEmail())
             ->setBody($this->twig->render(
                 'Emails/inscription.html.twig', array (

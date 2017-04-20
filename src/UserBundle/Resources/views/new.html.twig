@@ -1,4 +1,5 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
+<<<<<<< HEAD
 {% block title %}
     <p>Gestion des membres</p>
 {% endblock %}
@@ -44,9 +45,66 @@
         {{ form_row(form.roles) }}
         {{ form_errors(form.roles) }}
     </div>
+=======
+{% block headbar %}
+    <div class="headbar">
+        <a href="javascript:history.back()" class="back"><</a>
+        Ajouter un membre
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="border border-left col-md-8">
+        <div class="row form-add-user">
+            <div class="identite col-md-offset-3 col-md-4">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+
+                <div class="form-group">
+                    {{ form_row(form.firstName) }}
+                    {{ form_errors(form.firstName) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.lastName) }}
+                    {{ form_errors(form.lastName) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
 
 
-    <button type="submit">Valider</button>
-    {{ form_end(form) }}
+                <div class="form-group">
+                    {{ form_row(form.plainPassword, {
+                        'label' : false,
+                        'required': false,
+                        'attr': {'placeholder': 'Mot de passe'}
+                        'autocomplete': false
+                    }) }}
+                    {{ form_errors(form.plainPassword) }}
+                </div>
 
+                <div class="form-group">
+                    {{ form_row(form.postalCode) }}
+                    {{ form_errors(form.postalCode) }}
+                </div>
+>>>>>>> karim
+
+            </div>
+            <div class="form-group roles col-md-offset-1 col-md-4">
+                {{ form_row(form.roles) }}
+                {{ form_errors(form.roles) }}
+
+            </div>
+        </div>
+
+        <div class="ajouter-membre center">
+            <div class="pagination">
+                <button type="submit" class="submit-membre">Valider</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

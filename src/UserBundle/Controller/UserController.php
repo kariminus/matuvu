@@ -21,12 +21,16 @@ class UserController extends Controller
     {
         $form = $this->createForm(UserRegistrationForm::class);
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+<<<<<<< HEAD
 //            $this->get('platform_mailer')->registerMail($user);
+=======
+            $this->get('platform_mailer')->registerMail($user);
+>>>>>>> karim
             return $this->get('security.authentication.guard_handler')
                 ->authenticateUserAndHandleSuccess(
                     $user,
@@ -46,8 +50,14 @@ class UserController extends Controller
      */
     public function resetPasswordAction()
     {
+<<<<<<< HEAD
         $this->get('manage_user')->reset();
         return $this->render('UserBundle::reset.html.twig');
+=======
+        return $this->render('UserBundle::reset.html.twig', array (
+            'error' => $this->get('manage_user')->reset()
+        ));
+>>>>>>> karim
     }
 
     /**

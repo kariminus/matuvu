@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block headbar %}
+    <div class="headbar hidden-xs">
+        <a href="javascript:history.back()" class="back"><</a>
+        Confirmation
+    </div>
+{% endblock %}
+{% block body %}
+    <div class="confirmation">
+        <img id="logo-confirmation" width="300" src="{{ asset('images/logo.png') }}" />
+        <img width="200" src="{{ asset('images/chargement.png') }}" />
+        <p>Merci pour votre contribution !</p>
+        <p>Redirection en cours...</p>
+    </div>
+
+    <script>
+        window.setTimeout("location=('https://karimmeciel.com/matuvu/web/');",5000);
+    </script>
+{% endblock %}

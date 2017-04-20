@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html.twig' %}
 
 {% block body %}
@@ -12,6 +13,26 @@
             </div>
             <button type="submit">Valider</button>
         </form>
+=======
+{% extends 'UserBundle::security.html.twig' %}
+{% block h1 %}
+    Mot de passe oublié ?
+{% endblock %}
+{% block content %}
+    <div id="connection-form" class="flexbox-col-10">
+            <form action="" method="POST" id="email" class="form_login">
+                <div>
+                    <input id="email" name="email" type="email" placeholder="Adresse e-mail" required>
+                </div>
+                <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>
+                <div><p>Entrez votre adresse e-mail. Un nouveau mot de passe vous sera envoyé</p></div>
+                <div class="button-bg">
+                    <button type="submit">
+                        Envoyer
+                    </button>
+                </div>
+            </form>
+>>>>>>> karim
     </div>
 
 {% endblock %}

@@ -20,13 +20,13 @@ class UserRegistrationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', TextType::class, array(
+            ->add('firstName', TextType::class, array(
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Prénom',
                 )
             ))
-            ->add('lastname', TextType::class, array(
+            ->add('lastName', TextType::class, array(
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'Nom',

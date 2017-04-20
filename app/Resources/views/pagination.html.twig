@@ -4,6 +4,7 @@
     <div class="pagination">
 
         {% if previous is defined %}
+<<<<<<< HEAD
             <span class="previous">
             <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">Précédent</a>
         </span>
@@ -13,6 +14,17 @@
             <span class="next">
             <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">Suivant</a>
         </span>
+=======
+                <span><a href="{{ path(route, query|merge({(pageParameterName): previous})) }}" class="previous">Précédent</a></span>
+            {% else %}
+                <span class="previous">Précédent</span>
+        {% endif %}
+
+        {% if next is defined %}
+                <span><a href="{{ path(route, query|merge({(pageParameterName): next})) }}" class="next">Suivant</a></span>
+            {% else %}
+                <span class="next">Suivant</span>
+>>>>>>> karim
         {% endif %}
     </div>
 {% endif %}

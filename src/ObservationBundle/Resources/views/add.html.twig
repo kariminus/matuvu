@@ -1,83 +1,172 @@
 {% extends '::base.html.twig' %}
-
-{% block title %}
+{% block headbar %}
+    <div class="headbar">
+        <a href="javascript:history.back()" class="back"><</a>
+        Proposer une observation
+    </div>
 {% endblock %}
-
 {% block body %}
+    <div class="container">
+        <div class="row body">
+            <div class="col-md-4 left oiseau-id">
+                <div class="infos"><div class="border user oiseau-name body">
+                    <p class="nom-scientific"><b>{{ oiseau.scientificName }}</b></p>
+                    <p>{{ oiseau.name }}</p>
+                    <p>{{ oiseau.ordre }}</p>
+                    <p>{{ oiseau.family }}</p>
+                </div>
+                <div class="right hidden-lg">
+                    {% if observation == NULL %}
+                        <img class="oiseau-ajout"  src="{{ asset('images/oiseau.png') }}"
+                             alt="Photo oiseau par défaut"/>
+                    {% else %}
+                        <img class="oiseau-ajout" src="{{ asset('/images/observations/') }}{{ observation.imageName }}"
+                             alt="{{ observation.oiseau.name }}"/>
+                    {% endif %}
+                </div></div>
+                <div class="right hidden-xs">
+                    {% if observation == NULL %}
+                        <img class="oiseau" width="390" height="263" src="{{ asset('images/oiseau.png') }}"
+                             alt="Photo oiseau par défaut"/>
+                    {% else %}
+                        <img class="oiseau" width="390" height="263" src="{{ asset('/images/observations/') }}{{ observation.imageName }}"
+                             alt="{{ observation.oiseau.name }}"/>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-8 map">
+                {% block content %}
+                    <div id="map"></div>
+
+                    <div class="form">
+                        <div class="row full-width">
+                            <div class="col-md-8 saisie">
+                                {{ form_start(form) }}
+                                {{ form_widget(form) }}
+                                {{ form_widget(form.date, {'attr': {'size': '10'}}) }}
+                                {{ form_widget(form.latitude) }}
+                                {{ form_widget(form.longitude) }}
+                                {{ form_widget(form.imageFile) }}
+                            </div>
+                            <div class="col-md-4 valider">
+                                <button type="submit" class="submit">
+                                    {% if is_granted('ROLE_PRO') %}
+                                        Valider
+                                    {% else %}
+                                        Envoyer pour validation
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </div>
+
+                        {{ form_end(form) }}
+
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
     <style>
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
+
         #map {
-            width: 50%;
-            height: 50%;
+            width: 100%;
+            height: 40vh;
         }
     </style>
-    <div id="map"></div>
     <script>
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service
         // failed.", it means you probably did not give permission for the browser to
         // locate you.
+        var map;
+        var myLatlng;
+        var marker;
 
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 12,
+                zoom: 6,
+                center: {lat: 45.996962, lng: 2.658691},
                 gestureHandling: 'greedy'
             });
 
+            var france = new google.maps.LatLng(45.996962, 2.658691);
+
+            marker = new google.maps.Marker({
+                position: france,
+                map: map,
+                draggable: true
+            });
+
+            $('#observation_latitude').val(marker.getPosition().lat());
+            $('#observation_longitude').val(marker.getPosition().lng());
+
+
             // Try HTML5 geolocation.
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
+                navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-                    map.setCenter(pos);
 
-                    var myLatlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-                    var marker = new google.maps.Marker({
-                        position: myLatlng,
-                        map: map,
-                        draggable:true
-                    });
-                    marker.addListener('drag', handleEvent);
-                    function handleEvent(event) {
-                        $('#observation_latitude').val(marker.getPosition().lat());
-                        $('#observation_longitude').val(marker.getPosition().lng());
-                    }
+                    myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                    marker.setPosition(myLatlng);
+
                     $('#observation_latitude').val(marker.getPosition().lat());
                     $('#observation_longitude').val(marker.getPosition().lng());
-                }, function() {
+
+                    map.setCenter(pos);
+
+                }, function () {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
             } else {
                 // Browser doesn't support Geolocation
                 handleLocationError(false, infoWindow, map.getCenter());
             }
+
+            $('#observation_latitude').val(marker.getPosition().lat());
+            $('#observation_longitude').val(marker.getPosition().lng());
+            marker.addListener('drag', handleEvent);
         }
 
+
+        function handleEvent(event) {
+            $('#observation_latitude').val(marker.getPosition().lat());
+            $('#observation_longitude').val(marker.getPosition().lng());
+        }
+
+        // Sets the map on all markers in the array.
+        function setMapOnAll(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+        // Removes the markers from the map, but keeps them in the array
+        function clearMarkers() {
+            setMapOnAll(null);
+        }
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+            clearMarkers();
+            markers = [];
+        }
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
+                'Erreur: Le service de géolocalisation a échoué.' :
+                'Erreur: Votre navigateur ne prend pas en charge la géolocalisation.');
         }
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt7VwEscGooLy4phojAgSl10zXpWUi9Z4&signed_in=true&callback=initMap"
             async defer>
     </script>
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_widget(form.date) }}
-    {{ form_widget(form.latitude) }}
-    {{ form_widget(form.longitude) }}
-    {{ form_widget(form.imageFile) }}
-    <button type="submit">Valider</button>
-    {{ form_end(form) }}
 {% endblock %}

@@ -8,7 +8,7 @@ oiseau_view:
     methods:  [GET, POST]
 
 observation_add:
-    path:     /oiseau/{slug}/add
+    path:     /oiseau/add/{slug}
     defaults: { _controller: "ObservationBundle:Observation:add" }
     methods:  [GET, POST]
 
@@ -27,3 +27,10 @@ observation_validate:
     defaults: { _controller: ObservationBundle:Observation:validate }
     methods:  [GET, POST]
 
+<<<<<<< HEAD
+=======
+confirmation:
+    path:     /confirmation
+    defaults: { _controller: ObservationBundle:Observation:confirmation }
+    methods:  [GET]
+>>>>>>> karim

@@ -21,5 +21,26 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->distinct();
         return $qb->getQuery()
             ->getSingleScalarResult();
+
+    }
+
+    public function findImage($oiseauId)
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o')
+            ->where('o.oiseau = :oiseauId')
+            ->andWhere('o.validated = :validated')
+            ->andWhere('o.imageName is NOT NULL')
+            ->setParameters(array('validated' => 1, 'oiseauId' => $oiseauId ));
+
+
+        try {
+            return $qb->getQuery()
+                ->getOneOrNullResult();
+        }
+        catch(\Doctrine\ORM\NoResultException $e) {
+            return $qb[0];
+        }
+
     }
 }

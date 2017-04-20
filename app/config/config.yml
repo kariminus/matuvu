@@ -13,7 +13,7 @@ parameters:
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.root_dir%/config/routing.yml'
@@ -69,9 +69,13 @@ swiftmailer:
     transport: gmail
     username: '%mailer_user%'
     password: '%mailer_password%'
+<<<<<<< HEAD
     encryption: ssl
     auth_mode:  login
     spool: { type: memory }
+=======
+
+>>>>>>> karim
 
 # Stof\DoctrineExtensionsBundle configuration
 stof_doctrine_extensions:

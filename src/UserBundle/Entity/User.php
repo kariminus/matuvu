@@ -32,23 +32,31 @@ class User implements UserInterface
      * @ORM\Column(name="first_name", type="string")
      * @Assert\NotBlank(message="Saisissez un prénom")
      */
-    private $firstname;
+    private $firstName;
 
     /**
      * @ORM\Column(name="last_name", type="string")
      * @Assert\NotBlank(message="Saisissez un nom")
      */
-    private $lastname;
+    private $lastName;
 
     /**
      * @ORM\Column(name="email", type="string", unique=true)
      * @Assert\NotBlank(message="Saisissez un email")
+<<<<<<< HEAD
      * @Assert\Email()
+=======
+     * @Assert\Email(message="Saisissez un email")
+>>>>>>> karim
      */
     private $email;
 
     /**
      * @ORM\Column(name="postal_code", type="integer", nullable=true)
+<<<<<<< HEAD
+=======
+     *
+>>>>>>> karim
      */
     private $postalCode;
 
@@ -113,33 +121,33 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getFirstname()
+    public function getFirstName()
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
     /**
-     * @param string $firstname
+     * @param string $firstName
      */
-    public function setFirstname($firstname)
+    public function setFirstName($firstName)
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
     }
 
     /**
      * @return string
      */
-    public function getLastname()
+    public function getLastName()
     {
-        return $this->lastname;
+        return $this->lastName;
     }
 
     /**
-     * @param string $lastname
+     * @param string $lastName
      */
-    public function setLastname($lastname)
+    public function setLastName($lastName)
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
     }
 
 

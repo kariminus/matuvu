@@ -1,12 +1,22 @@
 {% extends 'PlatformBundle::layout.html.twig' %}
+<<<<<<< HEAD
 {% block title %}
     <p>Gestion des membres</p>
 {% endblock %}
 {% block link %}
     <a href="{{ path('admin') }}">Gestion des membres</a>
+=======
+{% block headbar %}
+    <div class="headbar">
+        <a href="javascript:history.back()" class="back"><</a>
+        Modifier le membre
+    </div>
+>>>>>>> karim
 {% endblock %}
 
+
 {% block content %}
+<<<<<<< HEAD
     {{ form_start(form) }}
     {{ form_errors(form) }}
 
@@ -45,11 +55,49 @@
         {{ form_row(form.roles) }}
         {{ form_errors(form.roles) }}
     </div>
+=======
+    <div class="border border-left col-md-8">
+        <p class="email text-center">{{ user.email }}</p>
+        <div class="row form-user">
+            <div class="identite col-md-offset-3 col-md-4">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
 
+                <div class="form-group">
+                    {{ form_row(form.firstName) }}
+                    {{ form_errors(form.firstName) }}
+                </div>
 
-    <button type="submit">Modifier</button>
-    {{ form_end(form) }}
+                <div class="form-group">
+                    {{ form_row(form.lastName) }}
+                    {{ form_errors(form.lastName) }}
+                </div>
 
+                <div class="form-group">
+                    {{ form_row(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+
+>>>>>>> karim
+
+                <div class="form-group">
+                    {{ form_row(form.plainPassword, {
+                        'label' : false,
+                        'required': false,
+                        'attr': {'placeholder': 'Mot de passe'}
+                    }) }}
+                    {{ form_errors(form.plainPassword) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.postalCode, {
+                        'required': 'false'
+                    }
+                    }) }}
+                    {{ form_errors(form.postalCode) }}
+                </div>
+
+<<<<<<< HEAD
     <a href="{{ path('admin_user_delete', { 'id': user.id }) }}">Supprimer le membre</a>
     <div>
         {% if userBefore != null %}
@@ -58,5 +106,33 @@
         {% if userNext != null %}
             <a href="{{ path('admin_user_edit', { 'id': userNext.id }) }}">Membre suivant</a>
         {% endif %}
+=======
+            </div>
+            <div class="form-group roles col-md-offset-1 col-md-4">
+                {{ form_row(form.roles) }}
+                {{ form_errors(form.roles) }}
+                <button type="submit">Modifier</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="supprimer-membre center">
+            <a href="{{ path('admin_user_delete', { 'id': user.id }) }}">Supprimer le membre</a>
+        </div>
+
+        <div class="navigation">
+            <div class="pagination">
+            {% if userBefore != null %}
+                <span class="previous"><a href="{{ path('admin_user_edit', { 'id': userBefore.id }) }}">Membre précédent</a></span>
+                {% else %}
+                    <span class="previous">Membre précédent</span>
+            {% endif %}
+            {% if userNext != null %}
+                <span class="next"> <a href="{{ path('admin_user_edit', { 'id': userNext.id }) }}">Membre suivant</a></span>
+                {% else %}
+                    <span class="next">Membre suivant</span>
+            {% endif %}
+        </div>
+        </div>
+>>>>>>> karim
     </div>
 {% endblock %}

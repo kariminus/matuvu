@@ -1,8 +1,11 @@
 {% extends '::base.html.twig' %}
 
+<<<<<<< HEAD
 {% block title %}
 {% endblock %}
 
+=======
+>>>>>>> karim
 {% block headbar %}
     <style>
         html, body {
@@ -12,12 +15,33 @@
         }
 
         #map {
-            width: 50%;
-            height: 50%;
+            width: 100%;
+            height: 100%;
         }
     </style>
     <script>
         $( document ).ready(function() {
+<<<<<<< HEAD
+=======
+            $(".retour-profil").hide();
+            $(".lien-carte").click(function () {
+                $(".map-mobile").css("width", "100%");
+                $(".map-mobile").css("height", "60vh");
+                $(".right").addClass("hidden-xs");
+                $(".ajouter-mobile").addClass("hidden-xs");
+                $(this).addClass("hidden-xs");
+                $(".retour-profil").show();
+                google.maps.event.trigger(map, 'resize');
+            });
+            $(".retour-profil").click(function () {
+                $(".map-mobile").css("width", "0");
+                $(".map-mobile").css("height", "0");
+                $(".right").removeClass("hidden-xs");
+                $(".ajouter-mobile").removeClass("hidden-xs");
+                $(".retour-profil").hide();
+                $(".lien-carte").removeClass("hidden-xs");
+            });
+>>>>>>> karim
             var availableTags = {{ oiseaux | raw}};
             $( "#oiseau" ).autocomplete({
                 source: function (request, response) {
@@ -32,6 +56,7 @@
                     })), function (item) {
                         return matcher.test(item.value);
                     }))
+<<<<<<< HEAD
 
                 },
                 minLength: 3,
@@ -69,6 +94,63 @@
     {% else %}
         <p>Cet oiseau est une espèce protégée.</p>
     {% endif %}
+=======
+
+                },
+                minLength: 3,
+                noResults: '',
+                autoFocus: true,
+                select: function(event, ui) {
+                    $(event.target).val(ui.item.value);
+                    $('#search').submit();
+                    return false;
+                }
+            });
+        } );
+    </script>
+    <div class="ui-widget headbar">
+        <form action="" method="POST" id="search">
+            <input id="oiseau" name="search" type="text" placeholder="Rechercher un oiseau" required>
+            <button type="submit" hidden>Rechercher</button>
+        </form>
+    </div>
+    <div class="alert alert-danger  {{ error ? '' : 'hidden' }}">{{ error }}</div>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row body">
+            <div class="col-md-4 view oiseau-id">
+                <div class="row border user oiseau-name body col-md-12">
+                    <p class="nom-scientific"><b>{{ oiseau.scientificName }}</b></p>
+                    <p>{{ oiseau.name }}</p>
+                    <p>{{ oiseau.ordre }}</p>
+                    <p>{{ oiseau.family }}</p>
+                </div>
+                <div class="right">
+                    {% if observation == NULL %}
+                        <img class="oiseau"  width="390" height="263" src="{{ asset('images/oiseau.png') }}" alt="Photo oiseau par défaut"/>
+                    {% else %}
+                        <img class="oiseau"  src="{{ asset('/images/observations/') }}{{ observation.imageName }}" alt="{{ observation.oiseau.name }}"/>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="center col-md-8 map map-mobile">
+                    {% block content %}
+                        {% if protected == NULL or is_granted('ROLE_PRO') %}
+                            <div id="map"></div>
+                        {% else %}
+                            <p>Cet oiseau est une espèce protégée.</p>
+                        {% endif %}
+                    {% endblock %}
+            </div>
+                <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}" class="hidden-xs hidden-sm"><img class="ajouter" src="{{ asset('images/ajout.png') }}" alt="Ajouter une observation"/></a>
+                <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}" class="hidden-lg"><img class="ajouter-mobile" src="{{ asset('images/logo.png') }}" alt="Ajouter une observation"/></a>
+                <p class="hidden-lg lien-carte">Accéder à la carte</p>
+                <p class="hidden-lg retour-profil">Retour à la fiche</p>
+        </div>
+    </div>
+>>>>>>> karim
     <script>
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service
@@ -77,12 +159,14 @@
 
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
+                zoom: 6,
+                center: {lat: 45.996962, lng: 2.658691},
                 gestureHandling: 'greedy'
             });
 
 
             {% for observation in observations %}
+<<<<<<< HEAD
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
@@ -90,27 +174,42 @@
                 '<p>Observé le {{ observation.date | date('d/m/Y') }} <br/>par {{ observation.user.firstname }} {{ observation.user.lastname }}</p>' +
                 '</div>' +
                 '</div>';
+=======
+                var contentString = '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    '</div>' +
+                    '<div id="bodyContent">' +
+                    '<p>Observé le {{ observation.date | date('d/m/Y') }} <br/>par {{ observation.user.firstName }} {{ observation.user.lastName }}</p>' +
+                    '</div>' +
+                    '</div>';
+>>>>>>> karim
 
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString,
-                position: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}}
-            });
+                var infowindow{{ observation.id }} = new google.maps.InfoWindow({
+                    content: contentString,
+                    position: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}}
+                });
 
 
-            var cityCircle{{ observation.id }} = new google.maps.Circle({
-                strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: '#FF0000',
-                fillOpacity: 0.35,
-                map: map,
-                center: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}},
-                radius: 10000
-            });
+                var cityCircle{{ observation.id }} = new google.maps.Circle({
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35,
+                    map: map,
+                    center: {lat: {{ observation.latitude }}, lng: {{ observation.longitude }}},
+                    radius: 10000
+                });
 
+<<<<<<< HEAD
             cityCircle{{ observation.id }}.addListener('click', function () {
                 infowindow.open(map, cityCircle{{ observation.id }});
             });
+=======
+                cityCircle{{ observation.id }}.addListener('click', function () {
+                    infowindow{{ observation.id }}.open(map, cityCircle{{ observation.id }});
+                });
+>>>>>>> karim
             {% endfor %}
 
             // Try HTML5 geolocation.
@@ -133,17 +232,20 @@
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
+                'Erreur: Le service de géolocalisation a échoué.' :
+                'Erreur: Votre navigateur ne prend pas en charge la géolocalisation.');
         }
 
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq5V-pUDvNBdnyhFN_RRcVUeTXqMAioc0&signed_in=true&callback=initMap"></script>
+<<<<<<< HEAD
 
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         <a href="{{ path('observation_add', {'slug': oiseau.slug}) }}" class="ajouter">Ajouter</a>
     {% else %}
         <p>Pour ajouter une observation, veuillez vous connecter</p>
     {% endif %}
+=======
+>>>>>>> karim
 {% endblock %}
