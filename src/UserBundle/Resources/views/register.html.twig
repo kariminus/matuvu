@@ -20,7 +20,7 @@
         <div class="form-group">
             {{ form_row(form.email.first, {
                 'label' : false,
-                'attr': {'placeholder': 'Email'}
+                'attr': {'placeholder': 'Email', 'autocomplete' : "off"}
             }) }}
             {{ form_row(form.email.first) }}
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             {{ form_row(form.email.second, {
                 'label' : false,
-                'attr': {'placeholder': 'répétez le mail'}
+                'attr': {'placeholder': 'répétez le mail', 'autocomplete' : "off"}
 
             }) }}
             {{ form_row(form.email.second) }}
@@ -37,7 +37,7 @@
         <div class="form-group">
             {{ form_row(form.plainPassword.first, {
                 'label' : false,
-                'attr': {'placeholder': 'Mot de passe'}
+                'attr': {'placeholder': 'Mot de passe', 'autocomplete' : "off"}
             }) }}
             {{ form_row(form.plainPassword.first) }}
         </div>
@@ -45,7 +45,7 @@
         <div class="form-group">
             {{ form_row(form.plainPassword.second, {
                 'label' : false,
-                'attr': {'placeholder': 'répétez le mot de passe'}
+                'attr': {'placeholder': 'répétez le mot de passe', 'autocomplete' : "off"}
 
             }) }}
             {{ form_row(form.plainPassword.second) }}

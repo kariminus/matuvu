@@ -30,9 +30,10 @@ class ObservationRepository extends \Doctrine\ORM\EntityRepository
             ->where('o.oiseau = :oiseauId')
             ->andWhere('o.validated = :validated')
             ->andWhere('o.imageName is NOT NULL')
-            ->setParameters(array('validated' => 1, 'oiseauId' => $oiseauId ));
+            ->setParameters(array('validated' => 1, 'oiseauId' => $oiseauId ))
+            ->getQuery()
+            ->getResult();
 
-        return $qb->getQuery()
-            ->getOneOrNullResult();
+        return $qb[0];
     }
 }
