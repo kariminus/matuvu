@@ -66,10 +66,6 @@
                 minLength: 3,
                 noResults: '',
                 autoFocus: true,
-                focus: function( event, ui ) {
-                    $( "#oiseau" ).val( ui.item.label );
-                    return false;
-                },
                 select: function( event, ui ) {
                     $(event.target).val(ui.item.value);
                     $('#search').submit();
@@ -99,6 +95,5 @@
             <img id="logo" alt="logo" src="{{ asset('images/logo.png') }}"/>
         </div>
     </div>
-    {{ dump(oiseaux) }}
 {% endblock %}
 

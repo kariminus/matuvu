@@ -54,10 +54,6 @@
                 minLength: 3,
                 noResults: '',
                 autoFocus: true,
-                focus: function( event, ui ) {
-                    $( "#oiseau" ).val( ui.item.label );
-                    return false;
-                },
                 select: function( event, ui ) {
                     $(event.target).val(ui.item.value);
                     $('#search').submit();

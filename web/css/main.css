@@ -544,7 +544,7 @@ margin: 0;
         margin: 0 0 0 100px;
     }
     .oiseau-infos {
-        margin: 40px 0 0 0;
+        /*margin: 40px 0 0 0;*/
         padding-left: 50px;
         line-height: 200%;
     }
@@ -1099,6 +1099,7 @@ a:focus, a:hover {
     text-decoration: none;
 }
 .ui-menu-item {
+    cursor: pointer;
     background-color:#FF6600;
 	-webkit-transition: color 2s, background 2s;
     height:10vh;
@@ -1114,6 +1115,7 @@ ul li.ui-menu-item
 {
 	padding:5px 10px 0px 10px;
 }
+
 ul li.ui-menu-item:hover {
 	background-color:white;
 	-webkit-transition: color 2s, background 2s;
@@ -1123,7 +1125,6 @@ ul li.ui-menu-item:hover {
 	   -webkit-transition: color 2s, background 2s;
 }
 .ui-autocomplete :hover {
-
    -webkit-transition: color 2s, background 2s;
 }
 .ui-state-hover, .ui-state-active {

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block headbar %}
 <div class="headbar">
-    Mentions légales
+    <a href="javascript:history.back()" class="back"><</a>Conditions d'utilisations et mentions légales
 </div>
 {% endblock %}
 
 {% block body %}
 <div class="contenant">
-    <p>Présentation
+    <h2>Présentation</h2>
     <p>Ce site a été mis en place dans le but d'améliorer la recherche ornithologique (en compilant des observations associées à des photos d'oiseaux).
         Pour toute autre utilisation, l'administrateur du site se réserve le droit de supprimer le compte de l'utilisateur.
         La responsabilité de l'association NAO ne saurait être engagée.</p>
@@ -16,7 +16,7 @@
 
 
     <br/>
-    <p>Mentions légales et CGU :</p>
+    <h2>Mentions légales et CGU :</h2>
     <p>N.A.O (Nos Amis les Oiseaux) est une association sans but lucratif de loi 1905 créée en 2002, dont le siège est situé au 25 rue des fleurs, Paris -France. Tel: 09 93 45 26 26</p>
 
     <p>Responsable de rédaction & publication : Michel Dujardin</p>
@@ -39,7 +39,7 @@
         Si vous souhaitez obtenir une autorisation de reproduction dans un but commercial, vous devez obligatoirement nous contacter.</p>
 
 
-    <p>Utilisation de cookies</p>
+    <h2>Utilisation de cookies</h2>
     <p>En poursuivant votre navigation sur le site, vous acceptez de télécharger des cookies sur votre ordinateur.</p>
     <p>Ces fichiers permettent</p>
     <p>- de personnaliser votre navigation</p>
@@ -51,5 +51,3 @@
 </div>
 {% endblock %}
 
-{% block footer %}
-{% endblock %}
