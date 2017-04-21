@@ -33,6 +33,7 @@
                 $(".retour-profil").hide();
                 $(".lien-carte").removeClass("hidden-xs");
             });
+            /** Auto-complétion **/
             var availableTags = {{ oiseaux | raw}};
             $( "#oiseau" ).autocomplete({
                 source: function (request, response) {
@@ -42,7 +43,8 @@
 
                         return {
                             label: v.name,
-                            value: v.name
+                            value: v.name,
+                            scname: v.scientificName
                         };
                     })), function (item) {
                         return matcher.test(item.value);
@@ -52,12 +54,22 @@
                 minLength: 3,
                 noResults: '',
                 autoFocus: true,
-                select: function(event, ui) {
+                focus: function( event, ui ) {
+                    $( "#oiseau" ).val( ui.item.label );
+                    return false;
+                },
+                select: function( event, ui ) {
                     $(event.target).val(ui.item.value);
                     $('#search').submit();
                     return false;
                 }
-            });
+
+            })
+                .autocomplete( "instance" )._renderItem = function( ul, item ) {
+                return $( "<li>" )
+                    .append( "<div>" + item.label + "<br>" + item.scname + "</div>" )
+                    .appendTo( ul );
+            };
         } );
     </script>
     <div class="ui-widget headbar">
@@ -74,7 +86,7 @@
         <div class="row body">
             <div class="col-md-4 view oiseau-id">
                 <div class="row border user oiseau-name body col-md-12">
-                    <p class="nom-scientific"><b>{{ oiseau.scientificName }}</b></p>
+                    <h2 class="nom-scientific">{{ oiseau.scientificName }}</h2>
                     <p>{{ oiseau.name }}</p>
                     <p>{{ oiseau.ordre }}</p>
                     <p>{{ oiseau.family }}</p>

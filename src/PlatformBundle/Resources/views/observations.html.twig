@@ -24,7 +24,7 @@
                     <li class="observation">
                         <a class="lien-observation" href="{{ path('observation_view', {'id' : observation.id}) }}">{{ observation.oiseau.name }}</a>
                         <!-- Your share button code -->
-                        <img src="{{ asset('images/facebook.png') }}" width="25px" height="25px" class="facebook" id="{{ observation.id }}" alt="partage facebook "/>
+                        <a href=""><img src="{{ asset('images/facebook.png') }}" width="25px" height="25px" class="facebook" id="{{ observation.id }}" alt="partage facebook "/></a>
 
                         <script>
                             document.getElementById('{{ observation.id }}').onclick = function () {

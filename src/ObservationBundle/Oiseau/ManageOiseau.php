@@ -123,15 +123,34 @@ class ManageOiseau
     /*** Récupére les noms uniques des oiseaux et renvoi au format json*/
     public function serializer()
     {
-        $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->findAllDistinct();
+        $oiseaux = $this->em->getRepository('ObservationBundle:Oiseau')->myFindAll();
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
 
         $serializer = new Serializer($normalizers, $encoders);
 
-        $data = $serializer->serialize($oiseaux, 'json');
+        $uniques = $this->unique_multidim_array($oiseaux,'name');
+
+        $data = $serializer->serialize($uniques, 'json');
 
         return $data;
     }
+
+    function unique_multidim_array($array, $key) {
+        $temp_array = array();
+        $i = 0;
+        $key_array = array();
+
+        foreach($array as $val) {
+            if (!in_array($val[$key], $key_array)) {
+                $key_array[$i] = $val[$key];
+                $temp_array[$i] = $val;
+            }
+            $i++;
+        }
+        return $temp_array;
+    }
+
+
 
 }

@@ -5,7 +5,26 @@
         Modifier le profil
     </div>
 {% endblock %}
-
+{% block link %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="lien-editprofil">
+            <a href="{{ path('admin_users') }}">Gestion des membres </a>
+        </div>
+    {% elseif is_granted('ROLE_PAR') %}
+        <div class="lien-editprofil">
+            <a href="{{ path('user_pending') }}">
+                {% if is_granted('ROLE_PRO') %}
+                    Accéder aux propositions
+                {% else %}
+                    Propositions en attente
+                {% endif %}
+            </a>
+        </div>
+    {% endif %}
+    <div class="deconnexion">
+        <a href="{{ path('security_logout') }}">Se déconnecter</a>
+    </div>
+{% endblock %}
 {% block content %}
     <div class="border border-left col-md-8">
         <div class="row form-edit-user">
@@ -24,18 +43,28 @@
                 </div>
 
                 <div class="form-group">
+                    {{ form_row(form.email, {
+                        'label' : false,
+                        'attr': {'placeholder': 'Email', 'autocomplete' : "off"}
+                    }) }}
                     {{ form_row(form.email) }}
-                    {{ form_errors(form.email) }}
                 </div>
 
+                <div class="form-group">
+                    {{ form_row(form.plainPassword.first, {
+                        'label' : false,
+                        'attr': {'placeholder': 'Mot de passe', 'autocomplete' : "off"}
+                    }) }}
+                    {{ form_row(form.plainPassword.first) }}
+                </div>
 
                 <div class="form-group">
-                    {{ form_row(form.plainPassword, {
+                    {{ form_row(form.plainPassword.second, {
                         'label' : false,
-                        'required': false,
-                        'attr': {'placeholder': 'Mot de passe'}
+                        'attr': {'placeholder': 'répétez le mot de passe', 'autocomplete' : "off"}
+
                     }) }}
-                    {{ form_errors(form.plainPassword) }}
+                    {{ form_row(form.plainPassword.second) }}
                 </div>
 
                 <div class="form-group">
@@ -54,6 +83,4 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 {% endblock %}

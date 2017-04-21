@@ -29,7 +29,7 @@
                     </a>
                 {% endif %}
             {% else %}
-                <a href="{{ path('user_profil') }}"><img class="image-header" alt="profil par défaut" src="{{ asset('images/profils/consultant.png') }}"/></a>
+                <a href="{{ path('security_login') }}"><img class="image-header" alt="profil par défaut" src="{{ asset('images/profils/consultant.png') }}"/></a>
             {% endif %}
         </div>
     </header>
@@ -55,7 +55,8 @@
 
                         return {
                             label: v.name,
-                            value: v.name
+                            value: v.name,
+                            scname: v.scientificName
                         };
                     })), function (item) {
                         return matcher.test(item.value);
@@ -65,17 +66,27 @@
                 minLength: 3,
                 noResults: '',
                 autoFocus: true,
-                select: function(event, ui) {
+                focus: function( event, ui ) {
+                    $( "#oiseau" ).val( ui.item.label );
+                    return false;
+                },
+                select: function( event, ui ) {
                     $(event.target).val(ui.item.value);
                     $('#search').submit();
                     return false;
                 }
-            });
+
+            })
+            .autocomplete( "instance" )._renderItem = function( ul, item ) {
+                return $( "<li>" )
+                    .append( "<div>" + item.label + "<br>" + item.scname + "</div>" )
+                    .appendTo( ul );
+            };
         } );
     </script>
-        <div class="ui-widget headbar">
+    <div class="ui-widget headbar">
         <form action="" method="POST" id="search">
-                <input id="oiseau" name="search" type="text" placeholder="Rechercher un oiseau" required>
+            <input id="oiseau" name="search" type="text" placeholder="Rechercher un oiseau" required>
             <button type="submit" hidden>Rechercher</button>
         </form>
     </div>
@@ -88,6 +99,6 @@
             <img id="logo" alt="logo" src="{{ asset('images/logo.png') }}"/>
         </div>
     </div>
+    {{ dump(oiseaux) }}
 {% endblock %}
-
 

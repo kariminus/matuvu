@@ -4,12 +4,10 @@ namespace ObservationBundle\Repository;
 
 class OiseauRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllDistinct()
+    public function myFindAll()
     {
         $qb = $this->createQueryBuilder('o')
-            ->select('o.name')
-            ->distinct(true);
-
+            ->select('o.name', 'o.scientificName');
 
         return $qb->getQuery()
             ->getResult();

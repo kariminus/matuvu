@@ -3,21 +3,21 @@
     <div class="border border-left center col-md-8">
         <div class="row">
             <div class="center col-md-12">{% if is_granted('ROLE_ADMIN') %}
-                    <img class="image-profil" alt="admin" src="{{ asset('images/profils/admin.png') }}"/>
+                <a href="{{ path('homepage') }}" class="lien-homepage"><img class="image-profil" alt="admin" src="{{ asset('images/profils/admin.png') }}"/></a>
                 {% elseif is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {% if is_granted('ROLE_PRO') %}
-                        <img class="image-profil" src="{{ asset('images/profils/naturaliste.png') }}"
-                             alt="Image du profil naturaliste"/>
+                        <a href="{{ path('homepage') }}" class="lien-homepage"> <img class="image-profil" src="{{ asset('images/profils/naturaliste.png') }}"
+                                                               alt="Image du profil naturaliste"/></a>
                     {% elseif is_granted('ROLE_PAR') %}
                         {% if app.user.observationsNumber < 10 %}
-                            <img class="image-profil" src="{{ asset('images/profils/consultant.png') }}"
-                                 alt="Image du profil particulier"/>
+                            <a href="{{ path('homepage') }}" class="lien-homepage"><img class="image-profil" src="{{ asset('images/profils/consultant.png') }}"
+                                                                  alt="Image du profil particulier"/></a>
                         {% elseif app.user.observationsNumber >= 10 and app.user.observationsNumber < 50 %}
-                            <img class="image-profil" src="{{ asset('images/profils/petit_roi.png') }}"
-                                 alt="Image du profil particulier"/>
+                            <a href="{{ path('homepage') }}" class="lien-homepage"> <img class="image-profil" src="{{ asset('images/profils/petit_roi.png') }}"
+                                                                   alt="Image du profil particulier"/></a>
                         {% else %}
-                            <img class="image-profil" src="{{ asset('images/profils/grand_roi.png') }}"
-                                 alt="Image du profil particulier"/>
+                            <a href="{{ path('homepage') }}" class="lien-homepage"> <img class="image-profil" src="{{ asset('images/profils/grand_roi.png') }}"
+                                                                   alt="Image du profil particulier"/></a>
                         {% endif %}
                     {% endif %}
                 {% endif %}</div>
@@ -38,6 +38,9 @@
 
                 } else {
                     $(".left").show();
+                }
+                if (window.matchMedia("(min-device-width: 992px)").matches) {
+                    $(".lien-homepage").removeAttr("href");
                 }
             });
         </script>
